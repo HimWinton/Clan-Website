@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Clans - Your Website</title>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../css/styles-common.css"> <!-- Common header/footer styles -->
+        <link rel="stylesheet" href="../css/styles-clans.css"> <!-- Specific to the clans page -->
+    </head>
+<body>
+
+    <header>
+        <a href="../index.html" class="logo">Your Logo</a>
+        <div class="battle-info">
+            <h1 class="battle-name">Battle Name</h1>
+            <h3 id="countdown-timer" class="countdown">Countdown Timer</h3>
+        </div>
+        <nav class="nav-bar">
+            <ul class="nav-links">
+                <li><a href="../pages/clans.html">Clans</a></li>
+                <li><a href="../pages/macros.html">Macros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="preloader">
+        <div class="spinner"></div>
+        <p>Loading clans data...</p>
+    </div>
+    
+    <div id="content" style="display: none;">
+        <div class="tables-container">
+            <div class="table-container">
+                <h1>All Clans</h1>
+                <div class="header">
+                    <img id="top-clan-icon" src="" alt="Top Clan Icon">
+                    <h3>Top Clan: <span id="top-clan-name">Loading...</span></h3>
+                </div>
+                <div class="player-list" id="clan-list"></div>
+                <div class="pagination">
+                    <button class="arrow" id="prev-button" onclick="changePage(-1)">&#9664;</button>
+                    <select class="page-select" id="page-select" onchange="selectPage(this.value)">
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                    <button class="arrow" id="next-button" onclick="changePage(1)">&#9654;</button>
+                </div>
+            </div>
+        
+            <div class="table-container">
+                <h1 id="selected-clan-name">SELECT A CLAN...</h1>
+                <div class="clan-header">
+                    <img id="clan-icon" class="hidden" src="" alt="Clan Icon">
+                    <h3 id="total-points" class="hidden">Total Points: Loading...</h3>
+                </div>
+                <div class="player-list" id="player-list"></div>
+            </div>    
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-text">© 2024 Wonton Inc</div>
+    </footer>
+
+    <script src="../js/battle-info.js"></script>
+    <script src="../js/clan-script.js"></script>
+</body>
+</html>

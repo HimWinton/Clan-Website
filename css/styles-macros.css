@@ -1,0 +1,95 @@
+body {
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e0e0e0;
+}
+
+.header-container, .table-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* General content styling */
+.content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    color: #e0e0e0;
+}
+
+p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.downloads {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    margin-top: 20px;
+}
+
+.download-item {
+    flex: 1; /* Each item takes equal width */
+    max-width: 30%; /* Limit the width to 30% */
+    margin: 10px; /* Add margin around each item */
+    background-color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.download-item a {
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+    height: 100%; /* Ensure the link covers the entire item */
+}
+
+.download-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.download-item h3 {
+    margin: 0;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.download-item p {
+    margin: 0;
+    font-size: 1em;
+}
+
+.download-item:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1023px) {
+    .download-item {
+        max-width: 45%; /* Adjust to two items per row */
+    }
+}
+
+@media (max-width: 767px) {
+    .download-item {
+        max-width: 100%; /* Adjust to one item per row */
+    }
+}
