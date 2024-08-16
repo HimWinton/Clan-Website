@@ -1,13 +1,12 @@
-/* General Styles */
 body {
-    margin: 0;
     font-family: 'Outfit', sans-serif;
+    margin: 0;
+    padding: 20px;
     background-color: #000000;
-    color: #e0e0e0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    color: #e0e0e0;
 }
 
 /* Hero Section */
@@ -143,63 +142,4 @@ body {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
-}
-
-/* Responsive Design */
-@media (max-width: 767px) {
-    .hero h1 {
-        font-size: 1.5em; /* Smaller text on mobile */
-    }
-
-    .hero-content {
-        padding: 15px;
-    }
-
-    .features {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .feature-item {
-        max-width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .about {
-        flex-direction: column;
-    }
-
-    .about-content, .about-image {
-        max-width: 100%;
-        text-align: center;
-    }
-
-    .about-image img {
-        width: 80%; /* Adjust size for mobile */
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-    .hero h1 {
-        font-size: 2em; /* Adjust text size */
-    }
-
-    .features {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .feature-item {
-        max-width: 80%;
-        margin-bottom: 20px;
-    }
-
-    .about-content, .about-image {
-        max-width: 100%;
-        text-align: center;
-    }
-
-    .about-image img {
-        width: 90%; /* Adjust size for tablets */
-    }
 }

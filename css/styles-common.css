@@ -43,16 +43,17 @@ header::after {
 }
 
 .battle-name {
-    font-size: 2em;
+    font-size: 1.5em; /* Use a consistent size */
     color: #ffffff;
     margin: 0;
 }
 
 .countdown {
-    font-size: 1.2em;
+    font-size: 1.2em; /* Use a consistent size */
     color: #ffffff;
     margin: 5px 0 0 0;
 }
+
 
 .nav-bar {
     display: flex;
