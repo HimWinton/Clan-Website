@@ -5,12 +5,24 @@ document.addEventListener('DOMContentLoaded', function() {
             videoUrl: 'https://www.youtube.com/embed/SZYsG4P2VWs?si=dBAhT9XZMtF8oLtg'
         },
         {
-            title: 'MultiMacro V4',
+            title: 'Multi Macro',
             videoUrl: 'https://www.youtube.com/embed/zju4zs9QQNc?si=8YIC7Rhw7pqs2Ija'
         },
         {
-            title: 'Treehouse Macro V2',
+            title: 'Treehouse Macro',
             videoUrl: 'https://www.youtube.com/embed/9hHHg_fG36Q?si=wqiZE5Og1xwUlHhC'
+        },
+        {
+            title: 'Rank Quest Macro',
+            videoUrl: 'https://www.youtube.com/embed/ZSUV_iGsKGM?si=YMqzaOJ-T7WP4pJK'
+        },
+        {
+            title: 'Deep pool Fishing Macro',
+            videoUrl: 'https://www.youtube.com/embed/nfpicQGkFfE?si=FmoWqokOSSIXq10j'
+        },
+        {
+            title: 'Prison Key Macro',
+            videoUrl: 'https://www.youtube.com/embed/7k_DZAVJgpE?si=46CladISeX0auVmH'
         }
     ];
 
