@@ -4,10 +4,10 @@ async function fetchBattleDetails() {
         const data = await response.json();
 
         if (data.status === "ok") {
-            const battleDetails = data.data;
-            document.querySelector('.battle-name').textContent = battleDetails.configData.Title;
-            startCountdown(battleDetails.configData.FinishTime);
-            return battleDetails.configData._id;
+            const { configData } = data.data;
+            document.querySelector('.battle-name').textContent = configData.Title;
+            startCountdown(configData.FinishTime);
+            return configData._id;
         } else {
             console.error('Failed to fetch battle details');
             return null;
@@ -19,13 +19,13 @@ async function fetchBattleDetails() {
 }
 
 function startCountdown(finishTime) {
-    if (isNaN(finishTime) || finishTime <= 0) {
+    if (!finishTime || isNaN(finishTime) || finishTime <= 0) {
         console.error('Invalid finishTime:', finishTime);
         document.getElementById('countdown-timer').textContent = 'Invalid Time';
         return;
     }
 
-    function updateCountdown() {
+    const updateCountdown = () => {
         const now = Math.floor(Date.now() / 1000);
         const secondsLeft = finishTime - now;
 
@@ -35,19 +35,19 @@ function startCountdown(finishTime) {
             return;
         }
 
-        const minutes = Math.floor(secondsLeft / 60) % 60;
-        const hours = Math.floor(secondsLeft / 3600) % 24;
         const days = Math.floor(secondsLeft / 86400);
+        const hours = Math.floor((secondsLeft % 86400) / 3600);
+        const minutes = Math.floor((secondsLeft % 3600) / 60);
+        const seconds = secondsLeft % 60;
 
-        document.getElementById('countdown-timer').textContent = `Time Left: ${days}d ${hours}h ${minutes}m ${secondsLeft % 60}s`;
-    }
+        document.getElementById('countdown-timer').textContent = 
+            `Time Left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    };
 
     const intervalId = setInterval(updateCountdown, 1000);
     updateCountdown(); // Run immediately to avoid 1-second delay
 }
 
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     fetchBattleDetails();
-    startCountdown();
 });
