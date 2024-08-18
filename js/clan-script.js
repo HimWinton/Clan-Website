@@ -31,7 +31,7 @@ const fetchTotalClans = async () => {
         const data = await response.json();
         if (data.status === "ok") {
             totalClans = data.totalCount || data.data || data.total || 0;
-            updatePagination(totalClans);
+            updatePagination(totalClans); // Update pagination based on the total number of clans
         } else {
             console.error('Failed to fetch total clans');
         }
@@ -39,6 +39,7 @@ const fetchTotalClans = async () => {
         console.error('Error fetching total clans:', error);
     }
 };
+
 
 const fetchClansData = async (page = currentPage) => {
     try {
@@ -102,6 +103,7 @@ const updatePagination = (totalClans) => {
     pageSelect.innerHTML = '';
 
     const totalPages = Math.ceil(totalClans / clansPerPage);
+    
     for (let i = 1; i <= totalPages; i++) {
         const option = document.createElement('option');
         option.value = i;
@@ -114,19 +116,22 @@ const updatePagination = (totalClans) => {
     document.getElementById('next-button').disabled = currentPage === totalPages;
 };
 
+
 const changePage = (direction) => {
     const totalPages = Math.ceil(totalClans / clansPerPage);
     if ((direction === 1 && currentPage < totalPages) || (direction === -1 && currentPage > 1)) {
         currentPage += direction;
-        loadClans();
+        loadClans(); // Load the clans for the new page
+        updatePagination(totalClans); // Update the pagination UI
     }
 };
 
 const selectPage = (page) => {
-    currentPage = parseInt(page);
-    loadClans();
-    updatePagination(totalClans);
+    currentPage = parseInt(page, 10);
+    loadClans(); // Load the clans for the selected page
+    updatePagination(totalClans); // Update the pagination UI
 };
+
 
 const fetchUsername = async (userId) => {
     if (usernameCache[userId]) {
@@ -210,7 +215,7 @@ const displayClanData = async (clanData) => {
 };
 
 const loadClans = async () => {
-    const clans = await fetchClansData();
+    const clans = await fetchClansData(currentPage);
     await displayClans(clans);
 };
 

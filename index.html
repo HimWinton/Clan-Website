@@ -5,59 +5,60 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home - Your Website</title>
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/styles-common.css"> <!-- Common header/footer styles -->
-        <link rel="stylesheet" href="css/styles-index.css"> <!-- Specific to the index page -->
+        <link rel="stylesheet" href="css/styles-common.css">
+        <link rel="stylesheet" href="css/styles-index.css">
     </head>
     
-<body>
+    <body>
+        <header>
+            <a href="index.html" class="logo">
+                <img src="imgs/logo.png" alt="Your Logo">
+            </a>
+            <div class="battle-info">
+                <h1 class="battle-name">Battle Name</h1>
+                <h3 id="countdown-timer" class="countdown">Countdown Timer</h3>
+            </div>
+            <nav class="nav-bar">
+                <ul class="nav-links">
+                    <li><a href="pages/clans.html">Clans</a></li>
+                    <li><a href="pages/macros.html">Macros</a></li>
+                </ul>
+            </nav>
+        </header>
+    <div class="content-wrapper">
+        <section class="clan-info">
+            <div class="clan-banner">
+                <h1><strong>Ice Cream Clan Battle</strong></h1>
+                <a href="pages/clans.html">
+                    <img src="imgs/ps99_ice_cream_clan_battle.png" alt="Clan Banner">
+                </a>
+                <div class="clan-rewards">
+                    <h2>Clan Rewards</h2>
+                    <ul>
+                        <li><strong>1st:</strong> <span id="goldreward">Reward Description</span></li>
+                        <li><strong>2nd-3rd:</strong> <span id="silverreward">Reward Description</span></li>
+                        <li><strong>4th-10th:</strong> <span id="bronzereward">Reward Description</span></li>
+                        <li><strong>11th-50th:</strong> <span id="otherreward">Reward Description</span></li>
+                        <li><strong>51st-500th:</strong> <span id="clangift">Reward Description</span></li>
+                    <ul>
+                </div>
+            </div>
+        </section>
 
-    <header>
-        <a href="index.html" class="logo">
-            <img src="imgs/logo.png" alt="Your Logo">
-        </a>
-        <div class="battle-info">
-            <h1 class="battle-name">Battle Name</h1>
-            <h3 id="countdown-timer" class="countdown">Countdown Timer</h3>
-        </div>
-        <nav class="nav-bar">
-            <ul class="nav-links">
-                <li><a href="pages/clans.html">Clans</a></li>
-                <li><a href="pages/macros.html">Macros</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to Your Website</h1>
-            <p>Explore our features and services. We help you achieve more.</p>
-        </div>
-    </section>
-
-    <section class="features">
-        <div class="feature-item">
-            <i class="icon">🎯</i>
-            <h3>Feature 1</h3>
-            <p>Description of Feature 1</p>
-        </div>
-        <div class="feature-item">
-            <i class="icon">⚙️</i>
-            <h3>Feature 2</h3>
-            <p>Description of Feature 2</p>
-        </div>
-        <div class="feature-item">
-            <i class="icon">🚀</i>
-            <h3>Feature 3</h3>
-            <p>Description of Feature 3</p>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <p>© 2024 Wonton Inc</p>
-        </div>
-    </footer>
-
-    <script src="js/battle-info.js"></script>
-</body>
+        <section class="additional-info">
+            <h2>Additional Info</h2>
+            <p>This is some additional content that will be placed to the right of the existing clan info.</p>
+            <!-- Add more content as needed -->
+        </section>
+    </div>
+        <footer>
+            <div class="footer-content">
+                <p>© 2024 Wonton Inc</p>
+            </div>
+        </footer>
+    
+        <script src="js/battle-info.js"></script>
+        <script src="js/clan-rewards.js"></script>
+    </body>
+    
 </html>

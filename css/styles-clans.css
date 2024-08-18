@@ -56,7 +56,7 @@ body {
 .table-container {
     flex: 1;
     max-width: 45%; /* Adjusted from 50% to 45% to make tables smaller */
-    min-width: 600px; /* Reduced from 700px to make them smaller */
+    min-width: 800px; /* Reduced from 700px to make them smaller */
     padding: 20px;
     border-radius: 15px;
     background-color: #1c1c1c;
@@ -166,6 +166,16 @@ h5 {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+}
+
+#page-select {
+    display: block;
+    margin: 0 auto; /* This centers the dropdown horizontally */
+    text-align: center; /* Center text within the dropdown */
+}
+
+#page-select option {
+    text-align: center; /* Ensure that the text within each option is centered */
 }
 
 .page-select, .arrow {

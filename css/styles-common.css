@@ -5,7 +5,6 @@ header {
     height: 50px;
     width: 100%;
     padding: 20px;
-    background-color: #1c1c1c;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -87,7 +86,6 @@ header::after {
 footer {
     width: 100%;
     padding: 20px;
-    background-color: #1c1c1c;
     display: flex;
     justify-content: center;
     align-items: center;
