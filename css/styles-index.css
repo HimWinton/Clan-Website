@@ -9,6 +9,26 @@ body {
     color: #e0e0e0;
 }
 
+.news-header-container {
+    text-align: center;
+    margin-top: 30px; /* Adjust as needed to create space between the header and news section */
+    margin-bottom: 10px; /* Adjust as needed to create space below the news section */
+}
+
+.news-header {
+    font-size: 3em;
+    color: #ffffff; /* Adjust color as per your theme */
+    margin: 0; /* Remove default margins */
+}
+
+.news-divider {
+    width: 100%; /* Adjust the width of the line */
+    margin: 10px auto; /* Center the line and add spacing above/below */
+    border: 0;
+    height: 2px; /* Adjust the thickness of the line */
+    background-color: #ffffff; /* Change to fit your theme color */
+}
+
 .content-wrapper {
     display: flex; /* Use flexbox to align items side by side */
     justify-content: space-between; /* Space between the sections */
