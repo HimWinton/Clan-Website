@@ -55,6 +55,7 @@ p {
 
 .downloads {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     flex-wrap: wrap; /* Allows wrapping on smaller screens */
     margin-top: 20px;
@@ -101,16 +102,18 @@ p {
 }
 
 .youtube-video {
-    position: relative;
-    z-index: 10;
+    display: flex;
+    justify-content: center; /* Horizontally centers the video */
+    align-items: center; /* Vertically centers the video */
+    width: 100%;
+    padding: 20px; /* Optional: Add some padding for spacing */
+    box-sizing: border-box; /* Include padding in width and height */
 }
 
 .youtube-video iframe {
-    position: relative;
-    z-index: 10;
+    width: 100%;
     border-radius: 10px;
-    margin-left: 20px;
-    margin-bottom: 20px;
+    max-width: 560px; /* Optional: Limit the maximum width of the video */
 }
 
 /* Responsive adjustments */
