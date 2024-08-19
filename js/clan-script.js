@@ -1,9 +1,14 @@
-const clansPerPage = 10;
-let currentPage = 1;
-let totalClans = 0;
-let currentBattle = null;
-const usernameCache = JSON.parse(localStorage.getItem('usernameCache')) || {};
+// Core state variables
+const state = {
+    clansPerPage: 10,
+    currentPage: 1,
+    totalClans: 0,
+    currentBattle: null,
+    usernameCache: JSON.parse(localStorage.getItem('usernameCache')) || {},
+    clickLock: false // Lock to prevent spam clicking
+};
 
+// Utility functions
 const getSuffix = (num) => {
     const j = num % 10;
     const k = num % 100;
@@ -12,10 +17,10 @@ const getSuffix = (num) => {
            j === 3 && k !== 13 ? 'rd' : 'th';
 };
 
-const abbreviatePoints = async (points) => {
+const abbreviatePoints = (points) => {
     const units = ['T', 'B', 'M', 'K'];
     const divisors = [1_000_000_000_000, 1_000_000_000, 1_000_000, 1_000];
-    
+
     for (let i = 0; i < divisors.length; i++) {
         if (points >= divisors[i]) {
             const value = points / divisors[i];
@@ -25,43 +30,113 @@ const abbreviatePoints = async (points) => {
     return points.toFixed(0);
 };
 
+// Fetch total number of clans
 const fetchTotalClans = async () => {
     try {
+        showPreloader(); // Show preloader before fetching data
         const response = await fetch('https://biggamesapi.io/api/clansTotal');
         const data = await response.json();
         if (data.status === "ok") {
-            totalClans = data.totalCount || data.data || data.total || 0;
-            updatePagination(totalClans); // Update pagination based on the total number of clans
+            state.totalClans = data.totalCount || data.data || data.total || 0;
         } else {
             console.error('Failed to fetch total clans');
         }
     } catch (error) {
         console.error('Error fetching total clans:', error);
+    } finally {
+        hidePreloader(); // Hide preloader after fetching data
     }
 };
 
-
-const fetchClansData = async (page = currentPage) => {
+// Fetch clans data for the current page
+const fetchClansData = async (page = state.currentPage) => {
     try {
-        const response = await fetch(`https://biggamesapi.io/api/clans?page=${page}&pageSize=${clansPerPage}&sort=Points&sortOrder=desc`);
+        showPreloader(); // Show preloader before fetching data
+        const response = await fetch(`https://biggamesapi.io/api/clans?page=${page}&pageSize=${state.clansPerPage}&sort=Points&sortOrder=desc`);
         const data = await response.json();
         return data.status === "ok" ? data.data : [];
     } catch (error) {
         console.error('Error fetching clans data:', error);
         return [];
+    } finally {
+        hidePreloader(); // Hide preloader after fetching data
     }
 };
 
+// Fetch and display detailed clan data based on the clan name
+const fetchClanData = async (clanName) => {
+    if (state.clickLock) {
+        return; // Exit if there's an ongoing request
+    }
+    
+    state.clickLock = true; // Set the lock to prevent further clicks
+
+    try {
+        showPreloader(); // Show preloader before fetching data
+        const response = await fetch(`https://biggamesapi.io/api/clan/${clanName}`);
+        const data = await response.json();
+        if (data.status === "ok") {
+            await displayClanData(data.data);
+        } else {
+            console.error('Failed to fetch clan data');
+        }
+    } catch (error) {
+        console.error('Error fetching clan data:', error);
+    } finally {
+        // Release the lock after a short delay (e.g., 1 second)
+        setTimeout(() => {
+            state.clickLock = false;
+            hidePreloader(); // Hide preloader after fetching data
+        }, 1000); // Adjust delay as needed
+    }
+};
+
+// Fetch username with caching
+const fetchUsername = async (userId) => {
+    const cachedData = JSON.parse(localStorage.getItem(`username_${userId}`));
+
+    // Check if the cache exists and is not expired
+    if (cachedData && Date.now() - cachedData.timestamp < 24 * 60 * 60 * 1000) {
+        return cachedData.username;
+    }
+
+    // Fetch from the API if not cached or expired
+    try {
+        showPreloader(); // Show preloader before fetching data
+        const response = await fetch(`https://users.roproxy.com/v1/users/${userId}`);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch username for userId ${userId}`);
+        }
+        const data = await response.json();
+        const username = data.name;
+
+        // Cache the username with a timestamp
+        localStorage.setItem(`username_${userId}`, JSON.stringify({
+            username,
+            timestamp: Date.now()
+        }));
+
+        return username;
+    } catch (error) {
+        console.error('Error fetching username:', error);
+        return userId;
+    } finally {
+        hidePreloader(); // Hide preloader after fetching data
+    }
+};
+
+// Display clans on the page
 const displayClans = async (clans) => {
+    showPreloader(); // Show preloader before displaying clans
     const clanList = document.getElementById('clan-list');
     clanList.innerHTML = '';
 
     const clanElements = await Promise.all(clans.map(async (clan, index) => {
-        const globalRank = (currentPage - 1) * clansPerPage + index + 1;
+        const globalRank = (state.currentPage - 1) * state.clansPerPage + index + 1;
         const card = document.createElement('div');
         card.classList.add('card');
 
-        const points = await abbreviatePoints(clan.Points);
+        const points = abbreviatePoints(clan.Points);
 
         card.innerHTML = `
             <span class="placement">${globalRank}${getSuffix(globalRank)}</span>
@@ -73,17 +148,21 @@ const displayClans = async (clans) => {
 
     clanElements.forEach(card => clanList.appendChild(card));
 
-    if (currentPage === 1 && clans.length > 0) {
+    if (state.currentPage === 1 && clans.length > 0) {
         updateTopClan(clans[0]);
     }
+
+    hidePreloader(); // Hide preloader after displaying clans
 };
 
+// Update the top clan display
 const updateTopClan = async (topClan) => {
     try {
+        showPreloader(); // Show preloader before updating top clan
         const topClanNameElement = document.getElementById('top-clan-name');
         const topClanIconElement = document.getElementById('top-clan-icon');
 
-        topClanNameElement.textContent = `${topClan.Name} (${await abbreviatePoints(topClan.Points)})`;
+        topClanNameElement.textContent = `${topClan.Name} (${abbreviatePoints(topClan.Points)})`;
 
         const topClanResponse = await fetch(`https://biggamesapi.io/api/clan/${topClan.Name}`);
         const topClanData = await topClanResponse.json();
@@ -95,95 +174,29 @@ const updateTopClan = async (topClan) => {
         }
     } catch (error) {
         console.error('Error updating top clan:', error);
+    } finally {
+        hidePreloader(); // Hide preloader after updating top clan
     }
 };
 
-const updatePagination = (totalClans) => {
-    const pageSelect = document.getElementById('page-select');
-    pageSelect.innerHTML = '';
-
-    const totalPages = Math.ceil(totalClans / clansPerPage);
-    
-    for (let i = 1; i <= totalPages; i++) {
-        const option = document.createElement('option');
-        option.value = i;
-        option.textContent = i;
-        pageSelect.appendChild(option);
-    }
-
-    pageSelect.value = currentPage;
-    document.getElementById('prev-button').disabled = currentPage === 1;
-    document.getElementById('next-button').disabled = currentPage === totalPages;
-};
-
-
-const changePage = (direction) => {
-    const totalPages = Math.ceil(totalClans / clansPerPage);
-    if ((direction === 1 && currentPage < totalPages) || (direction === -1 && currentPage > 1)) {
-        currentPage += direction;
-        loadClans(); // Load the clans for the new page
-        updatePagination(totalClans); // Update the pagination UI
-    }
-};
-
-const selectPage = (page) => {
-    currentPage = parseInt(page, 10);
-    loadClans(); // Load the clans for the selected page
-    updatePagination(totalClans); // Update the pagination UI
-};
-
-
-const fetchUsername = async (userId) => {
-    if (usernameCache[userId]) {
-        return usernameCache[userId];
-    }
-
-    try {
-        const response = await fetch(`https://users.roproxy.com/v1/users/${userId}`);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch username for userId ${userId}`);
-        }
-        const data = await response.json();
-        const username = data.name;
-
-        usernameCache[userId] = username;
-        localStorage.setItem('usernameCache', JSON.stringify(usernameCache));
-
-        return username;
-    } catch (error) {
-        console.error('Error fetching username:', error);
-        return userId;
-    }
-};
-
-const fetchClanData = async (clanName) => {
-    try {
-        const response = await fetch(`https://biggamesapi.io/api/clan/${clanName}`);
-        const data = await response.json();
-        if (data.status === "ok") {
-            displayClanData(data.data);
-        } else {
-            console.error('Failed to fetch clan data');
-        }
-    } catch (error) {
-        console.error('Error fetching clan data:', error);
-    }
-};
-
+// Display detailed clan data
 const displayClanData = async (clanData) => {
-    const clanWar = clanData.Battles[currentBattle];
+    const clanWar = clanData.Battles[state.currentBattle];
     const playerList = document.getElementById('player-list');
+
+    showPreloader(); // Show preloader before displaying detailed clan data
 
     if (!clanWar || !clanWar.PointContributions || clanWar.PointContributions.length === 0) {
         document.getElementById('total-points').textContent = '0';
         document.getElementById('global-rank').textContent = 'N/A';
         playerList.innerHTML = '<div>No contributions available.</div>';
+        hidePreloader(); // Hide preloader after displaying no data
         return;
     }
 
     const iconID = clanData.Icon.replace('rbxassetid://', '');
     const iconURL = `https://biggamesapi.io/image/${iconID}`;
-    const totalPoints = await abbreviatePoints(clanWar.Points);
+    const totalPoints = abbreviatePoints(clanWar.Points);
 
     document.getElementById('total-points').textContent = `Total Points: ${totalPoints}`;
     document.getElementById('selected-clan-name').textContent = clanData.Name;
@@ -203,7 +216,7 @@ const displayClanData = async (clanData) => {
         card.classList.add('card');
 
         const username = await fetchUsername(contribution.UserID);
-        const points = await abbreviatePoints(contribution.Points);
+        const points = abbreviatePoints(contribution.Points);
 
         card.innerHTML = `
             <span class="placement">${index + 1}${getSuffix(index + 1)}</span>
@@ -212,28 +225,76 @@ const displayClanData = async (clanData) => {
         `;
         playerList.appendChild(card);
     }
+
+    hidePreloader(); // Hide preloader after displaying detailed clan data
 };
 
-const loadClans = async () => {
-    const clans = await fetchClansData(currentPage);
-    await displayClans(clans);
+// Update pagination controls
+const updatePagination = (totalClans) => {
+    const pageSelect = document.getElementById('page-select');
+    pageSelect.innerHTML = '';
+
+    const totalPages = Math.ceil(totalClans / state.clansPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = i;
+        pageSelect.appendChild(option);
+    }
+
+    pageSelect.value = state.currentPage;
+    document.getElementById('prev-button').disabled = state.currentPage === 1;
+    document.getElementById('next-button').disabled = state.currentPage === totalPages;
 };
 
-const init = async () => {
-    try {
-        document.getElementById('preloader').style.display = 'flex';
-        document.getElementById('content').style.display = 'none';
-
-        await fetchTotalClans();
-        currentBattle = await fetchBattleDetails();
-        await loadClans();
-
-        document.getElementById('preloader').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-    } catch (error) {
-        console.error('Error during initialization:', error);
-        document.getElementById('preloader').innerHTML = '<p>Failed to load data. Please try again later.</p>';
+// Handle page change
+const changePage = (direction) => {
+    const totalPages = Math.ceil(state.totalClans / state.clansPerPage);
+    if ((direction === 1 && state.currentPage < totalPages) || (direction === -1 && state.currentPage > 1)) {
+        state.currentPage += direction;
+        loadClans(); // Load the clans for the new page
+        updatePagination(state.totalClans); // Update the pagination UI
     }
 };
 
+// Select a specific page
+const selectPage = (page) => {
+    state.currentPage = parseInt(page, 10);
+    loadClans(); // Load the clans for the selected page
+    updatePagination(state.totalClans); // Update the pagination UI
+};
+
+// Load clans data and display it
+const loadClans = async () => {
+    const clans = await fetchClansData(state.currentPage);
+    await displayClans(clans);
+};
+
+// Show the preloader
+function showPreloader() {
+    document.getElementById('preloader').classList.remove('hidden');
+}
+
+// Hide the preloader and show content
+function hidePreloader() {
+    document.getElementById('preloader').classList.add('hidden');
+    document.getElementById('content').style.display = 'block'; // Ensure content is visible
+}
+
+// Initialize the application
+const init = async () => {
+    try {
+        showPreloader(); // Show preloader during initialization
+        await fetchTotalClans();
+        state.currentBattle = await fetchBattleDetails(); // Ensure this function exists
+        await loadClans();
+    } catch (error) {
+        console.error('Error during initialization:', error);
+    } finally {
+        hidePreloader(); // Ensure preloader is hidden and content is shown
+    }
+};
+
+// Start the app
 init();
