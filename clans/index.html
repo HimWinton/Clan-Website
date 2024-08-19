@@ -38,8 +38,10 @@
             <div class="table-container">
                 <h1>All Clans</h1>
                 <div class="clan-header">
-                    <img id="top-clan-icon" src="" alt="Top Clan Icon">
-                    <h3>Top Clan: <span id="top-clan-name">Loading...</span></h3>
+                    <div class="clan-header-content">
+                        <img id="top-clan-icon" src="" alt="Top Clan Icon">
+                        <h3>Top Clan: <span id="top-clan-name">Loading...</span></h3>
+                    </div>
                 </div>
                 <div class="player-list" id="clan-list"></div>
                 <div class="pagination">
@@ -52,11 +54,19 @@
             </div>
         
             <div class="table-container">
-                <h1 id="selected-clan-name">SELECT A CLAN...</h1>
+                <h1 id="selected-clan-name">SELECT A CLAN...</h1> <!-- Clan name at the top -->
                 <div class="clan-header">
-                    <img id="clan-icon" class="hidden" src="" alt="Clan Icon">
-                    <h3 id="total-points" class="hidden">Total Points: Loading...</h3>
-                </div> 
+                    <div class="clan-header-content">
+                        <img id="clan-icon" class="hidden" src="" alt="Clan Icon">
+                        <div id="clan-details" class="hidden">
+                            <h3 id="clan-status">Status: Loading...</h3> <!-- Status on top -->
+                            <div class="clan-stats">
+                                <h3 id="total-points">Total Points: Loading...</h3>
+                                <h3 id="clan-diamonds">Diamonds: Loading...</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="player-list" id="player-list"></div>
             </div>    

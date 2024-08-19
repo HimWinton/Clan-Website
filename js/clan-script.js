@@ -180,6 +180,8 @@ const updateTopClan = async (topClan) => {
 };
 
 // Display detailed clan data
+// Display detailed clan data
+// Display detailed clan data
 const displayClanData = async (clanData) => {
     const clanWar = clanData.Battles[state.currentBattle];
     const playerList = document.getElementById('player-list');
@@ -197,15 +199,28 @@ const displayClanData = async (clanData) => {
     const iconID = clanData.Icon.replace('rbxassetid://', '');
     const iconURL = `https://biggamesapi.io/image/${iconID}`;
     const totalPoints = abbreviatePoints(clanWar.Points);
+    const clanStatus = clanData.Status || 'Unknown';  // Assuming status is available in clanData
+    const clanDiamonds = abbreviatePoints(clanData.DepositedDiamonds || 0); // Assuming diamonds are available in clanData
 
-    document.getElementById('total-points').textContent = `Total Points: ${totalPoints}`;
+    // Set the clan name at the top
     document.getElementById('selected-clan-name').textContent = clanData.Name;
 
+    // Set the clan icon and details
     const clanIconElement = document.getElementById('clan-icon');
     clanIconElement.src = iconURL;
     clanIconElement.classList.remove('hidden');
 
-    document.getElementById('total-points').classList.remove('hidden');
+    // Set the clan status, points, and diamonds (using the image for diamonds)
+    document.getElementById('clan-status').innerHTML = `${clanStatus}`;
+    document.getElementById('total-points').innerHTML = `
+        <img src="../imgs/star.png" alt="Star">
+        ${totalPoints}
+    `;
+    document.getElementById('clan-diamonds').innerHTML = `
+        <img src="https://biggamesapi.io/image/14867116353" alt="Diamonds">
+        ${clanDiamonds}
+    `;
+    document.getElementById('clan-details').classList.remove('hidden');
 
     playerList.innerHTML = '';
 
@@ -228,6 +243,7 @@ const displayClanData = async (clanData) => {
 
     hidePreloader(); // Hide preloader after displaying detailed clan data
 };
+
 
 // Update pagination controls
 const updatePagination = (totalClans) => {
