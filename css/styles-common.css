@@ -17,7 +17,7 @@ header {
     height: 50px;
     width: 100%;
     padding: 20px;
-    box-shadow: 0px 2px 10px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3); /* Neon pink shadow */
 }
 
 header::after {
@@ -112,7 +112,7 @@ footer {
     align-items: center;
     position: relative;
     margin-top: 20px;
-    box-shadow: 0px -2px 10px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.3); /* Neon pink shadow */
 }
 
 footer::before {
