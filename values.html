@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Values - Your Website</title>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/styles-common.css">
+        <link rel="stylesheet" href="css/styles-values.css">
+    </head>
+    
+    <body>
+        <header>
+            <a href="index.html" class="logo">
+                <img src="imgs/logo.png" alt="Your Logo">
+            </a>
+            <div class="battle-info">
+                <h1 class="battle-name">Battle Name</h1>
+                <h3 id="countdown-timer" class="countdown">Countdown Timer</h3>
+            </div>
+            <nav class="nav-bar">
+                <ul class="nav-links">
+                    <li><a href="clans.html">Clans</a></li>
+                    <li><a href="macros.html">Macros</a></li>
+                    <li><a href="values.html">Values</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div id="preloader" class="preloader hidden">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+
+        <div id="next-fetch-timer" class="fetch-timer">Next update in 4h 0m 0s</div>
+
+        <div class="controls">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search pets...">
+            </div>
+            <div class="buttons">
+                <button id="huge-button">Huges</button>
+                <button id="titanic-button">Titanics</button>
+                <button id="normal-button">Normal</button>
+                <button id="golden-button">Golden</button>
+                <button id="rainbow-button">Rainbow</button>
+                <button id="shiny-button">Shiny</button>
+                <button id="reset-button">Reset</button>
+                <!--<button id="reset-storage-button">Reset Storage</button>-->
+            </div>
+        </div>
+    
+        <div id="pagination" class="pagination"></div>
+        <div id="pet-container" class="pet-container"></div>
+
+        <footer>
+            <div class="footer-content">
+                <p>© 2024 Wonton Inc</p>
+            </div>
+        </footer>
+    
+        <script src="js/battle-info.js"></script>
+        <script src="js/values.js"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    </body>
+    
+</html>

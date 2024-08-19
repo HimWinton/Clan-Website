@@ -1,0 +1,310 @@
+body {
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #000000;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.fetch-timer {
+    font-size: 1em;
+    color: #00ff00;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: #ffffff;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #007bff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.search-bar {
+    flex: 1;
+    max-width: 300px;
+    position: relative;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #007bff;
+    background-color: #1c1c1c;
+    color: #ffffff;
+    font-size: 1em;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.controls .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.controls button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    text-transform: uppercase;
+}
+
+.controls button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 123, 255, 0.6);
+}
+
+.controls button:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+}
+
+.pet-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1400px;
+    padding: 20px;
+    background-color: #1c1c1c;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.pet-tile {
+    position: relative;
+    background-color: rgba(40, 40, 40, 0.9);
+    border-radius: 10px;
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 300px; /* Increase height if needed for alignment */
+    overflow: hidden;
+}
+
+
+.pet-tile:hover {
+    transform: translateY(-5px);
+    background-color: #343434;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+.pet-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover; /* This ensures the image covers the entire area */
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+    border-radius: 10px; /* Optional: round the corners slightly for a cleaner look */
+}
+
+.pet-name {
+    font-size: 1.1em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: rgb(255, 255, 255);
+    text-shadow: 0px 0px 5px rgba(0, 255, 255, 0.5);
+    padding: 0 10px;
+    height: auto;
+    line-height: 1.2em;
+    overflow: visible; /* Allow text to overflow */
+    white-space: normal; /* Allow text to wrap to the next line */
+    display: block; /* Ensure the block-level element takes full width */
+    box-sizing: border-box;
+    text-overflow: clip; /* Ensure the text doesn't get cut off */
+    max-height: none; /* Remove the height restriction */
+}
+
+.rap-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.rap-image {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+}
+
+.rap-value {
+    color: #00e5ff;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-shadow: 0px 0px 8px rgba(0, 229, 255, 0.7);
+}
+
+.pet-tile:hover .rap-value {
+    color: #00ffff;
+}
+
+.shiny-indicator {
+    background-color: #ffeb3b;
+    color: #000;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.exists-container {
+    margin-top: 8px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    font-size: 1em;
+    color: #00e5ff;
+    font-weight: bold;
+    text-shadow: 0px 0px 8px rgba(0, 229, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exists-label {
+    margin-right: 5px;
+}
+
+.exists-value {
+    color: #00ff00;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-button, .arrow {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #007bff;
+    background-color: #1c1c1c;
+    color: #007bff;
+    margin: 0 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.page-button:hover, .arrow:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.page-button.active {
+    background-color: #007bff;
+    color: white;
+    cursor: default;
+}
+
+.arrow {
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.arrow:disabled {
+    background-color: #333;
+    color: #777;
+    cursor: not-allowed;
+}
+
+.dots {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #777;
+    border: none;
+    background-color: transparent;
+    cursor: default;
+}
+
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pet-container {
+        padding: 10px;
+    }
+
+    .pet-tile {
+        padding: 15px;
+        height: auto;
+    }
+
+    .pet-image {
+        width: 100px;
+        height: 100px;
+    }
+}
