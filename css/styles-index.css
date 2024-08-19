@@ -22,7 +22,7 @@ body {
 }
 
 .news-divider {
-    width: 100%; /* Adjust the width of the line */
+    width: 500px; /* Adjust the width of the line */
     margin: 10px auto; /* Center the line and add spacing above/below */
     border: 0;
     height: 2px; /* Adjust the thickness of the line */
@@ -37,6 +37,7 @@ body {
     width: 100%;
     max-width: 1800px; /* Ensure the container doesn't exceed a certain width */
     margin-top: 50px; /* Space from the header */
+    margin-bottom: 100px;
 }
 
 .clan-info, .additional-info {
@@ -79,7 +80,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     color: #FFFFFF; /* White text for readability */
-    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Neon pink shadow */
     box-sizing: border-box;
 }
 

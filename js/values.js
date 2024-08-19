@@ -173,7 +173,7 @@ function updatePaginationControls(totalPets) {
     };
 
     // Create Previous button
-    paginationContainer.appendChild(createButton('Previous', currentPage - 1, currentPage === 1, false));
+    paginationContainer.appendChild(createButton('←', currentPage - 1, currentPage === 1, false));
 
     // Create First page button if not in the first few pages
     if (currentPage > 2) {
@@ -197,7 +197,7 @@ function updatePaginationControls(totalPets) {
     }
 
     // Create Next button
-    paginationContainer.appendChild(createButton('Next', currentPage + 1, currentPage === totalPages, false));
+    paginationContainer.appendChild(createButton('→', currentPage + 1, currentPage === totalPages, false));
 }
 
 function abbreviateNumber(value) {
