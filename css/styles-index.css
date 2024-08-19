@@ -107,14 +107,50 @@ body {
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Space between the image and the text */
 }
 
-.additional-info h2 {
+.blog-container {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between the image and blog details */
+}
+
+.additional-info img {
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+}
+
+.blog-details {
+    max-width: 600px; /* Adjust to control the width of the text content */
+}
+
+.blog-details h2 {
     font-size: 1.8em;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-.additional-info p {
+.blog-details p {
     font-size: 1.2em;
     margin-bottom: 15px;
 }
+
+.read-more-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff5722;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+.read-more-btn:hover {
+    background-color: #e64a19;
+}
+
