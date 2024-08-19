@@ -2,22 +2,22 @@ body {
     font-family: 'Outfit', sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #000000;
-    color: #e0e0e0;
+    background-color: #000000; /* Black background */
+    color: #FFFFFF; /* White text for readability */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 h1 {
-    color: #ffffff;
+    color: #FF69B4; /* Neon pink for the main heading */
     font-size: 2.5em;
     margin-bottom: 20px;
 }
 
 .fetch-timer {
     font-size: 1em;
-    color: #00ff00;
+    color: #00FF00; /* Neon green for fetch timer */
     margin-top: 10px;
     text-align: center;
 }
@@ -33,7 +33,7 @@ h1 {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    color: #ffffff;
+    color: #FFFFFF;
     flex-direction: column;
 }
 
@@ -42,8 +42,8 @@ h1 {
 }
 
 .spinner {
-    border: 6px solid #f3f3f3;
-    border-top: 6px solid #007bff;
+    border: 6px solid #F3F3F3;
+    border-top: 6px solid #FF69B4; /* Neon pink spinner */
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -76,11 +76,11 @@ h1 {
     width: 100%;
     padding: 10px 15px;
     border-radius: 5px;
-    border: 1px solid #007bff;
-    background-color: #1c1c1c;
-    color: #ffffff;
+    border: 1px solid #FF69B4; /* Neon pink border */
+    background-color: #1C1C1C; /* Dark gray background */
+    color: #FFFFFF; /* White text for readability */
     font-size: 1em;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
 }
 
 .controls .buttons {
@@ -91,25 +91,25 @@ h1 {
 .controls button {
     padding: 10px 20px;
     font-size: 1em;
-    color: #ffffff;
-    background-color: #007bff;
+    color: #FFFFFF; /* White text */
+    background-color: #FF69B4; /* Neon pink background */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
     text-transform: uppercase;
 }
 
 .controls button:hover {
-    background-color: #0056b3;
+    background-color: #FF1493; /* Darker neon pink on hover */
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0, 123, 255, 0.6);
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.6); /* Stronger neon pink shadow */
 }
 
 .controls button:active {
     transform: translateY(1px);
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4); /* Subtle neon pink shadow */
 }
 
 .pet-container {
@@ -119,14 +119,14 @@ h1 {
     width: 100%;
     max-width: 1400px;
     padding: 20px;
-    background-color: #1c1c1c;
+    background-color: #1C1C1C; /* Dark gray background */
     border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
 }
 
 .pet-tile {
     position: relative;
-    background-color: rgba(40, 40, 40, 0.9);
+    background-color: rgba(40, 40, 40, 0.9); /* Darker gray for tile background */
     border-radius: 10px;
     padding: 15px;
     transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
@@ -140,11 +140,10 @@ h1 {
     overflow: hidden;
 }
 
-
 .pet-tile:hover {
     transform: translateY(-5px);
     background-color: #343434;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6); /* Neon pink shadow on hover */
 }
 
 .pet-image {
@@ -160,8 +159,8 @@ h1 {
     font-size: 1.1em;
     margin-top: 10px;
     margin-bottom: 5px;
-    color: rgb(255, 255, 255);
-    text-shadow: 0px 0px 5px rgba(0, 255, 255, 0.5);
+    color: #FFFFFF; /* White text */
+    text-shadow: 0px 0px 5px rgba(255, 105, 180, 0.5); /* Neon pink text shadow */
     padding: 0 10px;
     height: auto;
     line-height: 1.2em;
@@ -191,19 +190,19 @@ h1 {
 }
 
 .rap-value {
-    color: #00e5ff;
+    color: #00E5FF; /* Neon cyan for RAP value */
     font-size: 1.2em;
     font-weight: bold;
     text-shadow: 0px 0px 8px rgba(0, 229, 255, 0.7);
 }
 
 .pet-tile:hover .rap-value {
-    color: #00ffff;
+    color: #00FFFF; /* Neon cyan on hover */
 }
 
 .shiny-indicator {
-    background-color: #ffeb3b;
-    color: #000;
+    background-color: #FFEB3B; /* Bright yellow for shiny indicator */
+    color: #000000; /* Black text for contrast */
     padding: 3px 6px;
     border-radius: 5px;
     font-size: 0.9em;
@@ -222,7 +221,7 @@ h1 {
     border-radius: 5px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     font-size: 1em;
-    color: #00e5ff;
+    color: #00E5FF; /* Neon cyan for exists container text */
     font-weight: bold;
     text-shadow: 0px 0px 8px rgba(0, 229, 255, 0.7);
     display: flex;
@@ -235,7 +234,7 @@ h1 {
 }
 
 .exists-value {
-    color: #00ff00;
+    color: #00FF00; /* Neon green for exists value */
 }
 
 .pagination {
@@ -248,28 +247,28 @@ h1 {
     padding: 10px 15px;
     font-size: 16px;
     border-radius: 5px;
-    border: 1px solid #007bff;
-    background-color: #1c1c1c;
-    color: #007bff;
+    border: 1px solid #FF69B4; /* Neon pink border */
+    background-color: #1C1C1C; /* Dark gray background */
+    color: #FF69B4; /* Neon pink text */
     margin: 0 5px;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .page-button:hover, .arrow:hover {
-    background-color: #007bff;
-    color: #ffffff;
+    background-color: #FF69B4; /* Neon pink background on hover */
+    color: #FFFFFF; /* White text on hover */
 }
 
 .page-button.active {
-    background-color: #007bff;
-    color: white;
+    background-color: #FF69B4; /* Neon pink background for active button */
+    color: #FFFFFF; /* White text for active button */
     cursor: default;
 }
 
 .arrow {
     cursor: pointer;
-    background-color: #007bff;
-    color: white;
+    background-color: #FF69B4; /* Neon pink background */
+    color: #FFFFFF; /* White text */
     border: none;
 }
 

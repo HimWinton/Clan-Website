@@ -1,0 +1,87 @@
+body {
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #000000; /* Black background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF; /* White text for readability */
+}
+
+.feedback-header-container {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.feedback-header {
+    font-size: 2.5em;
+    color: #FF69B4; /* Neon pink for the header */
+    margin-bottom: 10px;
+}
+
+.feedback-description {
+    font-size: 1.2em;
+    color: #B0B0B0; /* Light gray for the description */
+    margin-bottom: 40px;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 800px;
+    background-color: #1C1C1C; /* Dark gray background */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
+    margin-bottom: 60px; /* Add space between content and footer */
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feedback-form label {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    color: #FFFFFF; /* White text for labels */
+}
+
+.feedback-form input, 
+.feedback-form textarea,
+.feedback-form select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #FF69B4; /* Neon pink border */
+    background-color: #2C2C2C; /* Darker gray input background */
+    color: #FFFFFF; /* White text for input fields */
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.feedback-form select {
+    appearance: none; /* Removes the default select styling */
+}
+
+.feedback-form select option {
+    background-color: #2C2C2C; /* Dark background for dropdown options */
+    color: #FFFFFF; /* White text for readability */
+}
+
+.feedback-form button {
+    padding: 10px 20px;
+    background-color: #FF69B4; /* Neon pink button */
+    color: #000000; /* Black text for contrast */
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.feedback-form button:hover {
+    background-color: #FF1493; /* Darker neon pink on hover */
+}

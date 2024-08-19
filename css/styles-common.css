@@ -1,3 +1,15 @@
+body {
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #000000; /* Black background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF; /* White text for readability */
+}
+
+/* Header Styles */
 header {
     position: relative;
     display: flex;
@@ -5,7 +17,7 @@ header {
     height: 50px;
     width: 100%;
     padding: 20px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 10px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
 }
 
 header::after {
@@ -13,7 +25,7 @@ header::after {
     display: block;
     width: 1000px; /* The length of the line */
     height: 2px; /* The thickness of the line */
-    background-color: #ffffff;
+    background-color: #FF69B4; /* Neon pink line */
     position: absolute;
     bottom: 0;
     left: 50%; /* Start positioning from the center */
@@ -27,7 +39,7 @@ header::after {
 }
 
 .logo {
-    color: #ffffff;
+    color: #FF69B4; /* Neon pink logo text */
     font-size: 1.5em;
     font-weight: bold;
     text-decoration: none;
@@ -43,17 +55,17 @@ header::after {
 
 .battle-name {
     font-size: 1.5em; /* Use a consistent size */
-    color: #ffffff;
+    color: #FFFFFF; /* White text for readability */
     margin: 0;
 }
 
 .countdown {
     font-size: 1.2em; /* Use a consistent size */
-    color: #ffffff;
+    color: #FFFFFF; /* White text for readability */
     margin: 5px 0 0 0;
 }
 
-
+/* Navigation Bar Styles */
 .nav-bar {
     display: flex;
     align-items: center;
@@ -71,7 +83,7 @@ header::after {
 
 .nav-links a {
     text-decoration: none;
-    color: #ffffff;
+    color: #FFFFFF; /* White text for links */
     font-size: 1em;
     padding: 10px 20px;
     border-radius: 5px;
@@ -79,10 +91,19 @@ header::after {
 }
 
 .nav-links a:hover {
-    background-color: #007bff;
-    color: #ffffff;
+    background-color: #FF69B4; /* Neon pink hover effect */
+    color: #000000; /* Black text on hover for contrast */
 }
 
+/* Active Link Styling */
+.nav-links a.active {
+    background-color: #FF69B4; /* Neon pink background for active link */
+    color: #000000; /* Black text for active link */
+    font-weight: bold;
+    border-bottom: 2px solid #FF69B4; /* Optional underline for the active link */
+}
+
+/* Footer Styles */
 footer {
     width: 100%;
     padding: 20px;
@@ -91,7 +112,7 @@ footer {
     align-items: center;
     position: relative;
     margin-top: 20px;
-    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px -2px 10px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
 }
 
 footer::before {
@@ -99,7 +120,7 @@ footer::before {
     display: block;
     width: 1000px; /* The length of the line */
     height: 2px; /* The thickness of the line */
-    background-color: #ffffff;
+    background-color: #FF69B4; /* Neon pink line */
     position: absolute;
     top: 0;
 }

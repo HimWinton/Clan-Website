@@ -2,11 +2,11 @@ body {
     font-family: 'Outfit', sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #000000;
+    background-color: #000000; /* Black background */
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #e0e0e0;
+    color: #FFFFFF; /* White text for readability */
 }
 
 .news-header-container {
@@ -17,7 +17,7 @@ body {
 
 .news-header {
     font-size: 3em;
-    color: #ffffff; /* Adjust color as per your theme */
+    color: #FF69B4; /* Neon pink for the news header */
     margin: 0; /* Remove default margins */
 }
 
@@ -26,7 +26,7 @@ body {
     margin: 10px auto; /* Center the line and add spacing above/below */
     border: 0;
     height: 2px; /* Adjust the thickness of the line */
-    background-color: #ffffff; /* Change to fit your theme color */
+    background-color: #FF69B4; /* Neon pink divider */
 }
 
 .content-wrapper {
@@ -42,10 +42,10 @@ body {
 .clan-info, .additional-info {
     flex: 1; /* Make both sections take up equal space */
     box-sizing: border-box;
-    background-color: #1c1c1c;
+    background-color: #1c1c1c; /* Dark gray background for sections */
     border-radius: 15px;
     padding: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
 }
 
 .clan-info {
@@ -62,6 +62,7 @@ body {
     font-size: 3em;
     margin-top: 0px;
     text-align: center;
+    color: #FF69B4; /* Neon pink for clan banner title */
 }
 
 .clan-info .clan-banner img {
@@ -74,11 +75,11 @@ body {
 
 .clan-rewards {
     width: 100%;
-    background-color: #333;
+    background-color: #333; /* Darker gray for rewards section */
     padding: 20px;
     border-radius: 10px;
-    color: #ffffff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #FFFFFF; /* White text for readability */
+    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
     box-sizing: border-box;
 }
 
@@ -86,6 +87,7 @@ body {
     font-size: 1.8em;
     margin-bottom: 50px;
     text-align: center;
+    color: #FF69B4; /* Neon pink for rewards title */
 }
 
 .clan-rewards ul {
@@ -99,14 +101,15 @@ body {
     margin-bottom: 15px;
     word-wrap: break-word;
     text-align: left;
+    color: #FFFFFF; /* White text for readability */
 }
 
 .additional-info {
-    background-color: #333; /* Different background color for distinction */
-    color: #ffffff;
+    background-color: #333; /* Darker gray for distinction */
+    color: #FFFFFF; /* White text for readability */
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
     display: flex;
     align-items: center; /* Align items vertically */
     justify-content: space-between; /* Space between the image and the text */
@@ -132,18 +135,20 @@ body {
 .blog-details h2 {
     font-size: 1.8em;
     margin-bottom: 10px;
+    color: #FF69B4; /* Neon pink for blog title */
 }
 
 .blog-details p {
     font-size: 1.2em;
     margin-bottom: 15px;
+    color: #FFFFFF; /* White text for readability */
 }
 
 .read-more-btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #ff5722;
-    color: #ffffff;
+    background-color: #FF69B4; /* Neon pink button */
+    color: #000000; /* Black text for contrast */
     text-decoration: none;
     border-radius: 5px;
     font-size: 1.1em;
@@ -151,6 +156,5 @@ body {
 }
 
 .read-more-btn:hover {
-    background-color: #e64a19;
+    background-color: #FF1493; /* Slightly darker neon pink on hover */
 }
-

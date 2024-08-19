@@ -2,11 +2,11 @@ body {
     font-family: 'Outfit', sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #000000;
+    background-color: #000000; /* Black background */
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #e0e0e0;
+    color: #FFFFFF; /* White text for readability */
 }
 
 .table-container {
@@ -17,12 +17,13 @@ body {
 h1 {
     font-size: 2em;
     margin-bottom: 20px;
-    color: #ffffff;
+    color: #FF69B4; /* Neon pink for headings */
 }
 
 p {
     font-size: 1.2em;
     margin-bottom: 20px;
+    color: #FFFFFF; /* White text for readability */
 }
 
 /* Styling for the header text and button */
@@ -33,15 +34,15 @@ p {
 
 .downloads-header {
     font-size: 2em;
-    color: #ffffff; /* Or any color that fits your theme */
+    color: #FF69B4; /* Neon pink for downloads header */
     margin-bottom: 10px; /* Adds space between the text and button */
 }
 
 .discord-button {
     padding: 10px 20px;
     font-size: 1em;
-    color: #ffffff;
-    background-color: #7289da; /* Discord's brand color */
+    color: #FFFFFF; /* White text for contrast */
+    background-color: #7289DA; /* Discord's brand color */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -50,7 +51,7 @@ p {
 }
 
 .discord-button:hover {
-    background-color: #5a73b5; /* Slightly darker shade on hover */
+    background-color: #5A73B5; /* Slightly darker shade on hover */
 }
 
 .downloads {
@@ -66,7 +67,7 @@ p {
     width: 1000px;
     max-width: calc(33.33% - 20px); /* Ensures each item doesn't exceed 33.33% width */
     margin: 10px; /* Add margin around each item */
-    background-color: #333;
+    background-color: #1C1C1C; /* Dark gray background for items */
     border-radius: 10px;
     overflow: hidden;
     box-sizing: border-box; /* Ensures padding and border are included in the width */
@@ -75,7 +76,7 @@ p {
 
 .download-item a {
     text-decoration: none;
-    color: #ffffff;
+    color: #FFFFFF; /* White text for readability */
     display: block;
     height: 100%; /* Ensure the link covers the entire item */
 }
@@ -89,16 +90,18 @@ p {
     margin: 0;
     font-size: 1.5em;
     margin-bottom: 10px;
+    color: #FF69B4; /* Neon pink for item titles */
 }
 
 .download-item p {
     margin: 0;
     font-size: 1em;
+    color: #FFFFFF; /* White text for readability */
 }
 
 .download-item:hover {
     transform: translateY(-5px); /* Slight lift on hover */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3); /* Neon pink shadow on hover */
 }
 
 .youtube-video {

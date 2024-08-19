@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Your Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles-common.css">
+    <link rel="stylesheet" href="css/styles-feedback.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="imgs/logo.png" alt="Your Logo">
+        </a>
+        <nav class="nav-bar">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="clans.html">Clans</a></li>
+                <li><a href="macros.html">Macros</a></li>
+                <li><a href="values.html">Values</a></li>
+                <li><a href="feedback.html" class="active">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="feedback-header-container">
+        <h1 class="feedback-header">We Value Your Feedback</h1>
+        <p class="feedback-description">Please let us know your thoughts, suggestions, or any issues you encountered.</p>
+    </section>
+    
+    <section class="feedback-header-container">
+        <h1 class="feedback-header">We Value Your Feedback</h1>
+        <p class="feedback-description">Please let us know your thoughts, suggestions, or any issues you encountered.</p>
+    </section>
+    
+    <div class="content-wrapper">
+        <form action="submit_feedback.php" method="POST" class="feedback-form">
+            
+            <!-- Discord Username Field -->
+            <label for="discord-username">Discord Username:</label>
+            <input type="text" id="discord-username" name="discord_username" placeholder="e.g., User#1234" required>
+    
+            <!-- Submission Type Field -->
+            <label for="submission-type">Type of Submission:</label>
+            <select id="submission-type" name="submission_type" required>
+                <option value="" disabled selected>Select the type of submission</option>
+                <option value="bug">Bug Report</option>
+                <option value="suggestion">Suggestion</option>
+                <option value="general">General</option>
+            </select>
+    
+            <!-- Message Field -->
+            <label for="message">Your Message:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Enter your message here" required></textarea>
+    
+            <!-- Submit Button -->
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 Wonton Inc</p>
+        </div>
+    </footer>
+</body>
+</html>
