@@ -248,7 +248,6 @@ const displayClanData = async (clanData) => {
 // Update pagination controls
 const updatePagination = (totalClans) => {
     const pageSelect = document.getElementById('page-select');
-    pageSelect.innerHTML = '';
 
     const totalPages = Math.ceil(totalClans / state.clansPerPage);
 
@@ -256,10 +255,8 @@ const updatePagination = (totalClans) => {
         const option = document.createElement('option');
         option.value = i;
         option.textContent = i;
-        pageSelect.appendChild(option);
     }
 
-    pageSelect.value = state.currentPage;
     document.getElementById('prev-button').disabled = state.currentPage === 1;
     document.getElementById('next-button').disabled = state.currentPage === totalPages;
 };

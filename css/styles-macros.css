@@ -17,7 +17,7 @@ body {
 h1 {
     font-size: 2em;
     margin-bottom: 20px;
-    color: #FF69B4; /* Neon pink for headings */
+    color: #ffffff; /* Neon pink for headings */
 }
 
 p {
@@ -34,7 +34,7 @@ p {
 
 .downloads-header {
     font-size: 2em;
-    color: #FF69B4; /* Neon pink for downloads header */
+    color: #ffffff; /* Neon pink for downloads header */
     margin-bottom: 10px; /* Adds space between the text and button */
 }
 
@@ -90,7 +90,7 @@ p {
     margin: 0;
     font-size: 1.5em;
     margin-bottom: 10px;
-    color: #FF69B4; /* Neon pink for item titles */
+    color: #ffffff; /* Neon pink for item titles */
 }
 
 .download-item p {

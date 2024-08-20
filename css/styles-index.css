@@ -5,7 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #FFFFFF; /* White text for readability */
+    color: #ffffff; /* White text for readability */
 }
 
 .news-header-container {
@@ -16,7 +16,7 @@ body {
 
 .news-header {
     font-size: 3em;
-    color: #FF69B4; /* Neon pink for the news header */
+    color: #ffffff; /* Neon pink for the news header */
     margin: 0; /* Remove default margins */
 }
 
@@ -25,7 +25,7 @@ body {
     margin: 10px auto; /* Center the line and add spacing above/below */
     border: 0;
     height: 2px; /* Adjust the thickness of the line */
-    background-color: #FF69B4; /* Neon pink divider */
+    background-color: #ffffff; /* Neon pink divider */
 }
 
 .content-wrapper {
@@ -62,7 +62,7 @@ body {
     font-size: 3em;
     margin-top: 0px;
     text-align: center;
-    color: #FF69B4; /* Neon pink for clan banner title */
+    color: #ffffff; /* Neon pink for clan banner title */
 }
 
 .clan-info .clan-banner img {
@@ -87,7 +87,7 @@ body {
     font-size: 1.8em;
     margin-bottom: 50px;
     text-align: center;
-    color: #FF69B4; /* Neon pink for rewards title */
+    color: #ffffff; /* Neon pink for rewards title */
 }
 
 .clan-rewards ul {
@@ -105,7 +105,7 @@ body {
 }
 
 .additional-info {
-    background-color: #333; /* Darker gray for distinction */
+    background-color: #1c1c1c; /* Darker gray for distinction */
     color: #FFFFFF; /* White text for readability */
     padding: 20px;
     border-radius: 15px;
@@ -135,7 +135,7 @@ body {
 .blog-details h2 {
     font-size: 1.8em;
     margin-bottom: 10px;
-    color: #FF69B4; /* Neon pink for blog title */
+    color: #ffffff; /* Neon pink for blog title */
 }
 
 .blog-details p {
@@ -147,7 +147,7 @@ body {
 .read-more-btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #FF69B4; /* Neon pink button */
+    background-color: #ffffff; /* Neon pink button */
     color: #000000; /* Black text for contrast */
     text-decoration: none;
     border-radius: 5px;
@@ -156,5 +156,5 @@ body {
 }
 
 .read-more-btn:hover {
-    background-color: #FF1493; /* Slightly darker neon pink on hover */
+    background-color: #ffffff; /* Slightly darker neon pink on hover */
 }
