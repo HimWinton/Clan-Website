@@ -160,7 +160,7 @@ const updateTopClan = async (topClan) => {
         const topClanNameElement = document.getElementById('top-clan-name');
         const topClanIconElement = document.getElementById('top-clan-icon');
 
-        topClanNameElement.textContent = `${topClan.Name} (${abbreviatePoints(topClan.Points)})`;
+        topClanNameElement.textContent = `${topClan.Name.toUpperCase()} (${abbreviatePoints(topClan.Points)})`;
 
         const topClanResponse = await fetch(`https://biggamesapi.io/api/clan/${topClan.Name}`);
         const topClanData = await topClanResponse.json();
@@ -198,7 +198,7 @@ const displayClanData = async (clanData) => {
     const clanDiamonds = abbreviatePoints(clanData.DepositedDiamonds || 0); // Assuming diamonds are available in clanData
 
     // Set the clan name at the top
-    document.getElementById('selected-clan-name').textContent = clanData.Name;
+    document.getElementById('selected-clan-name').textContent = clanData.Name.toUpperCase();
 
     // Set the clan icon and details
     const clanIconElement = document.getElementById('clan-icon');
