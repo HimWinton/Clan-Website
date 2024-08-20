@@ -156,5 +156,6 @@ body {
 }
 
 .read-more-btn:hover {
-    background-color: #ffffff; /* Slightly darker neon pink on hover */
+    background-color: #FF69B4; /* Neon pink hover effect */
+    color: #000000; /* Black text on hover for contrast */
 }
