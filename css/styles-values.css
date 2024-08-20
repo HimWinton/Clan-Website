@@ -68,48 +68,59 @@ h1 {
 
 .search-bar {
     flex: 1;
-    max-width: 300px;
+    max-width: 400px;
     position: relative;
+    border-radius: 25px; /* Rounded corners */
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
 .search-bar input {
     width: 100%;
-    padding: 10px 15px;
-    border-radius: 5px;
-    border: 1px solid #FF69B4; /* Neon pink border */
-    background-color: #1C1C1C; /* Dark gray background */
-    color: #FFFFFF; /* White text for readability */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px; /* Matching rounded corners */
+    background: linear-gradient(135deg, rgba(30,30,30,1) 0%, rgba(60,60,60,1) 100%);
+    color: #FFFFFF; /* White text for contrast */
     font-size: 1em;
-    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
+    outline: none;
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.3); /* Inner shadow for depth */
+}
+
+.search-bar input::placeholder {
+    color: #B0B0B0; /* Light gray placeholder text */
+    font-style: italic; /* Slightly styled placeholder */
 }
 
 .controls .buttons {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
     gap: 10px;
+    justify-content: center;
 }
 
 .controls button {
-    padding: 10px 20px;
-    font-size: 1em;
+    padding: 12px 25px;
+    font-size: 1.1em; /* Slightly larger text */
     color: #FFFFFF; /* White text */
-    background-color: #FF69B4; /* Neon pink background */
+    background: linear-gradient(135deg, #FF69B4, #FF1493); /* Gradient background */
     border: none;
-    border-radius: 5px;
+    border-radius: 25px; /* Rounded corners */
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
-    text-transform: uppercase;
+    text-transform: uppercase; /* Uppercase text for emphasis */
 }
 
 .controls button:hover {
-    background-color: #FF1493; /* Darker neon pink on hover */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.6); /* Stronger neon pink shadow */
+    background: linear-gradient(135deg, #FF1493, #FF69B4); /* Reverse gradient on hover */
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5); /* Stronger shadow on hover */
 }
 
 .controls button:active {
-    transform: translateY(1px);
-    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4); /* Subtle neon pink shadow */
+    transform: translateY(1px); /* Pressed effect */
+    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4); /* Subtle shadow */
 }
 
 .pet-container {
@@ -291,19 +302,38 @@ h1 {
     .controls {
         flex-direction: column;
         align-items: stretch;
+        gap: 10px;
+    }
+
+    .search-bar {
+        max-width: 100%;
+    }
+
+    .buttons {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .pet-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust grid for smaller screens */
         padding: 10px;
     }
 
     .pet-tile {
         padding: 15px;
         height: auto;
+        text-align: center; /* Center content on small screens */
     }
 
     .pet-image {
         width: 100px;
         height: 100px;
     }
+
+    .rap-container {
+        flex-direction: column;
+        padding: 10px;
+        margin-top: 10px;
+    }
 }
+

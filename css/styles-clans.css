@@ -268,3 +268,10 @@ h5 {
     color: #777;
     cursor: not-allowed;
 }
+
+@media (max-width: 768px) {
+    .table-container {
+        min-width: 100%; /* Allow tables to be full-width */
+        padding: 10px; /* Adjust padding */
+    }
+}

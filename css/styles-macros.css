@@ -131,3 +131,9 @@ p {
         max-width: 100%; /* Adjust to one item per row */
     }
 }
+
+@media (max-width: 767px) {
+    .downloads {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+}

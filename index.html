@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Home - PetSimCentral</title>
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/styles-common.css">
@@ -25,46 +25,55 @@
                     <li><a href="values/">Values</a></li>
                     <li><a href="feedback/">Feedback</a></li>
                 </ul>
+                <div class="dropdown">
+                    <button class="dropbtn">≡</button>
+                    <div class="dropdown-content">
+                        <a href="clans/">Clans</a>
+                        <a href="macros/">Macros</a>
+                        <a href="values/">Values</a>
+                        <a href="feedback/">Feedback</a>
+                    </div>
+                </div>
             </nav>
         </header>
 
         <section class="news-header-container">
             <h2 class="news-header">News</h2>
-            <hr class="news-divider">
+            <div class="news-divider"></div>
         </section>
-
-    <div class="content-wrapper">
-        <section class="clan-info">
-            <div class="clan-banner">
-                <h1><strong>Ice Cream Clan Battle</strong></h1>
-                <a href="clans.html">
-                    <img src="imgs/ps99_ice_cream_clan_battle.png" alt="Clan Banner">
-                </a>
-                <div class="clan-rewards">
-                    <h2>Clan Rewards</h2>
-                    <ul>
-                        <li><strong>1st:</strong> <span id="goldreward">Reward Description</span></li>
-                        <li><strong>2nd-3rd:</strong> <span id="silverreward">Reward Description</span></li>
-                        <li><strong>4th-10th:</strong> <span id="bronzereward">Reward Description</span></li>
-                        <li><strong>11th-50th:</strong> <span id="otherreward">Reward Description</span></li>
-                        <li><strong>51st-500th:</strong> <span id="clangift">Reward Description</span></li>
-                    <ul>
+    
+        <div class="content-wrapper">
+            <section class="clan-info">
+                <div class="clan-banner">
+                    <h1><strong>Ice Cream Clan Battle</strong></h1>
+                    <a href="clans/">
+                        <img src="imgs/ps99_ice_cream_clan_battle.png" alt="Clan Banner">
+                    </a>
+                    <div class="clan-rewards">
+                        <h2>Clan Rewards</h2>
+                        <ul>
+                            <li><strong>1st:</strong> <span id="goldreward">Reward Description</span></li>
+                            <li><strong>2nd-3rd:</strong> <span id="silverreward">Reward Description</span></li>
+                            <li><strong>4th-10th:</strong> <span id="bronzereward">Reward Description</span></li>
+                            <li><strong>11th-50th:</strong> <span id="otherreward">Reward Description</span></li>
+                            <li><strong>51st-500th:</strong> <span id="clangift">Reward Description</span></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="additional-info">
-            <div class="blog-container">
-                <img src="imgs/latest_blog.png" alt="Latest Blog">
-                <div class="blog-details">
-                    <h2>Check out the latest Blog Post!</h2>
-                    <p>RNG Event - Part 2</p>
-                    <a href="https://www.biggames.io/post/pet-simulator-99-update-25" class="read-more-btn" target="_blank">Read More</a>
+            </section>
+    
+            <section class="additional-info">
+                <div class="blog-container">
+                    <img src="imgs/latest_blog.png" alt="Latest Blog">
+                    <div class="blog-details">
+                        <h2>Check out the latest Blog Post!</h2>
+                        <p>RNG Event - Part 2</p>
+                        <a href="https://www.biggames.io/post/pet-simulator-99-update-25" class="read-more-btn" target="_blank">Read More</a>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
-    </div>
         <footer>
             <div class="footer-content">
                 <p>© 2024 Wonton Inc</p>
