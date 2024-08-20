@@ -10,11 +10,9 @@ const state = {
 
 // Utility functions
 const getSuffix = (num) => {
-    const j = num % 10;
-    const k = num % 100;
-    return j === 1 && k !== 11 ? 'st' :
-           j === 2 && k !== 12 ? 'nd' :
-           j === 3 && k !== 13 ? 'rd' : 'th';
+    const suffixes = ["th", "st", "nd", "rd"];
+    const value = num % 100;
+    return suffixes[(value - 20) % 10] || suffixes[value] || suffixes[0];
 };
 
 const abbreviatePoints = (points) => {
@@ -179,9 +177,6 @@ const updateTopClan = async (topClan) => {
     }
 };
 
-// Display detailed clan data
-// Display detailed clan data
-// Display detailed clan data
 const displayClanData = async (clanData) => {
     const clanWar = clanData.Battles[state.currentBattle];
     const playerList = document.getElementById('player-list');
