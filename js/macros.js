@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             videoUrl: 'https://www.youtube.com/embed/ZSUV_iGsKGM?si=YMqzaOJ-T7WP4pJK'
         },
         {
-            title: 'Deep pool Fishing Macro',
+            title: 'Deep Pool Fishing Macro',
             videoUrl: 'https://www.youtube.com/embed/nfpicQGkFfE?si=FmoWqokOSSIXq10j'
         },
         {
