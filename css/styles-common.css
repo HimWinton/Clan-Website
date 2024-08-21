@@ -24,7 +24,7 @@ header {
 }
 
 .logo img {
-    max-height: 100px; /* Adjust to control the height of the logo */
+    max-height: 100px; /* Default max height */
     width: auto;      /* Maintain aspect ratio */
     display: block;   /* Remove inline spacing */
 }
@@ -94,12 +94,7 @@ header {
     border-bottom: 2px solid #FF69B4; /* Optional underline for the active link */
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
+/* Dropdown Menu Styles */
 .nav-dropdown {
     display: none;
 }
@@ -111,32 +106,57 @@ header {
     border: none;
     cursor: pointer;
     border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-dropbtn:hover {
+    background-color: #FF1493; /* Slightly darker pink on hover */
+    color: #FFFFFF; /* White text on hover */
 }
 
 .nav-dropdown-content {
     display: none;
     position: absolute;
     background-color: #1C1C1C;
-    min-width: 160px;
+    min-width: 180px; /* Slightly wider dropdown */
+    border-radius: 10px; /* Rounded corners */
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    overflow: hidden; /* Ensures the rounded corners are visible */
+    transition: all 0.3s ease;
 }
 
 .nav-dropdown-content a {
-    color: white;
+    color: #FFFFFF; /* White text for links */
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    transition: background-color 0.3s ease;
 }
 
 .nav-dropdown-content a:hover {
-    background-color: #555;
+    background-color: #FF69B4; /* Neon pink on hover */
+    color: #000000; /* Black text on hover */
 }
 
 .nav-dropdown:hover .nav-dropdown-content {
     display: block;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries for Responsive Design */
 @media (max-width: 1200px) {
     .nav-links {
         display: none; /* Hide the regular nav on small screens */
@@ -145,6 +165,31 @@ header {
     .nav-dropdown {
         display: block; /* Show the dropdown button */
         position: relative;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px; /* Reduce padding on smaller screens */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align items */
+    }
+
+    .logo img {
+        max-height: 70px; /* Smaller logo size for mobile screens */
+    }
+
+    .nav-bar {
+        margin-top: 10px; /* Add some space between logo and nav */
+        justify-content: center; /* Center nav on small screens */
+    }
+    
+    .battle-info {
+        position: relative;
+        left: auto;
+        transform: none;
+        text-align: center;
+        margin-top: 10px; /* Add space between logo and battle info */
     }
 }
 
