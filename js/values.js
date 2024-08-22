@@ -276,28 +276,17 @@ async function fetchExists(configName, pt, isShiny) {
 async function displayPet(pet, isShiny, variant, rapValue, existsValue) {
     const petName = pet.configName;
 
-    // Attempt to use goldenThumbnail if the variant is Golden, fallback to the default thumbnail
-    let thumbnail = pet.configData.thumbnail; // Default to the normal thumbnail
+    // Determine the image to display
+    let thumbnail = pet.configData.thumbnail; // Default thumbnail
     if (variant === 'Golden' && pet.configData.goldenThumbnail) {
-        try {
-            const response = await fetch(`https://biggamesapi.io/image/${pet.configData.goldenThumbnail.replace('rbxassetid://', '')}`);
-            if (response.ok) {
-                thumbnail = pet.configData.goldenThumbnail;
-            } else {
-                console.warn(`Golden thumbnail not found for ${petName}, using default thumbnail.`);
-            }
-        } catch (error) {
-            console.error(`Error fetching golden thumbnail for ${petName}:`, error);
-        }
+        thumbnail = pet.configData.goldenThumbnail;
     }
 
     const assetId = thumbnail.replace('rbxassetid://', '');
     const imageUrl = `https://biggamesapi.io/image/${assetId}`;
 
     const rapImageUrl = 'https://biggamesapi.io/image/14867116353';
-    const abbreviatedRap = rapValue !== null && rapValue !== undefined 
-        ? abbreviateNumber(rapValue) 
-        : 'No RAP';
+    const abbreviatedRap = rapValue !== null ? abbreviateNumber(rapValue) : 'No RAP';
     const existsDisplayValue = abbreviateNumber(existsValue);
 
     const petTile = document.createElement('div');
@@ -311,8 +300,11 @@ async function displayPet(pet, isShiny, variant, rapValue, existsValue) {
     const shinyIndicator = isShiny ? `<div class="shiny-indicator">✨ Shiny</div>` : '';
 
     petTile.innerHTML = `
-        ${shinyIndicator}
-        <img src="${imageUrl}" alt="${displayName}" class="pet-image">
+        <div class="pet-image-wrapper" style="position:relative;">
+            <img src="${imageUrl}" alt="${displayName}" class="pet-image">
+            ${variant === 'Rainbow' ? '<div class="rainbow-overlay"></div>' : ''}
+            ${shinyMode === true ? '<div class="shiny-overlay"></div>' : ''}
+        </div>
         <h3 class="pet-name">${displayName}</h3>
         <div class="rap-container">
             <img src="${rapImageUrl}" alt="RAP" class="rap-image">
