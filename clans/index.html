@@ -67,9 +67,6 @@
     <script src="../js/battle-info.js"></script>
     <script src="../js/clan-script.js"></script>
     <script>
-        if (window.location.pathname.endsWith('.html') && window.location.pathname !== '.html') {
-            window.history.replaceState(null, null, window.location.pathname.slice(0, -5));
-        }
         if (window.location.pathname.endsWith('/') && window.location.pathname !== '/') {
             window.history.replaceState(null, null, window.location.pathname.slice(0, -1));
         }
