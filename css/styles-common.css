@@ -7,7 +7,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #FFFFFF; /* White text for readability */
 }
 
 /* Header Styles */
@@ -18,23 +17,19 @@ header {
     align-items: center;
     background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
     border-radius: 20px;
-    height: 50%;
+    height: auto; /* Let the content (logo) determine the height */
     width: 90%;
-    padding: 20px;
+    padding: 0 20px; /* Remove top and bottom padding */
 }
 
 .logo img {
-    max-height: 100px; /* Default max height */
-    width: auto;      /* Maintain aspect ratio */
-    display: block;   /* Remove inline spacing */
+    max-height: 100px; /* Keep the logo height at 200px */
+    width: auto;       /* Maintain aspect ratio */
+    display: block;    /* Remove inline spacing */
 }
 
-.logo {
-    color: #FF69B4; /* Neon pink logo text */
-    font-size: 1.5em;
-    font-weight: bold;
-    text-decoration: none;
-    z-index: 2; /* Ensure logo stays above the battle info */
+.logo img:hover {
+    color: #FF69B4;
 }
 
 .battle-info {
@@ -42,26 +37,22 @@ header {
     left: 50%;
     transform: translateX(-50%); /* Center horizontally */
     text-align: center;
+    top: 50%; /* Center vertically */
+    transform: translate(-50%, -50%); /* Center the content both horizontally and vertically */
 }
 
-.battle-name {
-    font-size: 1.5em; /* Use a consistent size */
+.battle-name, .countdown {
+    font-size: 1.5em; /* Slightly smaller font size */
     color: #FFFFFF; /* White text for readability */
     margin: 0;
 }
 
-.countdown {
-    font-size: 1.2em; /* Use a consistent size */
-    color: #FFFFFF; /* White text for readability */
-    margin: 5px 0 0 0;
-}
-
-/* Navigation Bar Styles */
 .nav-bar {
     display: flex;
     align-items: center;
     margin-left: auto;
     z-index: 2; /* Ensure nav-bar stays above the battle info */
+    height: 100%; /* Stretch nav-bar to match header height */
 }
 
 .nav-links {
@@ -69,14 +60,14 @@ header {
     display: flex;
     margin: 0;
     padding: 0;
-    gap: 20px;
+    gap: 15px; /* Slightly reduce the gap between nav items */
 }
 
 .nav-links a {
     text-decoration: none;
     color: #FFFFFF; /* White text for links */
-    font-size: 1em;
-    padding: 10px 20px;
+    font-size: 0.9em; /* Slightly reduce font size */
+    padding: 5px 15px; /* Slightly reduce padding for nav items */
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -205,4 +196,5 @@ footer {
     margin-top: 20px;
     border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    color: #FFFFFF;
 }

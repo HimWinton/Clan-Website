@@ -36,28 +36,29 @@
             </div>
         </nav>
     </header>
-    
+
     <div id="preloader" class="preloader hidden">
         <div class="spinner"></div>
         <p>Loading...</p>
-    </div>  
-    
+    </div>
+
     <div id="content" style="display: none;">
         <div class="table-container">
-            <h1>All Clans</h1>
+            <h1 id="selected-clan-name">Loading Clan...</h1>
             <div class="clan-header">
                 <div class="clan-header-content">
-                    <img id="top-clan-icon" src="" alt="Top Clan Icon">
-                    <h3>Top Clan: <span id="top-clan-name">Loading...</span></h3>
+                    <img id="clan-icon" class="hidden" src="" alt="Clan Icon">
+                    <div id="clan-details" class="hidden">
+                        <h3 id="clan-status"></h3>
+                        <div class="clan-stats">
+                            <h3 id="total-points"></h3>
+                            <h3 id="clan-diamonds"></h3>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="player-list" id="clan-list"></div>
-            <div class="pagination">
-                <button class="arrow" id="prev-button" onclick="changePage(-1)">&#9664;</button>
-                    <!-- Options will be populated dynamically -->
-                </select>
-                <button class="arrow" id="next-button" onclick="changePage(1)">&#9654;</button>
-            </div>   
+            <div class="player-list" id="player-list"></div>
+        </div>
     </div>
 
     <footer>
@@ -65,6 +66,6 @@
     </footer>
 
     <script src="../js/battle-info.js"></script>
-    <script src="../js/clan-script.js"></script>
+    <script src="../js/clan-details.js"></script> <!-- This script handles fetching and displaying the clan data -->
 </body>
 </html>
