@@ -60,10 +60,9 @@ const fetchClansData = async (page = state.currentPage) => {
     }
 };
 
-// Redirect to the new page with the clan name in the URL
+// Redirect to the new page with the clan name as a URL parameter
 const redirectToClanPage = (clanName) => {
-    const formattedClanName = clanName.toLowerCase().replace(/\s+/g, '-'); // Replace spaces with hyphens and convert to lowercase
-    window.location.href = `/clan/${encodeURIComponent(formattedClanName)}`;
+    window.location.href = `clan.html?name=${encodeURIComponent(clanName)}`;
 };
 
 // Display clans on the page
@@ -76,7 +75,7 @@ const displayClans = async (clans) => {
         const globalRank = (state.currentPage - 1) * state.clansPerPage + index + 1;
         const card = document.createElement('a');
         card.classList.add('card');
-        card.href = `/clan/${encodeURIComponent(clan.Name.toLowerCase().replace(/\s+/g, '-'))}`;
+        card.href = `clan.html?name=${encodeURIComponent(clan.Name)}`;
 
         const points = abbreviatePoints(clan.Points);
         const diamonds = abbreviatePoints(clan.DepositedDiamonds);
