@@ -174,13 +174,109 @@ h5 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(40, 40, 40, 0.9); /* Darker gray for card background */
-    border-radius: 10px;
+    background-color: #1C1C1C; /* Dark background */
     padding: 15px;
     margin-bottom: 15px;
+    border-radius: 10px;
     transition: box-shadow 0.3s, background-color 0.3s;
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color from parent */
+}
+
+.card:hover {
+    background-color: #333333; /* Darken background on hover */
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.5); /* Highlight on hover */
+}
+
+.left-side {
+    display: flex;
+    align-items: center;
+}
+
+.left-side .user-id {
     text-align: left;
-    overflow: hidden; /* Ensure no overflow within card */
+}
+
+.clan-icon {
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    margin-right: 10px;
+}
+
+.clan-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.clan-name {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.clan-description {
+    font-size: 1em;
+    color: #AAAAAA;
+}
+
+.right-side {
+    display: flex;
+    align-items: center;
+    gap: 0px; /* Reduce space between the elements */
+    margin-left: auto; /* Pushes the right-side content to the far right */
+    color: #FFFFFF;
+}
+
+.right-side .points,
+.right-side .diamonds,
+.right-side .members {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align content to the left */
+    min-width: 100px; /* Set a fixed width for each section, can be adjusted */
+    text-align: left; /* Ensure text is aligned to the left */
+}
+
+.right-side img {
+    width: 20px; /* Adjust icon size */
+    height: 20px;
+    margin-right: 5px; /* Reduce space between the icon and the text */
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures the back button stays on the left and the clan name is centered */
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#selected-clan-name {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5em;
+    color: #FF69B4;
+}
+
+.back-button {
+    background-color: #FF69B4; /* Neon pink background */
+    color: #FFFFFF; /* White text */
+    padding: 0px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 2em;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.back-button:hover {
+    background-color: #FF1493; /* Slightly darker pink on hover */
 }
 
 .card:hover {

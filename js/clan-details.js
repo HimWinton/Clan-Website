@@ -86,61 +86,65 @@ const displayClanData = async (clanData) => {
 
     showPreloader(); // Show preloader before displaying detailed clan data
 
-    if (!clanWar || !clanWar.PointContributions || clanWar.PointContributions.length === 0) {
-        document.getElementById('total-points').textContent = '0';
-        document.getElementById('global-rank').textContent = 'N/A';
-        playerList.innerHTML = '<div>No contributions available.</div>';
-        hidePreloader(); // Hide preloader after displaying no data
-        return;
-    }
-
     const iconID = clanData.Icon.replace('rbxassetid://', '');
     const iconURL = `https://biggamesapi.io/image/${iconID}`;
     const totalPoints = abbreviatePoints(clanWar.Points);
-    const clanStatus = clanData.Status || 'Unknown';  // Assuming status is available in clanData
-    const clanDiamonds = abbreviatePoints(clanData.DepositedDiamonds || 0); // Assuming diamonds are available in clanData
+    const clanStatus = clanData.Status || 'Unknown';
+    const clanDiamonds = abbreviatePoints(clanData.DepositedDiamonds || 0);
 
-    // Set the clan name at the top
+    // Set the clan name, icon, status, points, and diamonds
     document.getElementById('selected-clan-name').textContent = clanData.Name.toUpperCase();
-
-    // Set the clan icon and details
+    
     const clanIconElement = document.getElementById('clan-icon');
     clanIconElement.src = iconURL;
     clanIconElement.classList.remove('hidden');
 
-    // Set the clan status, points, and diamonds (using the image for diamonds)
     document.getElementById('clan-status').innerHTML = `${clanStatus}`;
     document.getElementById('total-points').innerHTML = `
         <img src="../imgs/star.png" alt="Star">
         ${totalPoints}
     `;
-    document.getElementById('clan-diamonds').innerHTML = `
-        <img src="https://biggamesapi.io/image/14867116353" alt="Diamonds">
-        ${clanDiamonds}
-    `;
+
+    document.getElementById('clan-diamonds').innerHTML = `<img src="https://biggamesapi.io/image/14867116353" alt="Diamonds"> ${clanDiamonds}`;
     document.getElementById('clan-details').classList.remove('hidden');
 
     playerList.innerHTML = '';
 
-    clanWar.PointContributions.sort((a, b) => b.Points - a.Points);
+    // Sort and loop through both points and diamond contributions
+    const diamondContributions = clanData.DiamondContributions.AllTime.Data || [];
+    const contributions = clanData.Battles[state.currentBattle]?.PointContributions || [];
 
-    for (const [index, contribution] of clanWar.PointContributions.entries()) {
+    contributions.sort((a, b) => b.Points - a.Points);
+
+    for (const [index, contribution] of contributions.entries()) {
         const card = document.createElement('div');
         card.classList.add('card');
 
         const username = await fetchUsername(contribution.UserID);
         const points = abbreviatePoints(contribution.Points);
 
+        // Find the corresponding diamond contribution
+        const diamondContribution = diamondContributions.find(d => d.UserID === contribution.UserID);
+        const diamonds = diamondContribution ? abbreviatePoints(diamondContribution.Diamonds) : '0';
+
         card.innerHTML = `
-            <span class="placement">${index + 1}${getSuffix(index + 1)}</span>
-            <span class="user-id">${username}</span>
-            <span class="points">${points}</span>
+            <div class="left-side">
+                <span class="placement">${index + 1}${getSuffix(index + 1)}</span>
+                <div class="clan-details">
+                    <span class="user-id">${username}</span>
+                </div>
+            </div>
+            <div class="right-side">
+                <span class="points"><img src="../imgs/star.png" alt="Points Icon"> ${points}</span>
+                <span class="diamonds"><img src="https://biggamesapi.io/image/14867116353" alt="Diamonds Icon"> ${diamonds}</span>
+            </div>
         `;
         playerList.appendChild(card);
     }
 
     hidePreloader(); // Hide preloader after displaying detailed clan data
 };
+
 
 // Show the preloader
 function showPreloader() {
@@ -170,6 +174,11 @@ const abbreviatePoints = (points) => {
     }
     return points.toFixed(0);
 };
+
+document.getElementById('back-button').addEventListener('click', () => {
+    window.location.href = 'index.html'; // Change the URL as per your structure
+});
+
 
 // Initialize the page
 const init = async () => {

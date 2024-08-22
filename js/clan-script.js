@@ -73,15 +73,26 @@ const displayClans = async (clans) => {
 
     const clanElements = await Promise.all(clans.map(async (clan, index) => {
         const globalRank = (state.currentPage - 1) * state.clansPerPage + index + 1;
-        const card = document.createElement('div');
+        const card = document.createElement('a');
         card.classList.add('card');
+        card.href = `clan.html?name=${encodeURIComponent(clan.Name)}`;
 
         const points = abbreviatePoints(clan.Points);
+        const diamonds = abbreviatePoints(clan.DepositedDiamonds);
+        const members = `${clan.Members}/${clan.MemberCapacity}`;
 
         card.innerHTML = `
-            <span class="placement">${globalRank}${getSuffix(globalRank)}</span>
-            <span class="user-id" onclick="redirectToClanPage('${clan.Name.toUpperCase()}')">${clan.Name.toUpperCase()}</span>
-            <span class="points">${points}</span>
+            <div class="left-side">
+                <span class="placement">${globalRank}${getSuffix(globalRank)}</span>
+                <div class="clan-details">
+                    <span class="clan-name">${clan.Name.toUpperCase()}</span>
+                </div>
+            </div>
+            <div class="right-side">
+                <span class="points"><img src="../imgs/star.png" alt="Points Icon"> ${points}</span>
+                <span class="diamonds"><img src="https://biggamesapi.io/image/14867116353" alt="Diamonds"> ${diamonds}</span>
+                <span class="members"><img src="members_icon.png" alt="Members Icon"> ${members}</span>
+            </div>
         `;
         return card;
     }));
@@ -94,6 +105,7 @@ const displayClans = async (clans) => {
 
     hidePreloader(); // Hide preloader after displaying clans
 };
+
 // Update the top clan display
 const updateTopClan = async (topClan) => {
     try {
