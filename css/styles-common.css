@@ -26,6 +26,7 @@ header {
     max-height: 100px; /* Keep the logo height at 200px */
     width: auto;       /* Maintain aspect ratio */
     display: block;    /* Remove inline spacing */
+    padding: 10px;
 }
 
 .logo img:hover {

@@ -225,7 +225,6 @@ h5 {
     align-items: center;
     gap: 0px; /* Reduce space between the elements */
     margin-left: auto; /* Pushes the right-side content to the far right */
-    color: #FFFFFF;
 }
 
 .right-side .points,
@@ -236,6 +235,8 @@ h5 {
     justify-content: flex-start; /* Align content to the left */
     min-width: 100px; /* Set a fixed width for each section, can be adjusted */
     text-align: left; /* Ensure text is aligned to the left */
+    font-weight: bold;
+    color: #E0E0E0;
 }
 
 .right-side img {
