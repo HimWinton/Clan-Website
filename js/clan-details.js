@@ -176,7 +176,7 @@ const abbreviatePoints = (points) => {
 };
 
 document.getElementById('back-button').addEventListener('click', () => {
-    window.location.href = 'index.html'; // Change the URL as per your structure
+    window.location.href = '../clans/'; // Change the URL as per your structure
 });
 
 
