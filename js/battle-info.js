@@ -43,7 +43,7 @@ function startCountdown(finishTime) {
         const secondsLeft = finishTime - now;
 
         if (secondsLeft <= 0) {
-            countdownTimer.textContent = 'Time Left: 0s';
+            countdownTimer.textContent = 'Battle Ended!';
             clearInterval(intervalId);
             return;
         }
