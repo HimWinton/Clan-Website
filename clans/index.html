@@ -5,8 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Clans - PetSimCentral</title>
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../css/styles-common.css"> <!-- Common header/footer styles -->
-        <link rel="stylesheet" href="../css/styles-clans.css"> <!-- Specific to the clans page -->
+        <link rel="stylesheet" href="../css/styles-clans.css">
     </head>
 <body>
 
@@ -43,21 +42,23 @@
     </div>  
     
     <div id="content" style="display: none;">
-        <div class="table-container">
-            <h1>All Clans</h1>
-            <div class="clan-header">
-                <div class="clan-header-content">
-                    <img id="top-clan-icon" src="" alt="Top Clan Icon">
-                    <h3>Top Clan: <span id="top-clan-name">Loading...</span></h3>
+        <div class="table-wrapper">
+            <div class="table-container">
+                <h1>All Clans</h1>
+                <div class="clan-header">
+                    <div class="clan-header-content">
+                        <img id="top-clan-icon" src="" alt="Top Clan Icon">
+                        <h3>Top Clan: <span id="top-clan-name">Loading...</span></h3>
+                    </div>
+                </div>
+                <div class="player-list" id="clan-list"></div>
+                <div class="pagination">
+                    <button class="arrow" id="prev-button" onclick="changePage(-1)">&#9664;</button>
+                        <!-- Options will be populated dynamically -->
+                    <button class="arrow" id="next-button" onclick="changePage(1)">&#9654;</button>
                 </div>
             </div>
-            <div class="player-list" id="clan-list"></div>
-            <div class="pagination">
-                <button class="arrow" id="prev-button" onclick="changePage(-1)">&#9664;</button>
-                    <!-- Options will be populated dynamically -->
-                </select>
-                <button class="arrow" id="next-button" onclick="changePage(1)">&#9654;</button>
-            </div>   
+        </div>
     </div>
 
     <footer>
