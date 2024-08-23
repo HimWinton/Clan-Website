@@ -7,6 +7,14 @@ const state = {
     clickLock: false // Lock to prevent spam clicking
 };
 
+// Cache DOM elements
+const preloader = document.getElementById('preloader');
+const clanList = document.getElementById('clan-list');
+const content = document.getElementById('content');
+const pageSelect = document.getElementById('page-select');
+const prevButton = document.getElementById('prev-button');
+const nextButton = document.getElementById('next-button');
+
 // Utility functions
 const getSuffix = (num) => {
     const suffixes = ["th", "st", "nd", "rd"];
@@ -17,7 +25,7 @@ const getSuffix = (num) => {
 const abbreviatePoints = (points) => {
     const units = ['T', 'B', 'M', 'K'];
     const divisors = [1_000_000_000_000, 1_000_000_000, 1_000_000, 1_000];
-
+    
     for (let i = 0; i < divisors.length; i++) {
         if (points >= divisors[i]) {
             const value = points / divisors[i];
@@ -30,7 +38,7 @@ const abbreviatePoints = (points) => {
 // Fetch total number of clans
 const fetchTotalClans = async () => {
     try {
-        showPreloader(); // Show preloader before fetching data
+        showPreloader();
         const response = await fetch('https://biggamesapi.io/api/clansTotal');
         const data = await response.json();
         if (data.status === "ok") {
@@ -41,14 +49,14 @@ const fetchTotalClans = async () => {
     } catch (error) {
         console.error('Error fetching total clans:', error);
     } finally {
-        hidePreloader(); // Hide preloader after fetching data
+        hidePreloader();
     }
 };
 
 // Fetch clans data for the current page
 const fetchClansData = async (page = state.currentPage) => {
     try {
-        showPreloader(); // Show preloader before fetching data
+        showPreloader();
         const response = await fetch(`https://biggamesapi.io/api/clans?page=${page}&pageSize=${state.clansPerPage}&sort=Points&sortOrder=desc`);
         const data = await response.json();
         return data.status === "ok" ? data.data : [];
@@ -56,7 +64,7 @@ const fetchClansData = async (page = state.currentPage) => {
         console.error('Error fetching clans data:', error);
         return [];
     } finally {
-        hidePreloader(); // Hide preloader after fetching data
+        hidePreloader();
     }
 };
 
@@ -67,11 +75,9 @@ const redirectToClanPage = (clanName) => {
 
 // Display clans on the page
 const displayClans = async (clans) => {
-    showPreloader(); // Show preloader before displaying clans
-    const clanList = document.getElementById('clan-list');
-    clanList.innerHTML = '';
+    const fragment = document.createDocumentFragment();
 
-    const clanElements = await Promise.all(clans.map(async (clan, index) => {
+    clans.forEach((clan, index) => {
         const globalRank = (state.currentPage - 1) * state.clansPerPage + index + 1;
         const card = document.createElement('a');
         card.classList.add('card');
@@ -94,22 +100,21 @@ const displayClans = async (clans) => {
                 <span class="members"><img src="members_icon.png" alt="Members Icon"> ${members}</span>
             </div>
         `;
-        return card;
-    }));
+        fragment.appendChild(card);
+    });
 
-    clanElements.forEach(card => clanList.appendChild(card));
+    clanList.innerHTML = '';
+    clanList.appendChild(fragment);
 
     if (state.currentPage === 1 && clans.length > 0) {
         updateTopClan(clans[0]);
     }
-
-    hidePreloader(); // Hide preloader after displaying clans
 };
 
 // Update the top clan display
 const updateTopClan = async (topClan) => {
     try {
-        showPreloader(); // Show preloader before updating top clan
+        showPreloader();
         const topClanNameElement = document.getElementById('top-clan-name');
         const topClanIconElement = document.getElementById('top-clan-icon');
 
@@ -126,69 +131,76 @@ const updateTopClan = async (topClan) => {
     } catch (error) {
         console.error('Error updating top clan:', error);
     } finally {
-        hidePreloader(); // Hide preloader after updating top clan
+        hidePreloader();
     }
 };
 
 // Update pagination controls
-const updatePagination = (totalClans) => {
-    const pageSelect = document.getElementById('page-select');
-    const totalPages = Math.ceil(totalClans / state.clansPerPage);
+const updatePagination = () => {
+    const totalPages = Math.ceil(state.totalClans / state.clansPerPage);
+    pageSelect.innerHTML = '';
 
     for (let i = 1; i <= totalPages; i++) {
         const option = document.createElement('option');
         option.value = i;
         option.textContent = i;
+        pageSelect.appendChild(option);
     }
 
-    document.getElementById('prev-button').disabled = state.currentPage === 1;
-    document.getElementById('next-button').disabled = state.currentPage === totalPages;
+    prevButton.disabled = state.currentPage === 1;
+    nextButton.disabled = state.currentPage === totalPages;
 };
 
-// Handle page change
-const changePage = (direction) => {
-    const totalPages = Math.ceil(state.totalClans / state.clansPerPage);
-    if ((direction === 1 && state.currentPage < totalPages) || (direction === -1 && state.currentPage > 1)) {
-        state.currentPage += direction;
-        loadClans(); // Load the clans for the new page
-        updatePagination(state.totalClans); // Update the pagination UI
-    }
-};
+// Handle page change with debounce
+const changePage = (() => {
+    let timeout;
+    return (direction) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            const totalPages = Math.ceil(state.totalClans / state.clansPerPage);
+            if ((direction === 1 && state.currentPage < totalPages) || (direction === -1 && state.currentPage > 1)) {
+                state.currentPage += direction;
+                loadClans();
+                updatePagination();
+            }
+        }, 300);
+    };
+})();
 
 // Select a specific page
 const selectPage = (page) => {
     state.currentPage = parseInt(page, 10);
-    loadClans(); // Load the clans for the selected page
-    updatePagination(state.totalClans); // Update the pagination UI
+    loadClans();
+    updatePagination();
 };
 
 // Load clans data and display it
 const loadClans = async () => {
     const clans = await fetchClansData(state.currentPage);
-    await displayClans(clans);
+    displayClans(clans);
 };
 
 // Show the preloader
 function showPreloader() {
-    document.getElementById('preloader').classList.remove('hidden');
+    preloader.classList.remove('hidden');
 }
 
 // Hide the preloader and show content
 function hidePreloader() {
-    document.getElementById('preloader').classList.add('hidden');
-    document.getElementById('content').style.display = 'block'; // Ensure content is visible
+    preloader.classList.add('hidden');
+    content.style.display = 'block';
 }
 
 // Initialize the application
 const init = async () => {
     try {
-        showPreloader(); // Show preloader during initialization
+        showPreloader();
         await fetchTotalClans();
         await loadClans();
     } catch (error) {
         console.error('Error during initialization:', error);
     } finally {
-        hidePreloader(); // Ensure preloader is hidden and content is shown
+        hidePreloader();
     }
 };
 

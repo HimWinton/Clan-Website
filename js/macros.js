@@ -1,32 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
     const macrosData = [
-        {
-            title: 'Dice Merchant Macro',
-            videoUrl: 'https://www.youtube.com/embed/SZYsG4P2VWs?si=dBAhT9XZMtF8oLtg'
-        },
-        {
-            title: 'Multi Macro',
-            videoUrl: 'https://www.youtube.com/embed/zju4zs9QQNc?si=8YIC7Rhw7pqs2Ija'
-        },
-        {
-            title: 'Treehouse Macro',
-            videoUrl: 'https://www.youtube.com/embed/9hHHg_fG36Q?si=wqiZE5Og1xwUlHhC'
-        },
-        {
-            title: 'Rank Quest Macro',
-            videoUrl: 'https://www.youtube.com/embed/ZSUV_iGsKGM?si=YMqzaOJ-T7WP4pJK'
-        },
-        {
-            title: 'Deep Pool Fishing Macro',
-            videoUrl: 'https://www.youtube.com/embed/nfpicQGkFfE?si=FmoWqokOSSIXq10j'
-        },
-        {
-            title: 'Prison Key Macro',
-            videoUrl: 'https://www.youtube.com/embed/7k_DZAVJgpE?si=46CladISeX0auVmH'
-        }
+        { title: 'Dice Merchant Macro', videoUrl: 'https://www.youtube.com/embed/SZYsG4P2VWs?si=dBAhT9XZMtF8oLtg' },
+        { title: 'Multi Macro', videoUrl: 'https://www.youtube.com/embed/zju4zs9QQNc?si=8YIC7Rhw7pqs2Ija' },
+        { title: 'Treehouse Macro', videoUrl: 'https://www.youtube.com/embed/9hHHg_fG36Q?si=wqiZE5Og1xwUlHhC' },
+        { title: 'Rank Quest Macro', videoUrl: 'https://www.youtube.com/embed/ZSUV_iGsKGM?si=YMqzaOJ-T7WP4pJK' },
+        { title: 'Deep Pool Fishing Macro', videoUrl: 'https://www.youtube.com/embed/nfpicQGkFfE?si=FmoWqokOSSIXq10j' },
+        { title: 'Prison Key Macro', videoUrl: 'https://www.youtube.com/embed/7k_DZAVJgpE?si=46CladISeX0auVmH' }
     ];
 
     const downloadItems = document.querySelectorAll('.download-item');
+
+    // Check if the number of items matches the macros data
+    if (downloadItems.length !== macrosData.length) {
+        console.error('Mismatch between the number of download items and macros data.');
+        return;
+    }
 
     downloadItems.forEach((item, index) => {
         const macroData = macrosData[index];
@@ -34,6 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const titleElement = item.querySelector('.macro-title');
         if (titleElement) {
             titleElement.textContent = macroData.title;
+        } else {
+            console.error('Title element not found for item index:', index);
         }
 
         const videoContainer = item.querySelector('.youtube-video');
@@ -47,6 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
             iframe.allowFullscreen = true;
 
             videoContainer.appendChild(iframe);
+        } else {
+            console.error('Video container not found for item index:', index);
         }
     });
 });

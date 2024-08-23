@@ -1,75 +1,75 @@
-let currentKeyword = ''; // Track the current sorting keyword
+let currentKeyword = '';
 const storageKey = 'petData';
 const fetchInterval = 4 * 60 * 60 * 1000; // 4 hours in milliseconds
-const petsPerPage = 105; // Number of pets to display per page
-let currentPage = 1; // Track the current page
-let currentVariant = ''; // Track the current variant
-let shinyMode = false; // Track whether Shiny mode is active
+const petsPerPage = 105;
+let currentPage = 1;
+let currentVariant = '';
+let shinyMode = false;
+
+// Cache DOM elements
+const petContainer = document.getElementById('pet-container');
+const preloader = document.getElementById('preloader');
+const paginationContainer = document.getElementById('pagination');
+const searchInput = document.getElementById('search-input');
 
 // Event listeners for buttons
-document.getElementById('huge-button').addEventListener('click', () => {
-    showPreloader();
-    document.getElementById('search-input').value = '';
-    currentKeyword = 'Huge';
+document.getElementById('huge-button').addEventListener('click', () => updateKeyword('Huge'));
+document.getElementById('titanic-button').addEventListener('click', () => updateKeyword('Titanic'));
+document.getElementById('reset-button').addEventListener('click', resetFilters);
+document.getElementById('normal-button').addEventListener('click', () => updateVariant(''));
+document.getElementById('golden-button').addEventListener('click', () => updateVariant('Golden'));
+document.getElementById('rainbow-button').addEventListener('click', () => updateVariant('Rainbow'));
+document.getElementById('shiny-button').addEventListener('click', toggleShinyMode);
+
+searchInput.addEventListener('input', debounce(() => {
+    currentKeyword = '';
     currentPage = 1;
     displayPetsFromStorage();
-});
+}, 300));
 
-document.getElementById('titanic-button').addEventListener('click', () => {
+// Update the keyword filter and reset the page
+function updateKeyword(keyword) {
     showPreloader();
-    document.getElementById('search-input').value = '';
-    currentKeyword = 'Titanic';
+    searchInput.value = '';
+    currentKeyword = keyword;
     currentPage = 1;
     displayPetsFromStorage();
-});
+}
 
-document.getElementById('reset-button').addEventListener('click', () => {
+// Reset filters
+function resetFilters() {
     showPreloader();
-    currentKeyword = ''; // Clear keyword
-    document.getElementById('search-input').value = ''; // Clear search input
+    currentKeyword = '';
+    searchInput.value = '';
     currentPage = 1;
     currentVariant = '';
     shinyMode = false;
-    displayPetsFromStorage(); // Display all pets
-});
+    displayPetsFromStorage();
+}
 
-document.getElementById('normal-button').addEventListener('click', () => {
+// Update the variant filter and reset the page
+function updateVariant(variant) {
     showPreloader();
-    currentVariant = '';
+    currentVariant = variant;
     shinyMode = false;
     displayPetsFromStorage();
-});
+}
 
-document.getElementById('golden-button').addEventListener('click', () => {
+// Toggle Shiny mode
+function toggleShinyMode() {
     showPreloader();
-    currentVariant = 'Golden';
-    shinyMode = false;
+    shinyMode = !shinyMode;
     displayPetsFromStorage();
-});
+}
 
-document.getElementById('rainbow-button').addEventListener('click', () => {
-    showPreloader();
-    currentVariant = 'Rainbow';
-    shinyMode = false;
-    displayPetsFromStorage();
-});
-
-document.getElementById('shiny-button').addEventListener('click', () => {
-    showPreloader();
-    shinyMode = !shinyMode; // Toggle shiny mode
-    displayPetsFromStorage();
-});
-
+// Fetch and store pets in local storage
 async function fetchAndStorePets() {
     try {
         showPreloader();
         const response = await fetch('https://biggamesapi.io/api/collection/Pets');
-        if (!response.ok) {
-            throw new Error('Failed to fetch pet data from the API');
-        }
-
+        if (!response.ok) throw new Error('Failed to fetch pet data from the API');
+        
         const petData = await response.json();
-
         if (Array.isArray(petData.data)) {
             const filteredPets = petData.data.filter(pet => {
                 const nameLower = pet.configName.toLowerCase();
@@ -93,10 +93,11 @@ async function fetchAndStorePets() {
         console.error('Error while fetching and storing pet data:', error);
     } finally {
         hidePreloader();
-        updateNextFetchTimer(); // Update the timer when data is fetched
+        updateNextFetchTimer();
     }
 }
 
+// Display pets from local storage
 async function displayPetsFromStorage() {
     const storedData = localStorage.getItem(storageKey);
     if (!storedData) {
@@ -105,50 +106,146 @@ async function displayPetsFromStorage() {
     }
 
     const { timestamp, data } = JSON.parse(storedData);
-
-    // Check if the data is older than 30 minutes
     if (Date.now() - timestamp > fetchInterval) {
         fetchAndStorePets();
         return;
     }
 
-    const searchInput = document.getElementById('search-input').value.toLowerCase();
-    const petContainer = document.getElementById('pet-container');
-    petContainer.innerHTML = ''; // Clear any existing content
-
-    const filteredPets = data
-        .filter(pet => {
-            const petName = pet.configName.toLowerCase();
-            return (currentKeyword && petName.includes(currentKeyword.toLowerCase())) ||
-                (!currentKeyword && searchInput && petName.includes(searchInput)) ||
-                (!currentKeyword && !searchInput);
-        })
+    const searchValue = searchInput.value.toLowerCase();
+    const filteredPets = data.filter(pet => filterPet(pet, searchValue))
         .sort((a, b) => a.configName.localeCompare(b.configName)); // Sort alphabetically
 
     const start = (currentPage - 1) * petsPerPage;
     const paginatedPets = filteredPets.slice(start, start + petsPerPage);
 
+    const fragment = document.createDocumentFragment();
     for (const pet of paginatedPets) {
-        let isShiny = shinyMode;
-        let variant = currentVariant;
-        let pt = null;
-
-        // Determine the variant based on the current variant
-        if (currentVariant === 'Golden') {
-            pt = 1;
-        } else if (currentVariant === 'Rainbow') {
-            pt = 2;
-        }
-
-        const rapValue = await fetchRAP(pet.configData.name, pt, isShiny);
-        const existsValue = await fetchExists(pet.configData.name, pt, isShiny);
-        await displayPet(pet, isShiny, variant, rapValue, existsValue);
+        const { rapValue, existsValue } = await fetchPetData(pet);
+        fragment.appendChild(await createPetTile(pet, rapValue, existsValue));
     }
+    petContainer.innerHTML = ''; // Clear any existing content
+    petContainer.appendChild(fragment);
 
     updatePaginationControls(filteredPets.length);
     hidePreloader();
 }
 
+// Filter the pets based on current filters
+function filterPet(pet, searchValue) {
+    const petName = pet.configName.toLowerCase();
+    return (
+        (currentKeyword && petName.includes(currentKeyword.toLowerCase())) ||
+        (!currentKeyword && searchValue && petName.includes(searchValue)) ||
+        (!currentKeyword && !searchValue)
+    );
+}
+
+// Fetch RAP and Exists data for the pet
+async function fetchPetData(pet) {
+    const pt = getVariantCode(currentVariant);
+    const isShiny = shinyMode;
+
+    const [rapValue, existsValue] = await Promise.all([
+        fetchRAP(pet.configData.name, pt, isShiny),
+        fetchExists(pet.configData.name, pt, isShiny)
+    ]);
+
+    return { rapValue, existsValue };
+}
+
+// Get variant code based on the current variant
+function getVariantCode(variant) {
+    switch (variant) {
+        case 'Golden': return 1;
+        case 'Rainbow': return 2;
+        default: return null;
+    }
+}
+
+// Create a pet tile
+async function createPetTile(pet, rapValue, existsValue) {
+    const petTile = document.createElement('div');
+    petTile.classList.add('pet-tile');
+    
+    const { imageUrl, displayName } = getPetDisplayInfo(pet);
+    const abbreviatedRap = abbreviateNumber(rapValue);
+    const existsDisplayValue = abbreviateNumber(existsValue);
+
+    petTile.innerHTML = `
+        <div class="pet-image-wrapper">
+            <img src="${imageUrl}" alt="${displayName}" class="pet-image">
+        </div>
+        <h3 class="pet-name">${displayName}</h3>
+        <div class="rap-container">
+            <img src="https://biggamesapi.io/image/14867116353" alt="RAP" class="rap-image">
+            <span class="rap-value">${abbreviatedRap}</span>
+        </div>
+        <div class="exists-container">
+            <span class="exists-label">Exists: </span><span class="exists-value">${existsDisplayValue}</span>
+        </div>
+    `;
+    return petTile;
+}
+
+// Get pet display information
+function getPetDisplayInfo(pet) {
+    let thumbnail = pet.configData.thumbnail;
+    if (currentVariant === 'Golden' && pet.configData.goldenThumbnail) {
+        thumbnail = pet.configData.goldenThumbnail;
+    }
+
+    const assetId = thumbnail.replace('rbxassetid://', '');
+    const imageUrl = `https://biggamesapi.io/image/${assetId}`;
+
+    let displayName = `${currentVariant} ${pet.configName}`;
+    if (shinyMode) {
+        displayName = `Shiny ${displayName}`;
+    }
+
+    return { imageUrl, displayName };
+}
+
+// Abbreviate large numbers
+function abbreviateNumber(value) {
+    if (typeof value !== 'number' || isNaN(value)) {
+        return 'N/A';
+    }
+
+    const units = ["", "K", "M", "B", "T"];
+    let unitIndex = 0;
+
+    while (value >= 1000 && unitIndex < units.length - 1) {
+        value /= 1000;
+        unitIndex++;
+    }
+
+    let abbreviated = value.toFixed(2).replace(/\.?0+$/, "");
+    return `${abbreviated}${units[unitIndex]}`;
+}
+
+// Debounce function to limit the rate at which a function can fire
+function debounce(func, delay) {
+    let timeout;
+    return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), delay);
+    };
+}
+
+// Show the preloader
+function showPreloader() {
+    preloader.classList.remove('hidden');
+}
+
+// Hide the preloader
+function hidePreloader() {
+    preloader.classList.add('hidden');
+}
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', displayPetsFromStorage);
+
+// Pagination controls
 function updatePaginationControls(totalPets) {
     const totalPages = Math.ceil(totalPets / petsPerPage);
     const paginationContainer = document.getElementById('pagination');
@@ -200,155 +297,54 @@ function updatePaginationControls(totalPets) {
     paginationContainer.appendChild(createButton('→', currentPage + 1, currentPage === totalPages, false));
 }
 
-function abbreviateNumber(value) {
-    if (typeof value !== 'number' || isNaN(value)) {
-        return 'N/A'; // Return a default value like 'N/A' if the value is not a valid number
-    }
-
-    const units = ["", "K", "M", "B", "T"];
-    let unitIndex = 0;
-
-    while (value >= 1000 && unitIndex < units.length - 1) {
-        value /= 1000;
-        unitIndex++;
-    }
-
-    // Convert to string with up to 2 decimal places without rounding
-    let abbreviated = value.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
-
-    // Check if it's a whole number
-    if (abbreviated.includes('.') && abbreviated.endsWith('00')) {
-        abbreviated = parseFloat(abbreviated).toFixed(0);
-    } else if (abbreviated.includes('.') && abbreviated.endsWith('0')) {
-        abbreviated = parseFloat(abbreviated).toFixed(1);
-    }
-
-    return `${abbreviated}${units[unitIndex]}`;
-}
-
-
+// Fetch RAP data
 async function fetchRAP(configName, pt, isShiny) {
     try {
         const response = await fetch('https://biggamesapi.io/api/rap');
-        if (!response.ok) {
-            throw new Error('Failed to fetch RAP data from the API');
-        }
-
+        if (!response.ok) throw new Error('Failed to fetch RAP data');
+        
         const rapData = await response.json();
-
-        // Find the RAP entry for the specific variant and shiny status
         const rapEntry = rapData.data.find(entry =>
             entry.configData.id === configName &&
-            ((pt === null && !('pt' in entry.configData)) || entry.configData.pt === pt) && // Match pt only if it's provided
-            ((!isShiny && !('sh' in entry.configData)) || (isShiny && entry.configData.sh === true)) // Match sh only if isShiny is true
+            ((pt === null && !('pt' in entry.configData)) || entry.configData.pt === pt) &&
+            ((!isShiny && !('sh' in entry.configData)) || (isShiny && entry.configData.sh === true))
         );
 
         return rapEntry ? rapEntry.value : null;
     } catch (error) {
-        console.error(`Error fetching RAP data for ${configName} (pt: ${pt}, shiny: ${isShiny}):`, error);
+        console.error(`Error fetching RAP data for ${configName}:`, error);
         return null;
     }
 }
 
+// Fetch Exists data
 async function fetchExists(configName, pt, isShiny) {
     try {
         const response = await fetch('https://biggamesapi.io/api/exists');
-        if (!response.ok) {
-            throw new Error('Failed to fetch Exists data from the API');
-        }
-
+        if (!response.ok) throw new Error('Failed to fetch Exists data');
+        
         const existsData = await response.json();
-
-        // Find the Exists entry for the specific variant and shiny status
         const existsEntry = existsData.data.find(entry =>
             entry.configData.id === configName &&
-            ((pt === null && !('pt' in entry.configData)) || entry.configData.pt === pt) && // Match pt only if it's provided
-            ((!isShiny && !('sh' in entry.configData)) || (isShiny && entry.configData.sh === true)) // Match sh only if isShiny is true
+            ((pt === null && !('pt' in entry.configData)) || entry.configData.pt === pt) &&
+            ((!isShiny && !('sh' in entry.configData)) || (isShiny && entry.configData.sh === true))
         );
 
         return existsEntry ? existsEntry.value : 'Unknown';
     } catch (error) {
-        console.error(`Error fetching Exists data for ${configName} (pt: ${pt}, shiny: ${isShiny}):`, error);
+        console.error(`Error fetching Exists data for ${configName}:`, error);
         return 'Unknown';
     }
 }
 
-async function displayPet(pet, isShiny, variant, rapValue, existsValue) {
-    const petName = pet.configName;
-
-    // Determine the image to display
-    let thumbnail = pet.configData.thumbnail; // Default thumbnail
-    if (variant === 'Golden' && pet.configData.goldenThumbnail) {
-        thumbnail = pet.configData.goldenThumbnail;
-    }
-
-    const assetId = thumbnail.replace('rbxassetid://', '');
-    const imageUrl = `https://biggamesapi.io/image/${assetId}`;
-
-    const rapImageUrl = 'https://biggamesapi.io/image/14867116353';
-    const abbreviatedRap = rapValue !== null ? abbreviateNumber(rapValue) : 'No RAP';
-    const existsDisplayValue = abbreviateNumber(existsValue);
-
-    const petTile = document.createElement('div');
-    petTile.classList.add('pet-tile');
-
-    let displayName = `${variant} ${petName}`;
-    if (isShiny) {
-        displayName = `Shiny ${displayName}`;
-    }
-
-    const shinyIndicator = isShiny ? `<div class="shiny-indicator">✨ Shiny</div>` : '';
-
-    petTile.innerHTML = `
-        <div class="pet-image-wrapper" style="position:relative;">
-            <img src="${imageUrl}" alt="${displayName}" class="pet-image">
-            ${variant === 'Rainbow' ? '<div class="rainbow-overlay"></div>' : ''}
-            ${shinyMode === true ? '<div class="shiny-overlay"></div>' : ''}
-        </div>
-        <h3 class="pet-name">${displayName}</h3>
-        <div class="rap-container">
-            <img src="${rapImageUrl}" alt="RAP" class="rap-image">
-            <span class="rap-value">${abbreviatedRap}</span>
-        </div>
-        <div class="exists-container">
-            <span class="exists-label">Exists: </span><span class="exists-value">${existsDisplayValue}</span>
-        </div>
-    `;
-
-    document.getElementById('pet-container').appendChild(petTile);
-}
-
-function showPreloader() {
-    document.getElementById('preloader').classList.remove('hidden');
-}
-
-function hidePreloader() {
-    document.getElementById('preloader').classList.add('hidden');
-}
-
-document.getElementById('search-input').addEventListener('input', () => {
-    showPreloader();
-    currentKeyword = ''; // Clear the current keyword when searching
-    currentPage = 1; // Reset to first page when searching
-    displayPetsFromStorage();
-});
-
-document.addEventListener('DOMContentLoaded', () => displayPetsFromStorage()); // Fetch and display pets on page load
-
-
-
+// Reset local storage
 function resetLocalStorage() {
     localStorage.removeItem(storageKey);
     console.log('Local storage has been reset.');
-    // Optionally, you can fetch fresh data after resetting
     fetchAndStorePets();
 }
 
-//document.getElementById('reset-storage-button').addEventListener('click', () => {
-//    showPreloader();
-//    resetLocalStorage();
-//});
-
+// Update the next fetch timer
 function updateNextFetchTimer() {
     const storedData = localStorage.getItem(storageKey);
     if (storedData) {
@@ -372,7 +368,6 @@ function updateNextFetchTimer() {
     }
 }
 
-// Call the updateNextFetchTimer function every second to update the timer
+// Call the updateNextFetchTimer function every second
 setInterval(updateNextFetchTimer, 1000);
 showPreloader();
-

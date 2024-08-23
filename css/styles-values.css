@@ -248,20 +248,6 @@ h1 {
     color: #00FFFF; /* Neon cyan on hover */
 }
 
-.shiny-indicator {
-    background-color: #FFEB3B; /* Bright yellow for shiny indicator */
-    color: #000000; /* Black text for contrast */
-    padding: 3px 6px;
-    border-radius: 5px;
-    font-size: 0.9em;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 5;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-}
-
 .exists-container {
     margin-top: 8px;
     background-color: rgba(0, 0, 0, 0.7);

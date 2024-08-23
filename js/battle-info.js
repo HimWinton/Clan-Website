@@ -1,3 +1,8 @@
+// Cache DOM elements
+const countdownTimer = document.getElementById('countdown-timer');
+const battleNameElement = document.querySelector('.battle-name');
+
+// Fetch battle details
 async function fetchBattleDetails() {
     try {
         const response = await fetch('https://biggamesapi.io/api/activeClanBattle');
@@ -5,23 +10,31 @@ async function fetchBattleDetails() {
 
         if (data.status === "ok") {
             const { configData } = data.data;
-            document.querySelector('.battle-name').textContent = configData.Title;
+            battleNameElement.textContent = configData.Title;
             startCountdown(configData.FinishTime);
             return configData._id;
         } else {
             console.error('Failed to fetch battle details');
+            displayError('Failed to load battle details.');
             return null;
         }
     } catch (error) {
         console.error('Error fetching battle details:', error);
+        displayError('Error loading battle details.');
         return null;
     }
 }
 
+// Display error message in the UI
+function displayError(message) {
+    countdownTimer.textContent = message;
+}
+
+// Start the countdown timer
 function startCountdown(finishTime) {
     if (!finishTime || isNaN(finishTime) || finishTime <= 0) {
         console.error('Invalid finishTime:', finishTime);
-        document.getElementById('countdown-timer').textContent = 'Invalid Time';
+        displayError('Invalid Time');
         return;
     }
 
@@ -30,7 +43,7 @@ function startCountdown(finishTime) {
         const secondsLeft = finishTime - now;
 
         if (secondsLeft <= 0) {
-            document.getElementById('countdown-timer').textContent = 'Time Left: 0s';
+            countdownTimer.textContent = 'Time Left: 0s';
             clearInterval(intervalId);
             return;
         }
@@ -40,14 +53,15 @@ function startCountdown(finishTime) {
         const minutes = Math.floor((secondsLeft % 3600) / 60);
         const seconds = secondsLeft % 60;
 
-        document.getElementById('countdown-timer').textContent = 
+        countdownTimer.textContent = 
             `Time Left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
     };
 
     const intervalId = setInterval(updateCountdown, 1000);
-    updateCountdown(); // Run immediately to avoid 1-second delay
+    updateCountdown(); // Run immediately to avoid initial 1-second delay
 }
 
+// Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     fetchBattleDetails();
 });
