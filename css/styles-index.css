@@ -69,11 +69,13 @@ body {
 }
 
 .clan-banner img {
-    border-radius: 8px;
+    border-radius: 20px;
     max-height: 180px;
     width: 100%;
     object-fit: cover;
     margin-bottom: 15px;
+    border: 1px solid #000000; /* 3px thick solid black border */
+    border-radius: 20px;
 }
 
 .clan-rewards h2 {
@@ -97,12 +99,20 @@ body {
     align-items: center;
 }
 
+.blog-container {
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    padding: 10px;
+}
+
 .additional-info img {
     border-radius: 8px;
     height: 150px; /* Set height to 150px */
     width: 150px;  /* Set width to 150px */
     object-fit: cover;
     margin-right: 15px; /* Space between the image and text */
+    border: 3px solid #000000; /* 3px thick solid black border */
+    border-radius: 5px;
 }
 
 .blog-details {
@@ -135,6 +145,19 @@ body {
 .read-more-btn:hover {
     background-color: #FF1493;
     transform: translateY(-3px);
+}
+
+.x-feed {
+    background-color: #1C1C1C; /* Match the blog container background color */
+    border-radius: 10px; /* Match the border radius */
+    padding: 25px; /* Match the padding */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Match the box shadow */
+    margin-top: 20px; /* Space between blog post and X feed */
+    width: 90%; /* Ensure it takes the full width of the container */
+}
+
+.x-feed a {
+    width: 100% !important; /* Ensure the width matches the container */
 }
 
 /* Responsive Styles */
@@ -170,5 +193,9 @@ body {
 
     .blog-details {
         text-align: center;
+    }
+
+    .x-feed {
+        min-width: 100%;
     }
 }
