@@ -86,6 +86,14 @@ header {
     border-bottom: 2px solid #FF69B4; /* Optional underline for the active link */
 }
 
+.nav-links li a {
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links li a:hover {
+    color: #000000; /* Same color as your theme */
+}
+
 /* Dropdown Menu Styles */
 .nav-dropdown {
     display: none;
