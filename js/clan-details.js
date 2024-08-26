@@ -106,7 +106,7 @@ const displayClanData = async (clanData) => {
     clanStatusElement.innerHTML = clanStatus;
     totalPointsElement.innerHTML = `<img src="../imgs/star.png" alt="Star"> ${totalPoints}`;
     clanDiamondsElement.innerHTML = `<img src="https://biggamesapi.io/image/14867116353" alt="Diamonds Icon"> ${clanDiamonds}`;
-    clanMembersElement.innerHTML = `<img src="https://www.iconsdb.com/icons/preview/purple/group-xxl.png" alt="Members Icon"> ${clanData.Members.length}/${clanData.MemberCapacity}`;
+    clanMembersElement.innerHTML = `<img src="../imgs/members.png" alt="Members Icon"> ${clanData.Members.length}/${clanData.MemberCapacity}`;
     document.getElementById('clan-details').classList.remove('hidden');
 
     playerList.innerHTML = '';

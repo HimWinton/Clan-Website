@@ -97,7 +97,7 @@ const displayClans = async (clans) => {
             <div class="right-side">
                 <span class="points"><img src="../imgs/star.png" alt="Points Icon"> ${points}</span>
                 <span class="diamonds"><img src="https://biggamesapi.io/image/14867116353" alt="Diamonds"> ${diamonds}</span>
-                <span class="members"><img src="https://www.iconsdb.com/icons/preview/purple/group-xxl.png" alt="Members Icon"> ${members}</span>
+                <span class="members"><img src="../imgs/members.png" alt="Members Icon"> ${members}</span>
             </div>
         `;
         fragment.appendChild(card);
