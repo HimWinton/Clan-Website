@@ -68,7 +68,7 @@ async function fetchAndStorePets() {
         showPreloader();
         const response = await fetch('https://biggamesapi.io/api/collection/Pets');
         if (!response.ok) throw new Error('Failed to fetch pet data from the API');
-        
+
         const petData = await response.json();
         if (Array.isArray(petData.data)) {
             const filteredPets = petData.data.filter(pet => {
@@ -84,7 +84,7 @@ async function fetchAndStorePets() {
                 timestamp: Date.now(),
                 data: filteredPets
             }));
-            
+
             displayPetsFromStorage();
         } else {
             console.error('Fetched data is not an array:', petData.data);
@@ -166,7 +166,7 @@ function getVariantCode(variant) {
 async function createPetTile(pet, rapValue, existsValue) {
     const petTile = document.createElement('div');
     petTile.classList.add('pet-tile');
-    
+
     const { imageUrl, displayName } = getPetDisplayInfo(pet);
     const abbreviatedRap = abbreviateNumber(rapValue);
     const existsDisplayValue = abbreviateNumber(existsValue);
@@ -302,7 +302,7 @@ async function fetchRAP(configName, pt, isShiny) {
     try {
         const response = await fetch('https://biggamesapi.io/api/rap');
         if (!response.ok) throw new Error('Failed to fetch RAP data');
-        
+
         const rapData = await response.json();
         const rapEntry = rapData.data.find(entry =>
             entry.configData.id === configName &&
@@ -322,7 +322,7 @@ async function fetchExists(configName, pt, isShiny) {
     try {
         const response = await fetch('https://biggamesapi.io/api/exists');
         if (!response.ok) throw new Error('Failed to fetch Exists data');
-        
+
         const existsData = await response.json();
         const existsEntry = existsData.data.find(entry =>
             entry.configData.id === configName &&

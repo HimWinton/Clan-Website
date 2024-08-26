@@ -1,1 +1,44 @@
-const _0x2c9a71=_0xe1d1;function _0xe1d1(_0x52086b,_0x513f59){const _0x1ab467=_0x1ab4();return _0xe1d1=function(_0xe1d137,_0x54b898){_0xe1d137=_0xe1d137-0xb0;let _0x1e63ef=_0x1ab467[_0xe1d137];return _0x1e63ef;},_0xe1d1(_0x52086b,_0x513f59);}(function(_0x5cb0c4,_0x3ff778){const _0x485a1e=_0xe1d1,_0x5e3335=_0x5cb0c4();while(!![]){try{const _0x211119=-parseInt(_0x485a1e(0xd2))/0x1+-parseInt(_0x485a1e(0xc9))/0x2+-parseInt(_0x485a1e(0xb8))/0x3+parseInt(_0x485a1e(0xd5))/0x4+parseInt(_0x485a1e(0xc6))/0x5+parseInt(_0x485a1e(0xb3))/0x6+-parseInt(_0x485a1e(0xc4))/0x7*(-parseInt(_0x485a1e(0xbd))/0x8);if(_0x211119===_0x3ff778)break;else _0x5e3335['push'](_0x5e3335['shift']());}catch(_0x2c5bd9){_0x5e3335['push'](_0x5e3335['shift']());}}}(_0x1ab4,0xe56b9),document[_0x2c9a71(0xc8)]('DOMContentLoaded',function(){const _0x348ddf=_0x2c9a71,_0x2702cd=[{'title':_0x348ddf(0xb1),'videoUrl':_0x348ddf(0xd0)},{'title':'Multi\x20Macro','videoUrl':_0x348ddf(0xd1)},{'title':_0x348ddf(0xbc),'videoUrl':_0x348ddf(0xc0)},{'title':'Rank\x20Quest\x20Macro','videoUrl':_0x348ddf(0xd4)},{'title':_0x348ddf(0xb9),'videoUrl':'https://www.youtube.com/embed/nfpicQGkFfE?si=FmoWqokOSSIXq10j'},{'title':_0x348ddf(0xca),'videoUrl':_0x348ddf(0xc5)}],_0x5e8437=document['querySelectorAll'](_0x348ddf(0xcc));if(_0x5e8437[_0x348ddf(0xcb)]!==_0x2702cd[_0x348ddf(0xcb)]){console['error']('Mismatch\x20between\x20the\x20number\x20of\x20download\x20items\x20and\x20macros\x20data.');return;}_0x5e8437['forEach']((_0xe369e8,_0x7b60ff)=>{const _0x24ac63=_0x348ddf,_0x27d64b=_0x2702cd[_0x7b60ff],_0x1ea141=_0xe369e8[_0x24ac63(0xbe)]('.macro-title');_0x1ea141?_0x1ea141['textContent']=_0x27d64b[_0x24ac63(0xbf)]:console[_0x24ac63(0xcf)](_0x24ac63(0xc1),_0x7b60ff);const _0x20a89c=_0xe369e8[_0x24ac63(0xbe)](_0x24ac63(0xb7));if(_0x20a89c){const _0x1bdd26=document[_0x24ac63(0xb6)](_0x24ac63(0xb2));_0x1bdd26[_0x24ac63(0xb5)]=_0x27d64b[_0x24ac63(0xb0)],_0x1bdd26[_0x24ac63(0xb4)]=_0x24ac63(0xc3),_0x1bdd26[_0x24ac63(0xcd)]=_0x24ac63(0xd3),_0x1bdd26[_0x24ac63(0xba)]='0',_0x1bdd26[_0x24ac63(0xc7)]='accelerometer;\x20autoplay;\x20clipboard-write;\x20encrypted-media;\x20gyroscope;\x20picture-in-picture',_0x1bdd26[_0x24ac63(0xbb)]=!![],_0x20a89c[_0x24ac63(0xce)](_0x1bdd26);}else console[_0x24ac63(0xcf)](_0x24ac63(0xc2),_0x7b60ff);});}));function _0x1ab4(){const _0xe3603c=['761340wiGOad','allow','addEventListener','2927052yFgwMP','Prison\x20Key\x20Macro','length','.download-item','height','appendChild','error','https://www.youtube.com/embed/SZYsG4P2VWs?si=dBAhT9XZMtF8oLtg','https://www.youtube.com/embed/zju4zs9QQNc?si=8YIC7Rhw7pqs2Ija','482609HDYRev','315','https://www.youtube.com/embed/ZSUV_iGsKGM?si=YMqzaOJ-T7WP4pJK','2689284PXiuSU','videoUrl','Dice\x20Merchant\x20Macro','iframe','9882234quPRzN','width','src','createElement','.youtube-video','5125872RlElbX','Deep\x20Pool\x20Fishing\x20Macro','frameBorder','allowFullscreen','Treehouse\x20Macro','8491344mSlZwz','querySelector','title','https://www.youtube.com/embed/9hHHg_fG36Q?si=wqiZE5Og1xwUlHhC','Title\x20element\x20not\x20found\x20for\x20item\x20index:','Video\x20container\x20not\x20found\x20for\x20item\x20index:','560','14yTnCXH','https://www.youtube.com/embed/7k_DZAVJgpE?si=46CladISeX0auVmH'];_0x1ab4=function(){return _0xe3603c;};return _0x1ab4();}
+document.addEventListener('DOMContentLoaded', function() {
+    const macrosData = [
+        { title: 'Dice Merchant Macro', videoUrl: 'https://www.youtube.com/embed/SZYsG4P2VWs?si=dBAhT9XZMtF8oLtg' },
+        { title: 'Multi Macro', videoUrl: 'https://www.youtube.com/embed/zju4zs9QQNc?si=8YIC7Rhw7pqs2Ija' },
+        { title: 'Treehouse Macro', videoUrl: 'https://www.youtube.com/embed/9hHHg_fG36Q?si=wqiZE5Og1xwUlHhC' },
+        { title: 'Rank Quest Macro', videoUrl: 'https://www.youtube.com/embed/ZSUV_iGsKGM?si=YMqzaOJ-T7WP4pJK' },
+        { title: 'Deep Pool Fishing Macro', videoUrl: 'https://www.youtube.com/embed/nfpicQGkFfE?si=FmoWqokOSSIXq10j' },
+        { title: 'Prison Key Macro', videoUrl: 'https://www.youtube.com/embed/7k_DZAVJgpE?si=46CladISeX0auVmH' }
+    ];
+
+    const downloadItems = document.querySelectorAll('.download-item');
+
+    // Check if the number of items matches the macros data
+    if (downloadItems.length !== macrosData.length) {
+        console.error('Mismatch between the number of download items and macros data.');
+        return;
+    }
+
+    downloadItems.forEach((item, index) => {
+        const macroData = macrosData[index];
+
+        const titleElement = item.querySelector('.macro-title');
+        if (titleElement) {
+            titleElement.textContent = macroData.title;
+        } else {
+            console.error('Title element not found for item index:', index);
+        }
+
+        const videoContainer = item.querySelector('.youtube-video');
+        if (videoContainer) {
+            const iframe = document.createElement('iframe');
+            iframe.src = macroData.videoUrl;
+            iframe.width = "560";
+            iframe.height = "315";
+            iframe.frameBorder = "0";
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+
+            videoContainer.appendChild(iframe);
+        } else {
+            console.error('Video container not found for item index:', index);
+        }
+    });
+});

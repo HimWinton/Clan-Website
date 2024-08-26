@@ -1,1 +1,208 @@
-const _0x4d4fed=_0x2457;(function(_0x22d7f1,_0x4e3a1d){const _0x9c7ca8=_0x2457,_0x383305=_0x22d7f1();while(!![]){try{const _0x5c9e3e=parseInt(_0x9c7ca8(0x17a))/0x1*(parseInt(_0x9c7ca8(0x18b))/0x2)+-parseInt(_0x9c7ca8(0x195))/0x3+-parseInt(_0x9c7ca8(0x193))/0x4*(-parseInt(_0x9c7ca8(0x16d))/0x5)+-parseInt(_0x9c7ca8(0x186))/0x6*(-parseInt(_0x9c7ca8(0x184))/0x7)+-parseInt(_0x9c7ca8(0x19b))/0x8+parseInt(_0x9c7ca8(0x16f))/0x9+parseInt(_0x9c7ca8(0x185))/0xa;if(_0x5c9e3e===_0x4e3a1d)break;else _0x383305['push'](_0x383305['shift']());}catch(_0x2e7d81){_0x383305['push'](_0x383305['shift']());}}}(_0x3eab,0x1e8d1));const state={'clansPerPage':0xa,'currentPage':0x1,'totalClans':0x0,'currentBattle':null,'clickLock':![]},preloader=document['getElementById'](_0x4d4fed(0x188)),clanList=document[_0x4d4fed(0x172)](_0x4d4fed(0x190)),content=document['getElementById']('content'),pageSelect=document[_0x4d4fed(0x172)](_0x4d4fed(0x17c)),prevButton=document[_0x4d4fed(0x172)](_0x4d4fed(0x19a)),nextButton=document[_0x4d4fed(0x172)](_0x4d4fed(0x191)),getSuffix=_0x25ec55=>{const _0x1cdc83=['th','st','nd','rd'],_0x273194=_0x25ec55%0x64;return _0x1cdc83[(_0x273194-0x14)%0xa]||_0x1cdc83[_0x273194]||_0x1cdc83[0x0];},abbreviatePoints=_0x30bd69=>{const _0x594bdd=_0x4d4fed,_0x1ee8c9=['T','B','M','K'],_0x2b3f08=[0xe8d4a51000,0x3b9aca00,0xf4240,0x3e8];for(let _0x1923bc=0x0;_0x1923bc<_0x2b3f08[_0x594bdd(0x19c)];_0x1923bc++){if(_0x30bd69>=_0x2b3f08[_0x1923bc]){const _0x326388=_0x30bd69/_0x2b3f08[_0x1923bc];return''+_0x326388[_0x594bdd(0x194)](_0x326388%0x1===0x0?0x0:0x1)[_0x594bdd(0x1a9)](/\.0$/,'')+_0x1ee8c9[_0x1923bc];}}return _0x30bd69[_0x594bdd(0x194)](0x0);},fetchTotalClans=async()=>{const _0x3d6d57=_0x4d4fed;try{showPreloader();const _0x5593c4=await fetch(_0x3d6d57(0x1a6)),_0x4acfd0=await _0x5593c4[_0x3d6d57(0x19e)]();_0x4acfd0['status']==='ok'?state[_0x3d6d57(0x16b)]=_0x4acfd0['totalCount']||_0x4acfd0[_0x3d6d57(0x17f)]||_0x4acfd0[_0x3d6d57(0x1a8)]||0x0:console[_0x3d6d57(0x18a)](_0x3d6d57(0x19f));}catch(_0x3d74bc){console[_0x3d6d57(0x18a)](_0x3d6d57(0x16e),_0x3d74bc);}finally{hidePreloader();}},fetchClansData=async(_0x1ef887=state[_0x4d4fed(0x1a1)])=>{const _0x8e0dee=_0x4d4fed;try{showPreloader();const _0x223206=await fetch(_0x8e0dee(0x18e)+_0x1ef887+_0x8e0dee(0x192)+state[_0x8e0dee(0x178)]+'&sort=Points&sortOrder=desc'),_0x4e8a41=await _0x223206[_0x8e0dee(0x19e)]();return _0x4e8a41[_0x8e0dee(0x16c)]==='ok'?_0x4e8a41[_0x8e0dee(0x17f)]:[];}catch(_0x3abc92){return console[_0x8e0dee(0x18a)](_0x8e0dee(0x198),_0x3abc92),[];}finally{hidePreloader();}},redirectToClanPage=_0x18da90=>{const _0x43af6d=_0x4d4fed;window['location'][_0x43af6d(0x17b)]='clan.html?name='+encodeURIComponent(_0x18da90);},displayClans=async _0x4d8049=>{const _0x454688=_0x4d4fed,_0x4f4bac=document[_0x454688(0x197)]();_0x4d8049[_0x454688(0x17d)]((_0x573ca6,_0x4443fb)=>{const _0x489893=_0x454688,_0x5e30da=(state[_0x489893(0x1a1)]-0x1)*state[_0x489893(0x178)]+_0x4443fb+0x1,_0x11fe2c=document[_0x489893(0x1a2)]('a');_0x11fe2c[_0x489893(0x16a)][_0x489893(0x1a3)](_0x489893(0x182)),_0x11fe2c['href']=_0x489893(0x189)+encodeURIComponent(_0x573ca6[_0x489893(0x175)]);const _0x576937=abbreviatePoints(_0x573ca6[_0x489893(0x179)]),_0x476981=abbreviatePoints(_0x573ca6[_0x489893(0x174)]),_0xf192f5=_0x573ca6[_0x489893(0x183)]+'/'+_0x573ca6[_0x489893(0x181)];_0x11fe2c[_0x489893(0x18c)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22left-side\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22placement\x22>'+_0x5e30da+getSuffix(_0x5e30da)+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22clan-details\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22clan-name\x22>'+_0x573ca6[_0x489893(0x175)][_0x489893(0x177)]()+_0x489893(0x1a7)+_0x576937+_0x489893(0x1a5)+_0x476981+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22members\x22><img\x20src=\x22members_icon.png\x22\x20alt=\x22Members\x20Icon\x22>\x20'+_0xf192f5+_0x489893(0x171),_0x4f4bac[_0x489893(0x169)](_0x11fe2c);}),clanList[_0x454688(0x18c)]='',clanList[_0x454688(0x169)](_0x4f4bac),state[_0x454688(0x1a1)]===0x1&&_0x4d8049[_0x454688(0x19c)]>0x0&&updateTopClan(_0x4d8049[0x0]);},updateTopClan=async _0x5ff531=>{const _0x571718=_0x4d4fed;try{showPreloader();const _0x29e3b9=document[_0x571718(0x172)](_0x571718(0x199)),_0x423cfa=document[_0x571718(0x172)](_0x571718(0x18d));_0x29e3b9[_0x571718(0x1aa)]=_0x5ff531[_0x571718(0x175)]['toUpperCase']()+'\x20('+abbreviatePoints(_0x5ff531[_0x571718(0x179)])+')';const _0x40c4a9=await fetch('https://biggamesapi.io/api/clan/'+_0x5ff531[_0x571718(0x175)]),_0x2f0754=await _0x40c4a9['json']();if(_0x2f0754[_0x571718(0x16c)]==='ok'){const _0xa03bc5=_0x2f0754[_0x571718(0x17f)][_0x571718(0x18f)][_0x571718(0x1a9)]('rbxassetid://',''),_0x5d776c=_0x571718(0x187)+_0xa03bc5;_0x423cfa[_0x571718(0x19d)]=_0x5d776c;}}catch(_0xb859ec){console[_0x571718(0x18a)]('Error\x20updating\x20top\x20clan:',_0xb859ec);}finally{hidePreloader();}},updatePagination=()=>{const _0x2b3af1=_0x4d4fed,_0x539771=Math[_0x2b3af1(0x170)](state[_0x2b3af1(0x16b)]/state[_0x2b3af1(0x178)]);pageSelect[_0x2b3af1(0x18c)]='';for(let _0x5931b4=0x1;_0x5931b4<=_0x539771;_0x5931b4++){const _0x1f5b23=document['createElement'](_0x2b3af1(0x1a4));_0x1f5b23[_0x2b3af1(0x196)]=_0x5931b4,_0x1f5b23[_0x2b3af1(0x1aa)]=_0x5931b4,pageSelect[_0x2b3af1(0x169)](_0x1f5b23);}prevButton[_0x2b3af1(0x17e)]=state[_0x2b3af1(0x1a1)]===0x1,nextButton[_0x2b3af1(0x17e)]=state[_0x2b3af1(0x1a1)]===_0x539771;},changePage=((()=>{let _0x4357ce;return _0x5c6aa0=>{clearTimeout(_0x4357ce),_0x4357ce=setTimeout(()=>{const _0x4f6321=_0x2457,_0x5c1a87=Math[_0x4f6321(0x170)](state['totalClans']/state[_0x4f6321(0x178)]);(_0x5c6aa0===0x1&&state[_0x4f6321(0x1a1)]<_0x5c1a87||_0x5c6aa0===-0x1&&state[_0x4f6321(0x1a1)]>0x1)&&(state[_0x4f6321(0x1a1)]+=_0x5c6aa0,loadClans(),updatePagination());},0x12c);};})()),selectPage=_0x28e925=>{const _0x14407d=_0x4d4fed;state[_0x14407d(0x1a1)]=parseInt(_0x28e925,0xa),loadClans(),updatePagination();},loadClans=async()=>{const _0xd47635=_0x4d4fed,_0x5cd8f0=await fetchClansData(state[_0xd47635(0x1a1)]);displayClans(_0x5cd8f0);};function showPreloader(){const _0x17bf43=_0x4d4fed;preloader[_0x17bf43(0x16a)][_0x17bf43(0x1ab)](_0x17bf43(0x1a0));}function hidePreloader(){const _0x2d9f79=_0x4d4fed;preloader[_0x2d9f79(0x16a)][_0x2d9f79(0x1a3)](_0x2d9f79(0x1a0)),content['style'][_0x2d9f79(0x180)]=_0x2d9f79(0x176);}const init=async()=>{const _0x4fab0c=_0x4d4fed;try{showPreloader(),await fetchTotalClans(),await loadClans();}catch(_0x529172){console[_0x4fab0c(0x18a)](_0x4fab0c(0x173),_0x529172);}finally{hidePreloader();}};function _0x2457(_0x563e0c,_0x366ffb){const _0x3eabc9=_0x3eab();return _0x2457=function(_0x2457ee,_0x3ffded){_0x2457ee=_0x2457ee-0x169;let _0x566bd5=_0x3eabc9[_0x2457ee];return _0x566bd5;},_0x2457(_0x563e0c,_0x366ffb);}init();function _0x3eab(){const _0x473cf1=['total','replace','textContent','remove','appendChild','classList','totalClans','status','930885eNnebU','Error\x20fetching\x20total\x20clans:','262161kkjTKC','ceil','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','getElementById','Error\x20during\x20initialization:','DepositedDiamonds','Name','block','toUpperCase','clansPerPage','Points','6rIIXwO','href','page-select','forEach','disabled','data','display','MemberCapacity','card','Members','14EirjBH','593290GEKukY','52770eJRlmu','https://biggamesapi.io/image/','preloader','clan.html?name=','error','30364TDAtZP','innerHTML','top-clan-icon','https://biggamesapi.io/api/clans?page=','Icon','clan-list','next-button','&pageSize=','4mfVlpK','toFixed','150669PajELp','value','createDocumentFragment','Error\x20fetching\x20clans\x20data:','top-clan-name','prev-button','1663656FhWkfo','length','src','json','Failed\x20to\x20fetch\x20total\x20clans','hidden','currentPage','createElement','add','option','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22diamonds\x22><img\x20src=\x22https://biggamesapi.io/image/14867116353\x22\x20alt=\x22Diamonds\x22>\x20','https://biggamesapi.io/api/clansTotal','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22right-side\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22points\x22><img\x20src=\x22../imgs/star.png\x22\x20alt=\x22Points\x20Icon\x22>\x20'];_0x3eab=function(){return _0x473cf1;};return _0x3eab();}
+// Core state variables
+const state = {
+    clansPerPage: 10,
+    currentPage: 1,
+    totalClans: 0,
+    currentBattle: null,
+    clickLock: false // Lock to prevent spam clicking
+};
+
+// Cache DOM elements
+const preloader = document.getElementById('preloader');
+const clanList = document.getElementById('clan-list');
+const content = document.getElementById('content');
+const pageSelect = document.getElementById('page-select');
+const prevButton = document.getElementById('prev-button');
+const nextButton = document.getElementById('next-button');
+
+// Utility functions
+const getSuffix = (num) => {
+    const suffixes = ["th", "st", "nd", "rd"];
+    const value = num % 100;
+    return suffixes[(value - 20) % 10] || suffixes[value] || suffixes[0];
+};
+
+const abbreviatePoints = (points) => {
+    const units = ['T', 'B', 'M', 'K'];
+    const divisors = [1_000_000_000_000, 1_000_000_000, 1_000_000, 1_000];
+
+    for (let i = 0; i < divisors.length; i++) {
+        if (points >= divisors[i]) {
+            const value = points / divisors[i];
+            return `${value.toFixed(value % 1 === 0 ? 0 : 1).replace(/\.0$/, '')}${units[i]}`;
+        }
+    }
+    return points.toFixed(0);
+};
+
+// Fetch total number of clans
+const fetchTotalClans = async () => {
+    try {
+        showPreloader();
+        const response = await fetch('https://biggamesapi.io/api/clansTotal');
+        const data = await response.json();
+        if (data.status === "ok") {
+            state.totalClans = data.totalCount || data.data || data.total || 0;
+        } else {
+            console.error('Failed to fetch total clans');
+        }
+    } catch (error) {
+        console.error('Error fetching total clans:', error);
+    } finally {
+        hidePreloader();
+    }
+};
+
+// Fetch clans data for the current page
+const fetchClansData = async (page = state.currentPage) => {
+    try {
+        showPreloader();
+        const response = await fetch(`https://biggamesapi.io/api/clans?page=${page}&pageSize=${state.clansPerPage}&sort=Points&sortOrder=desc`);
+        const data = await response.json();
+        return data.status === "ok" ? data.data : [];
+    } catch (error) {
+        console.error('Error fetching clans data:', error);
+        return [];
+    } finally {
+        hidePreloader();
+    }
+};
+
+// Redirect to the new page with the clan name as a URL parameter
+const redirectToClanPage = (clanName) => {
+    window.location.href = `clan.html?name=${encodeURIComponent(clanName)}`;
+};
+
+// Display clans on the page
+const displayClans = async (clans) => {
+    const fragment = document.createDocumentFragment();
+
+    clans.forEach((clan, index) => {
+        const globalRank = (state.currentPage - 1) * state.clansPerPage + index + 1;
+        const card = document.createElement('a');
+        card.classList.add('card');
+        card.href = `clan.html?name=${encodeURIComponent(clan.Name)}`;
+
+        const points = abbreviatePoints(clan.Points);
+        const diamonds = abbreviatePoints(clan.DepositedDiamonds);
+        const members = `${clan.Members}/${clan.MemberCapacity}`;
+
+        card.innerHTML = `
+            <div class="left-side">
+                <span class="placement">${globalRank}${getSuffix(globalRank)}</span>
+                <div class="clan-details">
+                    <span class="clan-name">${clan.Name.toUpperCase()}</span>
+                </div>
+            </div>
+            <div class="right-side">
+                <span class="points"><img src="../imgs/star.png" alt="Points Icon"> ${points}</span>
+                <span class="diamonds"><img src="https://biggamesapi.io/image/14867116353" alt="Diamonds"> ${diamonds}</span>
+                <span class="members"><img src="members_icon.png" alt="Members Icon"> ${members}</span>
+            </div>
+        `;
+        fragment.appendChild(card);
+    });
+
+    clanList.innerHTML = '';
+    clanList.appendChild(fragment);
+
+    if (state.currentPage === 1 && clans.length > 0) {
+        updateTopClan(clans[0]);
+    }
+};
+
+// Update the top clan display
+const updateTopClan = async (topClan) => {
+    try {
+        showPreloader();
+        const topClanNameElement = document.getElementById('top-clan-name');
+        const topClanIconElement = document.getElementById('top-clan-icon');
+
+        topClanNameElement.textContent = `${topClan.Name.toUpperCase()} (${abbreviatePoints(topClan.Points)})`;
+
+        const topClanResponse = await fetch(`https://biggamesapi.io/api/clan/${topClan.Name}`);
+        const topClanData = await topClanResponse.json();
+
+        if (topClanData.status === "ok") {
+            const topClanIconID = topClanData.data.Icon.replace('rbxassetid://', '');
+            const topClanIconURL = `https://biggamesapi.io/image/${topClanIconID}`;
+            topClanIconElement.src = topClanIconURL;
+        }
+    } catch (error) {
+        console.error('Error updating top clan:', error);
+    } finally {
+        hidePreloader();
+    }
+};
+
+// Update pagination controls
+const updatePagination = () => {
+    const totalPages = Math.ceil(state.totalClans / state.clansPerPage);
+    pageSelect.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = i;
+        pageSelect.appendChild(option);
+    }
+
+    prevButton.disabled = state.currentPage === 1;
+    nextButton.disabled = state.currentPage === totalPages;
+};
+
+// Handle page change with debounce
+const changePage = (() => {
+    let timeout;
+    return (direction) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            const totalPages = Math.ceil(state.totalClans / state.clansPerPage);
+            if ((direction === 1 && state.currentPage < totalPages) || (direction === -1 && state.currentPage > 1)) {
+                state.currentPage += direction;
+                loadClans();
+                updatePagination();
+            }
+        }, 300);
+    };
+})();
+
+// Select a specific page
+const selectPage = (page) => {
+    state.currentPage = parseInt(page, 10);
+    loadClans();
+    updatePagination();
+};
+
+// Load clans data and display it
+const loadClans = async () => {
+    const clans = await fetchClansData(state.currentPage);
+    displayClans(clans);
+};
+
+// Show the preloader
+function showPreloader() {
+    preloader.classList.remove('hidden');
+}
+
+// Hide the preloader and show content
+function hidePreloader() {
+    preloader.classList.add('hidden');
+    content.style.display = 'block';
+}
+
+// Initialize the application
+const init = async () => {
+    try {
+        showPreloader();
+        await fetchTotalClans();
+        await loadClans();
+    } catch (error) {
+        console.error('Error during initialization:', error);
+    } finally {
+        hidePreloader();
+    }
+};
+
+// Start the app
+init();

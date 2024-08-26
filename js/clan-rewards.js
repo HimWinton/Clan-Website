@@ -1,1 +1,27 @@
-const _0x1adcf4=_0x4a64;function _0x4a64(_0x2db6f1,_0x248037){const _0x2d946c=_0x2d94();return _0x4a64=function(_0x4a641e,_0x5d5625){_0x4a641e=_0x4a641e-0x1e9;let _0x13dd7d=_0x2d946c[_0x4a641e];return _0x13dd7d;},_0x4a64(_0x2db6f1,_0x248037);}(function(_0x202314,_0x5d8d9f){const _0x458fd6=_0x4a64,_0x37b510=_0x202314();while(!![]){try{const _0x313ec4=parseInt(_0x458fd6(0x1ea))/0x1*(-parseInt(_0x458fd6(0x200))/0x2)+-parseInt(_0x458fd6(0x1f5))/0x3+-parseInt(_0x458fd6(0x1e9))/0x4*(-parseInt(_0x458fd6(0x1f0))/0x5)+parseInt(_0x458fd6(0x1eb))/0x6+parseInt(_0x458fd6(0x1f3))/0x7*(-parseInt(_0x458fd6(0x1fd))/0x8)+parseInt(_0x458fd6(0x1fe))/0x9+parseInt(_0x458fd6(0x1fb))/0xa;if(_0x313ec4===_0x5d8d9f)break;else _0x37b510['push'](_0x37b510['shift']());}catch(_0x566c9c){_0x37b510['push'](_0x37b510['shift']());}}}(_0x2d94,0x4504c));const rewards={'gold':'Rainbow\x20Huge\x20Ice\x20Cream\x20Cone,\x20Ice\x20Cream\x20Hoverboard,\x20Ice\x20Cream\x20Booth,\x20Clan\x20Gift','silver':_0x1adcf4(0x1f2),'bronze':_0x1adcf4(0x1ee),'other':_0x1adcf4(0x1ef),'gift':_0x1adcf4(0x1f9)};function _0x2d94(){const _0x52c304=['gift','Huge\x20Ice\x20Cream\x20Cone,\x20Ice\x20Cream\x20Hoverboard,\x20Ice\x20Cream\x20Booth,\x20Clan\x20Gift','Ice\x20Cream\x20Booth,\x20Clan\x20Gift','10QToJOh','silver','Golden\x20Huge\x20Ice\x20Cream\x20Cone,\x20Ice\x20Cream\x20Hoverboard,\x20Ice\x20Cream\x20Booth,\x20Clan\x20Gift','147CVtgrm','silverreward','1142148DMXogt','clangift','otherreward','goldreward','Clan\x20Gift','other','1643500JGKgPO','bronzereward','91968Wxvvor','2778354IeMZco','textContent','130SmFUdL','getElementById','32468gabYGY','1366DAMfke','3025992MZPIhi','addEventListener'];_0x2d94=function(){return _0x52c304;};return _0x2d94();}function updateRewards(){const _0x180897=_0x1adcf4,_0x486610=document[_0x180897(0x201)](_0x180897(0x1f8)),_0x778752=document[_0x180897(0x201)](_0x180897(0x1f4)),_0x1b85c7=document[_0x180897(0x201)](_0x180897(0x1fc)),_0x52949e=document[_0x180897(0x201)](_0x180897(0x1f7)),_0x1d7d6f=document[_0x180897(0x201)](_0x180897(0x1f6));if(_0x486610)_0x486610[_0x180897(0x1ff)]=rewards['gold'];if(_0x778752)_0x778752[_0x180897(0x1ff)]=rewards[_0x180897(0x1f1)];if(_0x1b85c7)_0x1b85c7[_0x180897(0x1ff)]=rewards['bronze'];if(_0x52949e)_0x52949e[_0x180897(0x1ff)]=rewards[_0x180897(0x1fa)];if(_0x1d7d6f)_0x1d7d6f[_0x180897(0x1ff)]=rewards[_0x180897(0x1ed)];}document[_0x1adcf4(0x1ec)]('DOMContentLoaded',updateRewards);
+// Reward Strings
+const rewards = {
+    gold: "Rainbow Huge Ice Cream Cone, Ice Cream Hoverboard, Ice Cream Booth, Clan Gift",
+    silver: "Golden Huge Ice Cream Cone, Ice Cream Hoverboard, Ice Cream Booth, Clan Gift",
+    bronze: "Huge Ice Cream Cone, Ice Cream Hoverboard, Ice Cream Booth, Clan Gift",
+    other: "Ice Cream Booth, Clan Gift",
+    gift: "Clan Gift"
+};
+
+// Function to update reward elements
+function updateRewards() {
+    const goldRewardElement = document.getElementById('goldreward');
+    const silverRewardElement = document.getElementById('silverreward');
+    const bronzeRewardElement = document.getElementById('bronzereward');
+    const otherRewardElement = document.getElementById('otherreward');
+    const clanGiftElement = document.getElementById('clangift');
+
+    // Check if elements exist before updating
+    if (goldRewardElement) goldRewardElement.textContent = rewards.gold;
+    if (silverRewardElement) silverRewardElement.textContent = rewards.silver;
+    if (bronzeRewardElement) bronzeRewardElement.textContent = rewards.bronze;
+    if (otherRewardElement) otherRewardElement.textContent = rewards.other;
+    if (clanGiftElement) clanGiftElement.textContent = rewards.gift;
+}
+
+// Run the function on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', updateRewards);

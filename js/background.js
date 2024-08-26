@@ -1,1 +1,54 @@
-const _0x5f28df=_0x50de;function _0x50de(_0x47a65e,_0x557a1f){const _0x3b7926=_0x3b79();return _0x50de=function(_0x50de74,_0x22cd05){_0x50de74=_0x50de74-0x12a;let _0x52dddf=_0x3b7926[_0x50de74];return _0x52dddf;},_0x50de(_0x47a65e,_0x557a1f);}(function(_0x5b3b92,_0x1218db){const _0x15ee38=_0x50de,_0x31ec36=_0x5b3b92();while(!![]){try{const _0x3e5441=parseInt(_0x15ee38(0x142))/0x1+-parseInt(_0x15ee38(0x148))/0x2+-parseInt(_0x15ee38(0x134))/0x3+parseInt(_0x15ee38(0x132))/0x4*(parseInt(_0x15ee38(0x138))/0x5)+parseInt(_0x15ee38(0x144))/0x6*(-parseInt(_0x15ee38(0x137))/0x7)+-parseInt(_0x15ee38(0x149))/0x8+parseInt(_0x15ee38(0x12e))/0x9;if(_0x3e5441===_0x1218db)break;else _0x31ec36['push'](_0x31ec36['shift']());}catch(_0x2517d4){_0x31ec36['push'](_0x31ec36['shift']());}}}(_0x3b79,0x9b5f3));const scene=new THREE[(_0x5f28df(0x140))](),camera=new THREE[(_0x5f28df(0x13b))](0x4b,window[_0x5f28df(0x139)]/window['innerHeight'],0.1,0x3e8);camera['position']['z']=0x5;const renderer=new THREE[(_0x5f28df(0x131))]({'antialias':!![],'alpha':!![]});renderer[_0x5f28df(0x130)](window['innerWidth'],window[_0x5f28df(0x12b)]),renderer[_0x5f28df(0x12f)][_0x5f28df(0x146)]['position']=_0x5f28df(0x135),renderer[_0x5f28df(0x12f)]['style']['top']='0',renderer[_0x5f28df(0x12f)][_0x5f28df(0x146)][_0x5f28df(0x13a)]='0',renderer['domElement'][_0x5f28df(0x146)][_0x5f28df(0x13f)]='-1',renderer[_0x5f28df(0x12f)][_0x5f28df(0x146)][_0x5f28df(0x13c)]=_0x5f28df(0x147),document['body'][_0x5f28df(0x12a)](renderer['domElement']);let stars=[];function addSphere(){const _0x4f4d49=_0x5f28df;for(let _0x30b10f=-0x3e8;_0x30b10f<0x3e8;_0x30b10f+=0x14){let _0x21b803=new THREE[(_0x4f4d49(0x12d))](0.5,0x20,0x20),_0x5d8772=new THREE['MeshBasicMaterial']({'color':0xff69b4}),_0x5e9f5e=new THREE[(_0x4f4d49(0x13e))](_0x21b803,_0x5d8772);_0x5e9f5e['position']['x']=Math[_0x4f4d49(0x145)]()*0x3e8-0x1f4,_0x5e9f5e[_0x4f4d49(0x143)]['y']=Math['random']()*0x3e8-0x1f4,_0x5e9f5e[_0x4f4d49(0x143)]['z']=_0x30b10f,_0x5e9f5e['scale']['x']=_0x5e9f5e[_0x4f4d49(0x136)]['y']=0x2,scene['add'](_0x5e9f5e),stars[_0x4f4d49(0x141)](_0x5e9f5e);}}function animateStars(){const _0x1fd444=_0x5f28df;for(let _0x24259d=0x0;_0x24259d<stars[_0x1fd444(0x13d)];_0x24259d++){let _0x76bd9=stars[_0x24259d];_0x76bd9[_0x1fd444(0x143)]['z']+=_0x24259d/0xa;if(_0x76bd9[_0x1fd444(0x143)]['z']>0x3e8)_0x76bd9['position']['z']-=0x7d0;}}function animate(){const _0xf94b64=_0x5f28df;requestAnimationFrame(animate),animateStars(),renderer[_0xf94b64(0x133)](scene,camera);}function _0x3b79(){const _0x57f0c1=['WebGLRenderer','4bFkeVx','render','473487HmdTqZ','absolute','scale','651BcEDBI','1612220rZVBvA','innerWidth','left','PerspectiveCamera','pointerEvents','length','Mesh','zIndex','Scene','push','1054198MxWIql','position','32166ubuHoL','random','style','none','2343182GBmiXE','7783424ELzQIr','appendChild','innerHeight','resize','SphereGeometry','18546138UPKAUp','domElement','setSize'];_0x3b79=function(){return _0x57f0c1;};return _0x3b79();}window['addEventListener'](_0x5f28df(0x12c),()=>{const _0x432712=_0x5f28df;renderer[_0x432712(0x130)](window[_0x432712(0x139)],window[_0x432712(0x12b)]),camera['aspect']=window[_0x432712(0x139)]/window[_0x432712(0x12b)],camera['updateProjectionMatrix']();}),addSphere(),animate();
+// Basic Three.js setup
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.z = 5;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.domElement.style.position = 'absolute';
+renderer.domElement.style.top = '0';
+renderer.domElement.style.left = '0';
+renderer.domElement.style.zIndex = '-1';
+renderer.domElement.style.pointerEvents = 'none';
+
+document.body.appendChild(renderer.domElement);
+
+// Stars setup
+let stars = [];
+function addSphere() {
+    for (let z = -1000; z < 1000; z += 20) {
+        let geometry = new THREE.SphereGeometry(0.5, 32, 32);
+        let material = new THREE.MeshBasicMaterial({ color: 0xFF69B4 });
+        let sphere = new THREE.Mesh(geometry, material);
+        sphere.position.x = Math.random() * 1000 - 500;
+        sphere.position.y = Math.random() * 1000 - 500;
+        sphere.position.z = z;
+        sphere.scale.x = sphere.scale.y = 2;
+        scene.add(sphere);
+        stars.push(sphere);
+    }
+}
+
+function animateStars() {
+    for (let i = 0; i < stars.length; i++) {
+        let star = stars[i];
+        star.position.z += i / 10;
+        if (star.position.z > 1000) star.position.z -= 2000;
+    }
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+    animateStars();
+    renderer.render(scene, camera);
+}
+
+// Ensure the renderer resizes correctly on window resize
+window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+});
+
+addSphere();
+animate();

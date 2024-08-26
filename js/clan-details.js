@@ -1,1 +1,172 @@
-const _0x3a5bcb=_0x5458;(function(_0x25baf3,_0x458d65){const _0x2b29cc=_0x5458,_0x5ba965=_0x25baf3();while(!![]){try{const _0xd345bf=parseInt(_0x2b29cc(0x13a))/0x1+parseInt(_0x2b29cc(0x174))/0x2+-parseInt(_0x2b29cc(0x16f))/0x3+parseInt(_0x2b29cc(0x137))/0x4*(parseInt(_0x2b29cc(0x158))/0x5)+parseInt(_0x2b29cc(0x150))/0x6*(-parseInt(_0x2b29cc(0x12e))/0x7)+parseInt(_0x2b29cc(0x140))/0x8*(-parseInt(_0x2b29cc(0x17c))/0x9)+-parseInt(_0x2b29cc(0x148))/0xa;if(_0xd345bf===_0x458d65)break;else _0x5ba965['push'](_0x5ba965['shift']());}catch(_0xfd12f2){_0x5ba965['push'](_0x5ba965['shift']());}}}(_0x9b1e,0xdce8b));const state={'currentBattle':null,'usernameCache':JSON[_0x3a5bcb(0x162)](localStorage[_0x3a5bcb(0x161)](_0x3a5bcb(0x15a)))||{},'clickLock':![]},selectedClanName=document[_0x3a5bcb(0x16d)](_0x3a5bcb(0x13b)),clanIconElement=document[_0x3a5bcb(0x16d)](_0x3a5bcb(0x16a)),clanStatusElement=document[_0x3a5bcb(0x16d)](_0x3a5bcb(0x132)),totalPointsElement=document['getElementById'](_0x3a5bcb(0x17b)),clanDiamondsElement=document[_0x3a5bcb(0x16d)](_0x3a5bcb(0x14a)),playerList=document[_0x3a5bcb(0x16d)](_0x3a5bcb(0x176)),preloader=document[_0x3a5bcb(0x16d)]('preloader'),content=document[_0x3a5bcb(0x16d)](_0x3a5bcb(0x14d)),backButton=document['getElementById'](_0x3a5bcb(0x142)),getSuffix=_0x52416b=>{const _0x2afe8b=['th','st','nd','rd'],_0x259d9d=_0x52416b%0x64;return _0x2afe8b[(_0x259d9d-0x14)%0xa]||_0x2afe8b[_0x259d9d]||_0x2afe8b[0x0];},abbreviatePoints=_0x5de460=>{const _0x2a3e4a=_0x3a5bcb;if(_0x5de460==null||isNaN(_0x5de460))return'0';const _0xb60e7c=['T','B','M','K'],_0x1941f5=[0xe8d4a51000,0x3b9aca00,0xf4240,0x3e8];for(let _0x984156=0x0;_0x984156<_0x1941f5[_0x2a3e4a(0x155)];_0x984156++){if(_0x5de460>=_0x1941f5[_0x984156]){const _0x455b2d=_0x5de460/_0x1941f5[_0x984156];return''+_0x455b2d[_0x2a3e4a(0x16b)](_0x455b2d%0x1===0x0?0x0:0x1)['replace'](/\.0$/,'')+_0xb60e7c[_0x984156];}}return _0x5de460[_0x2a3e4a(0x16b)](0x0);},getClanNameFromURL=()=>{const _0x4b0b7c=_0x3a5bcb,_0x28d02f=new URLSearchParams(window[_0x4b0b7c(0x146)][_0x4b0b7c(0x15e)]);return _0x28d02f[_0x4b0b7c(0x139)]('name');},fetchClanData=async()=>{const _0xfa278f=_0x3a5bcb,_0x4f0d59=getClanNameFromURL();if(!_0x4f0d59){selectedClanName['textContent']=_0xfa278f(0x157);return;}try{showPreloader();const _0xe6bba4=await fetch('https://biggamesapi.io/api/clan/'+_0x4f0d59),_0x324c48=await _0xe6bba4[_0xfa278f(0x135)]();if(_0x324c48[_0xfa278f(0x17a)]==='ok')displayClanData(_0x324c48[_0xfa278f(0x153)]);else throw new Error(_0xfa278f(0x156));}catch(_0x1ce082){console[_0xfa278f(0x16c)](_0xfa278f(0x175),_0x1ce082),selectedClanName[_0xfa278f(0x15b)]=_0xfa278f(0x13e);}finally{hidePreloader();}},fetchUsername=async _0x44a383=>{const _0x24de3c=_0x3a5bcb,_0x4ea7ad='username_'+_0x44a383,_0x17dfa5=JSON[_0x24de3c(0x162)](localStorage[_0x24de3c(0x161)](_0x4ea7ad));if(_0x17dfa5&&Date[_0x24de3c(0x15d)]()-_0x17dfa5['timestamp']<0x18*0x3c*0x3c*0x3e8)return _0x17dfa5[_0x24de3c(0x12f)];try{const _0x2a5538=await fetch(_0x24de3c(0x179)+_0x44a383);if(!_0x2a5538['ok'])throw new Error('Failed\x20to\x20fetch\x20username\x20for\x20userId\x20'+_0x44a383);const {name:_0x326fd6}=await _0x2a5538[_0x24de3c(0x135)]();return localStorage[_0x24de3c(0x14f)](_0x4ea7ad,JSON[_0x24de3c(0x13c)]({'username':_0x326fd6,'timestamp':Date[_0x24de3c(0x15d)]()})),_0x326fd6;}catch(_0x1bf297){return console[_0x24de3c(0x16c)](_0x24de3c(0x133),_0x1bf297),_0x44a383;}},displayClanData=async _0x16fadc=>{const _0x33aee5=_0x3a5bcb,_0x23b81d=_0x16fadc['Battles'][state[_0x33aee5(0x13d)]],_0x389df5='https://biggamesapi.io/image/'+_0x16fadc[_0x33aee5(0x177)][_0x33aee5(0x170)](_0x33aee5(0x164),''),_0xb7b1e5=abbreviatePoints(_0x23b81d[_0x33aee5(0x173)]),_0x3089ee=_0x16fadc['Status']||_0x33aee5(0x14e),_0x4fc37f=abbreviatePoints(_0x16fadc[_0x33aee5(0x166)]||0x0);selectedClanName[_0x33aee5(0x15b)]=_0x16fadc[_0x33aee5(0x144)][_0x33aee5(0x147)](),clanIconElement[_0x33aee5(0x15c)]=_0x389df5,clanIconElement[_0x33aee5(0x131)]['remove']('hidden'),clanStatusElement[_0x33aee5(0x134)]=_0x3089ee,totalPointsElement[_0x33aee5(0x134)]='<img\x20src=\x22../imgs/star.png\x22\x20alt=\x22Star\x22>\x20'+_0xb7b1e5,clanDiamondsElement[_0x33aee5(0x134)]=_0x33aee5(0x160)+_0x4fc37f,document[_0x33aee5(0x16d)](_0x33aee5(0x143))[_0x33aee5(0x131)][_0x33aee5(0x141)](_0x33aee5(0x14b)),playerList['innerHTML']='';const _0x324241=_0x23b81d['PointContributions']||[];_0x324241[_0x33aee5(0x13f)]((_0x2c4db7,_0x574c76)=>_0x574c76[_0x33aee5(0x173)]-_0x2c4db7[_0x33aee5(0x173)]);const _0x5bccad=_0x16fadc[_0x33aee5(0x168)][_0x33aee5(0x145)][_0x33aee5(0x154)]||[],_0x4b3b5d=await Promise[_0x33aee5(0x130)](_0x324241[_0x33aee5(0x136)](async(_0x3e7f82,_0x387a56)=>{const _0x47a5ce=_0x33aee5,_0x1c3230=document['createElement'](_0x47a5ce(0x178));_0x1c3230[_0x47a5ce(0x131)][_0x47a5ce(0x152)](_0x47a5ce(0x171));const _0x30db97=await fetchUsername(_0x3e7f82[_0x47a5ce(0x151)]),_0x2ca46e=abbreviatePoints(_0x3e7f82[_0x47a5ce(0x173)]),_0x39d13f=abbreviatePoints((_0x5bccad[_0x47a5ce(0x159)](_0xcf31fb=>_0xcf31fb['UserID']===_0x3e7f82[_0x47a5ce(0x151)])||{})['Diamonds']||0x0);return _0x1c3230[_0x47a5ce(0x134)]=_0x47a5ce(0x14c)+(_0x387a56+0x1)+getSuffix(_0x387a56+0x1)+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22clan-details\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22user-id\x22>'+_0x30db97+_0x47a5ce(0x165)+_0x2ca46e+_0x47a5ce(0x169)+_0x39d13f+_0x47a5ce(0x15f),_0x1c3230;}));_0x4b3b5d['forEach'](_0x38547d=>playerList[_0x33aee5(0x167)](_0x38547d));};function _0x5458(_0x32439f,_0x21e032){const _0x9b1e52=_0x9b1e();return _0x5458=function(_0x545877,_0x24f12c){_0x545877=_0x545877-0x12e;let _0xdde7e=_0x9b1e52[_0x545877];return _0xdde7e;},_0x5458(_0x32439f,_0x21e032);}function showPreloader(){const _0x370714=_0x3a5bcb;preloader['classList'][_0x370714(0x141)](_0x370714(0x14b));}function hidePreloader(){const _0x434eb3=_0x3a5bcb;preloader[_0x434eb3(0x131)][_0x434eb3(0x152)](_0x434eb3(0x14b)),content[_0x434eb3(0x163)][_0x434eb3(0x149)]=_0x434eb3(0x16e);}const init=async()=>{const _0x1b6798=_0x3a5bcb;try{showPreloader(),state[_0x1b6798(0x13d)]=await fetchBattleDetails(),await fetchClanData(),backButton['addEventListener'](_0x1b6798(0x138),()=>{const _0x402033=_0x1b6798;window[_0x402033(0x146)]['href']='../clans/';});}catch(_0x3d6e32){console[_0x1b6798(0x16c)](_0x1b6798(0x172),_0x3d6e32);}finally{hidePreloader();}};function _0x9b1e(){const _0xcf6916=['display','clan-diamonds','hidden','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22left-side\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22placement\x22>','content','Unknown','setItem','2094uGfMgr','UserID','add','data','Data','length','Failed\x20to\x20fetch\x20clan\x20data','No\x20clan\x20specified.','15rdvoHG','find','usernameCache','textContent','src','now','search','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','<img\x20src=\x22https://biggamesapi.io/image/14867116353\x22\x20alt=\x22Diamonds\x22>\x20','getItem','parse','style','rbxassetid://','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22right-side\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22points\x22><img\x20src=\x22../imgs/star.png\x22\x20alt=\x22Points\x20Icon\x22>\x20','DepositedDiamonds','appendChild','DiamondContributions','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22diamonds\x22><img\x20src=\x22https://biggamesapi.io/image/14867116353\x22\x20alt=\x22Diamonds\x20Icon\x22>\x20','clan-icon','toFixed','error','getElementById','block','80379xUONwa','replace','card','Error\x20during\x20initialization:','Points','3177310FvoChN','Error\x20fetching\x20clan\x20data:','player-list','Icon','div','https://users.roproxy.com/v1/users/','status','total-points','18lsSklk','20377WgfyJq','username','all','classList','clan-status','Error\x20fetching\x20username:','innerHTML','json','map','716324npNzwn','click','get','931047BjBgPb','selected-clan-name','stringify','currentBattle','Error\x20loading\x20clan\x20data.','sort','799048VqFxqL','remove','back-button','clan-details','Name','AllTime','location','toUpperCase','9096080ZtYPkc'];_0x9b1e=function(){return _0xcf6916;};return _0x9b1e();}init();
+// Core state variables
+const state = {
+    currentBattle: null,
+    usernameCache: JSON.parse(localStorage.getItem('usernameCache')) || {},
+    clickLock: false // Lock to prevent spam clicking
+};
+
+// Cache DOM elements
+const selectedClanName = document.getElementById('selected-clan-name');
+const clanIconElement = document.getElementById('clan-icon');
+const clanStatusElement = document.getElementById('clan-status');
+const totalPointsElement = document.getElementById('total-points');
+const clanDiamondsElement = document.getElementById('clan-diamonds');
+const playerList = document.getElementById('player-list');
+const preloader = document.getElementById('preloader');
+const content = document.getElementById('content');
+const backButton = document.getElementById('back-button');
+
+// Utility functions
+const getSuffix = (num) => {
+    const suffixes = ["th", "st", "nd", "rd"];
+    const value = num % 100;
+    return suffixes[(value - 20) % 10] || suffixes[value] || suffixes[0];
+};
+
+const abbreviatePoints = (points) => {
+    if (points == null || isNaN(points)) {
+        return '0';
+    }
+    const units = ['T', 'B', 'M', 'K'];
+    const divisors = [1_000_000_000_000, 1_000_000_000, 1_000_000, 1_000];
+    for (let i = 0; i < divisors.length; i++) {
+        if (points >= divisors[i]) {
+            const value = points / divisors[i];
+            return `${value.toFixed(value % 1 === 0 ? 0 : 1).replace(/\.0$/, '')}${units[i]}`;
+        }
+    }
+    return points.toFixed(0);
+};
+
+// Function to extract the clan name from the URL
+const getClanNameFromURL = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('name');
+};
+
+// Fetch clan data
+const fetchClanData = async () => {
+    const clanName = getClanNameFromURL();
+    if (!clanName) {
+        selectedClanName.textContent = 'No clan specified.';
+        return;
+    }
+
+    try {
+        showPreloader();
+        const response = await fetch(`https://biggamesapi.io/api/clan/${clanName}`);
+        const data = await response.json();
+
+        if (data.status === "ok") {
+            displayClanData(data.data);
+        } else {
+            throw new Error('Failed to fetch clan data');
+        }
+    } catch (error) {
+        console.error('Error fetching clan data:', error);
+        selectedClanName.textContent = 'Error loading clan data.';
+    } finally {
+        hidePreloader();
+    }
+};
+
+// Fetch username with caching
+const fetchUsername = async (userId) => {
+    const cacheKey = `username_${userId}`;
+    const cachedData = JSON.parse(localStorage.getItem(cacheKey));
+
+    if (cachedData && Date.now() - cachedData.timestamp < 24 * 60 * 60 * 1000) {
+        return cachedData.username;
+    }
+
+    try {
+        const response = await fetch(`https://users.roproxy.com/v1/users/${userId}`);
+        if (!response.ok) throw new Error(`Failed to fetch username for userId ${userId}`);
+        const { name: username } = await response.json();
+
+        localStorage.setItem(cacheKey, JSON.stringify({ username, timestamp: Date.now() }));
+        return username;
+    } catch (error) {
+        console.error('Error fetching username:', error);
+        return userId;
+    }
+};
+
+// Function to display the fetched clan data
+const displayClanData = async (clanData) => {
+    const clanWar = clanData.Battles[state.currentBattle];
+    const iconURL = `https://biggamesapi.io/image/${clanData.Icon.replace('rbxassetid://', '')}`;
+    const totalPoints = abbreviatePoints(clanWar.Points);
+    const clanStatus = clanData.Status || 'Unknown';
+    const clanDiamonds = abbreviatePoints(clanData.DepositedDiamonds || 0);
+
+    selectedClanName.textContent = clanData.Name.toUpperCase();
+    clanIconElement.src = iconURL;
+    clanIconElement.classList.remove('hidden');
+    clanStatusElement.innerHTML = clanStatus;
+    totalPointsElement.innerHTML = `<img src="../imgs/star.png" alt="Star"> ${totalPoints}`;
+    clanDiamondsElement.innerHTML = `<img src="https://biggamesapi.io/image/14867116353" alt="Diamonds"> ${clanDiamonds}`;
+    document.getElementById('clan-details').classList.remove('hidden');
+
+    playerList.innerHTML = '';
+    const contributions = clanWar.PointContributions || [];
+    contributions.sort((a, b) => b.Points - a.Points);
+
+    const diamondContributions = clanData.DiamondContributions.AllTime.Data || [];
+    const cards = await Promise.all(contributions.map(async (contribution, index) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+
+        const username = await fetchUsername(contribution.UserID);
+        const points = abbreviatePoints(contribution.Points);
+        const diamonds = abbreviatePoints((diamondContributions.find(d => d.UserID === contribution.UserID) || {}).Diamonds || 0);
+
+        card.innerHTML = `
+            <div class="left-side">
+                <span class="placement">${index + 1}${getSuffix(index + 1)}</span>
+                <div class="clan-details">
+                    <span class="user-id">${username}</span>
+                </div>
+            </div>
+            <div class="right-side">
+                <span class="points"><img src="../imgs/star.png" alt="Points Icon"> ${points}</span>
+                <span class="diamonds"><img src="https://biggamesapi.io/image/14867116353" alt="Diamonds Icon"> ${diamonds}</span>
+            </div>
+        `;
+        return card;
+    }));
+
+    cards.forEach(card => playerList.appendChild(card));
+};
+
+// Show the preloader
+function showPreloader() {
+    preloader.classList.remove('hidden');
+}
+
+// Hide the preloader and show content
+function hidePreloader() {
+    preloader.classList.add('hidden');
+    content.style.display = 'block';
+}
+
+// Initialize the page
+const init = async () => {
+    try {
+        showPreloader();
+        state.currentBattle = await fetchBattleDetails();
+        await fetchClanData();
+
+        backButton.addEventListener('click', () => {
+            window.location.href = '../clans/'; // Update this URL as needed
+        });
+
+    } catch (error) {
+        console.error('Error during initialization:', error);
+    } finally {
+        hidePreloader();
+    }
+};
+
+// Run the initialization
+init();

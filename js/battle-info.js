@@ -1,1 +1,67 @@
-const _0x189002=_0x4634;(function(_0x48af45,_0x4f33fa){const _0x28e54b=_0x4634,_0xfab0e3=_0x48af45();while(!![]){try{const _0x36d2a6=parseInt(_0x28e54b(0x133))/0x1*(-parseInt(_0x28e54b(0x127))/0x2)+-parseInt(_0x28e54b(0x11f))/0x3+-parseInt(_0x28e54b(0x123))/0x4+-parseInt(_0x28e54b(0x130))/0x5+parseInt(_0x28e54b(0x121))/0x6*(parseInt(_0x28e54b(0x12f))/0x7)+parseInt(_0x28e54b(0x11a))/0x8+parseInt(_0x28e54b(0x129))/0x9;if(_0x36d2a6===_0x4f33fa)break;else _0xfab0e3['push'](_0xfab0e3['shift']());}catch(_0x4090a2){_0xfab0e3['push'](_0xfab0e3['shift']());}}}(_0x1685,0xd4937));const countdownTimer=document[_0x189002(0x131)](_0x189002(0x135)),battleNameElement=document[_0x189002(0x12a)]('.battle-name');async function fetchBattleDetails(){const _0x374e92=_0x189002;try{const _0x3c1a74=await fetch(_0x374e92(0x11b)),_0x961b8f=await _0x3c1a74['json']();if(_0x961b8f[_0x374e92(0x12b)]==='ok'){const {configData:_0x4b0336}=_0x961b8f[_0x374e92(0x122)];return battleNameElement['textContent']=_0x4b0336[_0x374e92(0x124)],startCountdown(_0x4b0336[_0x374e92(0x11c)]),_0x4b0336[_0x374e92(0x137)];}else return console[_0x374e92(0x12e)](_0x374e92(0x136)),displayError(_0x374e92(0x128)),null;}catch(_0x52e6ed){return console[_0x374e92(0x12e)](_0x374e92(0x126),_0x52e6ed),displayError(_0x374e92(0x11d)),null;}}function _0x4634(_0x128539,_0x2893a2){const _0x1685ac=_0x1685();return _0x4634=function(_0x46349c,_0x17879c){_0x46349c=_0x46349c-0x11a;let _0x12c8d3=_0x1685ac[_0x46349c];return _0x12c8d3;},_0x4634(_0x128539,_0x2893a2);}function displayError(_0x2a8e86){const _0x26510d=_0x189002;countdownTimer[_0x26510d(0x12c)]=_0x2a8e86;}function _0x1685(){const _0x2a897b=['Error\x20loading\x20battle\x20details.','Time\x20Left:\x20','2899659agDExb','DOMContentLoaded','1522794DrmXpD','data','4997360ebmCfr','Title','Battle\x20Ended!','Error\x20fetching\x20battle\x20details:','46750ssMydP','Failed\x20to\x20load\x20battle\x20details.','28399536iLHwIV','querySelector','status','textContent','Invalid\x20Time','error','21tqUdQx','2057250yymojW','getElementById','addEventListener','28SIeDFg','Invalid\x20finishTime:','countdown-timer','Failed\x20to\x20fetch\x20battle\x20details','_id','floor','1885224lCsibQ','https://biggamesapi.io/api/activeClanBattle','FinishTime'];_0x1685=function(){return _0x2a897b;};return _0x1685();}function startCountdown(_0xe94e84){const _0x21e83d=_0x189002;if(!_0xe94e84||isNaN(_0xe94e84)||_0xe94e84<=0x0){console[_0x21e83d(0x12e)](_0x21e83d(0x134),_0xe94e84),displayError(_0x21e83d(0x12d));return;}const _0x5e3ed4=()=>{const _0x48fd8a=_0x21e83d,_0x5b41b1=Math['floor'](Date['now']()/0x3e8),_0xb9d92d=_0xe94e84-_0x5b41b1;if(_0xb9d92d<=0x0){countdownTimer[_0x48fd8a(0x12c)]=_0x48fd8a(0x125),clearInterval(_0x3761a8);return;}const _0x200229=Math[_0x48fd8a(0x138)](_0xb9d92d/0x15180),_0x43ec8a=Math['floor'](_0xb9d92d%0x15180/0xe10),_0xaa8163=Math[_0x48fd8a(0x138)](_0xb9d92d%0xe10/0x3c),_0x2fbc54=_0xb9d92d%0x3c;countdownTimer[_0x48fd8a(0x12c)]=_0x48fd8a(0x11e)+_0x200229+'d\x20'+_0x43ec8a+'h\x20'+_0xaa8163+'m\x20'+_0x2fbc54+'s';},_0x3761a8=setInterval(_0x5e3ed4,0x3e8);_0x5e3ed4();}document[_0x189002(0x132)](_0x189002(0x120),()=>{fetchBattleDetails();});
+// Cache DOM elements
+const countdownTimer = document.getElementById('countdown-timer');
+const battleNameElement = document.querySelector('.battle-name');
+
+// Fetch battle details
+async function fetchBattleDetails() {
+    try {
+        const response = await fetch('https://biggamesapi.io/api/activeClanBattle');
+        const data = await response.json();
+
+        if (data.status === "ok") {
+            const { configData } = data.data;
+            battleNameElement.textContent = configData.Title;
+            startCountdown(configData.FinishTime);
+            return configData._id;
+        } else {
+            console.error('Failed to fetch battle details');
+            displayError('Failed to load battle details.');
+            return null;
+        }
+    } catch (error) {
+        console.error('Error fetching battle details:', error);
+        displayError('Error loading battle details.');
+        return null;
+    }
+}
+
+// Display error message in the UI
+function displayError(message) {
+    countdownTimer.textContent = message;
+}
+
+// Start the countdown timer
+function startCountdown(finishTime) {
+    if (!finishTime || isNaN(finishTime) || finishTime <= 0) {
+        console.error('Invalid finishTime:', finishTime);
+        displayError('Invalid Time');
+        return;
+    }
+
+    const updateCountdown = () => {
+        const now = Math.floor(Date.now() / 1000);
+        const secondsLeft = finishTime - now;
+
+        if (secondsLeft <= 0) {
+            countdownTimer.textContent = 'Battle Ended!';
+            clearInterval(intervalId);
+            return;
+        }
+
+        const days = Math.floor(secondsLeft / 86400);
+        const hours = Math.floor((secondsLeft % 86400) / 3600);
+        const minutes = Math.floor((secondsLeft % 3600) / 60);
+        const seconds = secondsLeft % 60;
+
+        countdownTimer.textContent = 
+            `Time Left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    };
+
+    const intervalId = setInterval(updateCountdown, 1000);
+    updateCountdown(); // Run immediately to avoid initial 1-second delay
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    fetchBattleDetails();
+});
