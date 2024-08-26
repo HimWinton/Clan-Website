@@ -83,11 +83,15 @@ const displayClans = async (clans) => {
         card.classList.add('card');
         card.href = `clan.html?name=${encodeURIComponent(clan.Name)}`;
 
+        const clanIconID = clan.Icon.replace('rbxassetid://', '');
+        const clanIconURL = `https://biggamesapi.io/image/${clanIconID}`;
+
         const points = abbreviatePoints(clan.Points);
         const diamonds = abbreviatePoints(clan.DepositedDiamonds);
         const members = `${clan.Members}/${clan.MemberCapacity}`;
 
         card.innerHTML = `
+            <img id="clan-icon" src="${clanIconURL}" alt="Clan Icon">
             <div class="left-side">
                 <span class="placement">${globalRank}${getSuffix(globalRank)}</span>
                 <div class="clan-details">

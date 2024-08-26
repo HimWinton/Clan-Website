@@ -6,6 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 /* Hero Section */
@@ -41,6 +42,7 @@ body {
     margin-bottom: 60px;
     flex-wrap: wrap;
     z-index: 2;
+    box-sizing: border-box;
 }
 
 /* Card Styles */
@@ -53,6 +55,7 @@ body {
     flex: 1 1 48%;
     min-width: 300px;
     box-sizing: border-box;
+    max-width: 100%; /* Ensure it fits within the viewport */
 }
 
 .clan-info:hover, .additional-info:hover {
@@ -61,8 +64,8 @@ body {
 }
 
 .clan-banner h1 {
-    text-align: center; /* Center the title */
-    margin: 0 0 15px; /* Ensure the title has space below it */
+    text-align: center;
+    margin: 0 0 15px;
     font-size: 2.5em;
     color: #FFFFFF;
 }
@@ -73,7 +76,7 @@ body {
     width: 100%;
     object-fit: cover;
     margin-bottom: 15px;
-    border: 1px solid #000000; /* 3px thick solid black border */
+    border: 1px solid #000000;
     border-radius: 20px;
 }
 
@@ -81,21 +84,22 @@ body {
     font-size: 2em;
     color: #FF69B4;
     margin-bottom: 15px;
-    text-align: center; /* Center the "Clan Rewards" title */
+    text-align: center;
 }
 
 .clan-rewards ul {
     color: #CCCCCC;
     font-size: 1em;
     margin-bottom: 10px;
-    padding-left: 20px; /* Indentation to align the list neatly */
-    text-align: left; /* Align the list to the left */
+    padding-left: 20px;
+    text-align: left;
 }
 
 /* Blog Section */
 .additional-info .blog-container {
     display: flex;
     align-items: center;
+    flex-wrap: wrap; /* Allow wrapping for small screens */
 }
 
 .blog-container {
@@ -106,11 +110,11 @@ body {
 
 .additional-info img {
     border-radius: 8px;
-    height: 150px; /* Set height to 150px */
-    width: 150px;  /* Set width to 150px */
+    height: 150px;
+    width: 150px;
     object-fit: cover;
-    margin-right: 15px; /* Space between the image and text */
-    border: 3px solid #000000; /* 3px thick solid black border */
+    margin-right: 15px;
+    border: 3px solid #000000;
     border-radius: 5px;
 }
 
@@ -122,23 +126,27 @@ body {
     font-size: 1.6em;
     color: #FF69B4;
     margin-bottom: 10px;
+    word-wrap: break-word; /* Ensure long words break to fit */
 }
 
 .blog-details p {
     color: #CCCCCC;
     font-size: 1em;
     margin-bottom: 10px;
+    word-wrap: break-word; /* Ensure long words break to fit */
 }
 
 .read-more-btn {
     display: inline-block;
     padding: 10px 20px;
+    margin-bottom: 10px;
     background-color: #FF69B4;
     color: #000000;
     border-radius: 5px;
     text-decoration: none;
     font-size: 1.1em;
     transition: background-color 0.3s, transform 0.3s;
+    white-space: nowrap; /* Prevent button text from wrapping */
 }
 
 .read-more-btn:hover {
@@ -147,16 +155,20 @@ body {
 }
 
 .x-feed {
-    background-color: #1C1C1C; /* Match the blog container background color */
-    border-radius: 10px; /* Match the border radius */
-    padding: 25px; /* Match the padding */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Match the box shadow */
-    margin-top: 20px; /* Space between blog post and X feed */
-    width: 90%; /* Ensure it takes the full width of the container */
+    background-color: #1C1C1C;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    margin-top: 20px;
+    width: auto;
 }
 
 .x-feed a {
-    width: 100% !important; /* Ensure the width matches the container */
+    width: 100% !important;
+}
+
+.x-feed iframe {
+    width: 100%; /* Ensure Twitter feed fits within the container */
 }
 
 /* Responsive Styles */
@@ -185,9 +197,10 @@ body {
     }
 
     .additional-info img {
-        height: 150px; /* Consistent height for smaller screens */
-        width: 150px;  /* Consistent width for smaller screens */
-        margin-right: 10px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
     }
 
     .blog-details {
@@ -195,6 +208,12 @@ body {
     }
 
     .x-feed {
-        min-width: 100%;
+        min-width: auto;
     }
+}
+
+/* Ensure all images and iframes are responsive */
+img, iframe {
+    max-width: 100%;
+    height: auto;
 }
