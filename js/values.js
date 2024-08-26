@@ -100,7 +100,6 @@ async function fetchAndStorePets() {
 // Display pets from local storage
 async function displayPetsFromStorage() {
     const storedData = localStorage.getItem(storageKey);
-    showPreloader();
     if (!storedData) {
         fetchAndStorePets();
         return;
@@ -233,6 +232,19 @@ function debounce(func, delay) {
     };
 }
 
+// Show the preloader
+function showPreloader() {
+    preloader.classList.remove('hidden');
+}
+
+// Hide the preloader
+function hidePreloader() {
+    preloader.classList.add('hidden');
+}
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', displayPetsFromStorage);
+
 // Pagination controls
 function updatePaginationControls(totalPets) {
     const totalPages = Math.ceil(totalPets / petsPerPage);
@@ -356,14 +368,6 @@ function updateNextFetchTimer() {
     }
 }
 
-function showPreloader() {
-    preloader.classList.remove('hidden');
-}
-
-function hidePreloader() {
-    preloader.classList.add('hidden');
-}
-
-document.addEventListener('DOMContentLoaded', displayPetsFromStorage);
-
+// Call the updateNextFetchTimer function every second
 setInterval(updateNextFetchTimer, 1000);
+showPreloader();
