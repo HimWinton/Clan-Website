@@ -11,6 +11,7 @@ const clanIconElement = document.getElementById('clan-icon');
 const clanStatusElement = document.getElementById('clan-status');
 const totalPointsElement = document.getElementById('total-points');
 const clanDiamondsElement = document.getElementById('clan-diamonds');
+const clanMembersElement = document.getElementById('clan-members');
 const playerList = document.getElementById('player-list');
 const preloader = document.getElementById('preloader');
 const content = document.getElementById('content');
@@ -99,6 +100,7 @@ const displayClanData = async (clanData) => {
     const totalPoints = abbreviatePoints(clanWar.Points);
     const clanStatus = clanData.Status || 'Unknown';
     const clanDiamonds = abbreviatePoints(clanData.DepositedDiamonds || 0);
+    const members = `${clanData.Members}/${clanData.MemberCapacity}`;
 
     selectedClanName.textContent = clanData.Name.toUpperCase();
     clanIconElement.src = iconURL;
@@ -106,6 +108,7 @@ const displayClanData = async (clanData) => {
     clanStatusElement.innerHTML = clanStatus;
     totalPointsElement.innerHTML = `<img src="../imgs/star.png" alt="Star"> ${totalPoints}`;
     clanDiamondsElement.innerHTML = `<img src="https://biggamesapi.io/image/14867116353" alt="Diamonds"> ${clanDiamonds}`;
+    clanMembersElement.innerHTML = `<img src="https://www.iconsdb.com/icons/preview/purple/group-xxl.png" alt="Members Icon"> ${clanDiamonds}`;
     document.getElementById('clan-details').classList.remove('hidden');
 
     playerList.innerHTML = '';

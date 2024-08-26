@@ -135,12 +135,12 @@ h5 {
     color: #FFFFFF;
 }
 
-#total-points, #clan-diamonds {
+#total-points, #clan-diamonds #clan-members {
     display: flex;
     align-items: center;
 }
 
-#total-points img, #clan-diamonds img {
+#total-points img, #clan-diamonds img, #clan-members img {
     width: 25px; /* Adjust image size */
     height: 25px;
     vertical-align: middle;
@@ -587,7 +587,7 @@ footer {
         min-width: 60px; /* Reduced width for mobile */
     }
 
-    .placement {
+    .placement, #clan-members {
         display: none;
     }
 }
