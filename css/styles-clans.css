@@ -107,12 +107,11 @@ h5 {
     flex-shrink: 0;
 }
 
-#clan-details {
-    flex: 1;
-    padding-left: 15px; /* Add some space between icon and text */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.clan-details {
+    flex-grow: 1;          /* Take up remaining space */
+    text-align: left;      /* Align clan name to the left */
+    padding-left: 0px;     /* Remove any left padding */
+    margin-left: 0px;      /* Remove any left margin */
 }
 
 #clan-details h3 {
@@ -192,7 +191,9 @@ h5 {
 
 .left-side {
     display: flex;
-    align-items: center;
+    align-items: center;  /* Vertically align the content */
+    width: auto;          /* Ensure it only takes up as much space as needed */
+    padding-left: 0px;    /* Remove any left padding */
 }
 
 .left-side .user-id {
@@ -205,16 +206,11 @@ h5 {
     margin-right: 10px;
 }
 
-.clan-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
 .clan-name {
     font-size: 1.5em;
     font-weight: bold;
     color: #FFFFFF;
+    white-space: nowrap;   /* Prevent text from wrapping */
 }
 
 .clan-description {
@@ -225,17 +221,16 @@ h5 {
 .right-side {
     display: flex;
     align-items: center;
-    gap: 0px; /* Reduce space between the elements */
-    margin-left: auto; /* Pushes the right-side content to the far right */
+    margin-left: 0px;
 }
 
 .right-side .points,
 .right-side .diamonds,
 .right-side .members {
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: flex-start; /* Align content to the left */
-    min-width: 100px; /* Set a fixed width for each section, can be adjusted */
+    min-width: 85px; /* Set a fixed width for each section, can be adjusted */
     text-align: left; /* Ensure text is aligned to the left */
     font-weight: bold;
     color: #E0E0E0;
@@ -284,11 +279,12 @@ h5 {
 }
 
 .placement {
-    width: 50px;
-    text-align: right;
-    padding-right: 20px;
-    font-weight: bold;
-    color: #FFFFFF; /* White text for readability */
+    width: 50px;           /* Set a fixed width for the placement number */
+    text-align: right;     /* Align the placement number to the right within its box */
+    margin-left: 0px;      /* Remove any left margin */
+    padding-right: 10px;   /* Space between placement number and clan name */
+    font-weight: bold;     /* Keep it bold for emphasis */
+    color: #FFFFFF;        /* White text for readability */
 }
 
 .user-id {
@@ -298,14 +294,6 @@ h5 {
     flex: 1;
     cursor: pointer;
     padding-left: 10px;
-}
-
-.points {
-    width: 100px;
-    text-align: right;
-    padding-right: 10px;
-    font-weight: bold;
-    color: #E0E0E0; /* Light gray for points text */
 }
 
 .pagination {
@@ -367,6 +355,12 @@ h5 {
         flex-direction: column;
         padding: 10px;
     }
+
+    .right-side .points,
+    .right-side .diamonds,
+    .right-side .members {
+        min-width: 60px;
+}
 }
 
 /* Header Styles */
