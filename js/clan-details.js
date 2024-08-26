@@ -93,36 +93,50 @@ const fetchUsername = async (userId) => {
     }
 };
 
-// Function to display the fetched clan data
 const displayClanData = async (clanData) => {
     const clanWar = clanData.Battles[state.currentBattle];
     const iconURL = `https://biggamesapi.io/image/${clanData.Icon.replace('rbxassetid://', '')}`;
-    const totalPoints = abbreviatePoints(clanWar.Points);
+    const totalPoints = abbreviatePoints(clanWar?.Points || 0);
     const clanStatus = clanData.Status || 'Unknown';
     const clanDiamonds = abbreviatePoints(clanData.DepositedDiamonds || 0);
-    const members = `${clanData.Members}/${clanData.MemberCapacity}`;
 
     selectedClanName.textContent = clanData.Name.toUpperCase();
     clanIconElement.src = iconURL;
     clanIconElement.classList.remove('hidden');
     clanStatusElement.innerHTML = clanStatus;
     totalPointsElement.innerHTML = `<img src="../imgs/star.png" alt="Star"> ${totalPoints}`;
-    clanDiamondsElement.innerHTML = `<img src="https://biggamesapi.io/image/14867116353" alt="Diamonds"> ${clanDiamonds}`;
-    clanMembersElement.innerHTML = `<img src="https://www.iconsdb.com/icons/preview/purple/group-xxl.png" alt="Members Icon"> ${clanDiamonds}`;
+    clanDiamondsElement.innerHTML = `<img src="https://biggamesapi.io/image/14867116353" alt="Diamonds Icon"> ${clanDiamonds}`;
+    clanMembersElement.innerHTML = `<img src="https://www.iconsdb.com/icons/preview/purple/group-xxl.png" alt="Members Icon"> ${clanData.Members.length}/${clanData.MemberCapacity}`;
     document.getElementById('clan-details').classList.remove('hidden');
 
     playerList.innerHTML = '';
-    const contributions = clanWar.PointContributions || [];
-    contributions.sort((a, b) => b.Points - a.Points);
 
+    // Fetch diamond contributions
     const diamondContributions = clanData.DiamondContributions.AllTime.Data || [];
-    const cards = await Promise.all(contributions.map(async (contribution, index) => {
+
+    // Map members to include their total points
+    const membersWithPoints = clanData.Members.map(member => {
+        const points = (clanWar?.PointContributions.find(c => c.UserID === member.UserID) || {}).Points || 0;
+        const diamonds = (diamondContributions.find(d => d.UserID === member.UserID) || {}).Diamonds || 0;
+        return {
+            ...member,
+            Points: points,
+            Diamonds: diamonds,
+            TotalPoints: points // You can add other factors here if necessary
+        };
+    });
+
+    // Sort members by total points
+    membersWithPoints.sort((a, b) => b.TotalPoints - a.TotalPoints);
+
+    // Render each member card
+    const cards = await Promise.all(membersWithPoints.map(async (member, index) => {
         const card = document.createElement('div');
         card.classList.add('card');
 
-        const username = await fetchUsername(contribution.UserID);
-        const points = abbreviatePoints(contribution.Points);
-        const diamonds = abbreviatePoints((diamondContributions.find(d => d.UserID === contribution.UserID) || {}).Diamonds || 0);
+        const username = await fetchUsername(member.UserID);
+        const points = abbreviatePoints(member.Points);
+        const diamonds = abbreviatePoints(member.Diamonds);
 
         card.innerHTML = `
             <div class="left-side">
@@ -139,6 +153,7 @@ const displayClanData = async (clanData) => {
         return card;
     }));
 
+    // Append all cards to the player list
     cards.forEach(card => playerList.appendChild(card));
 };
 
@@ -161,7 +176,7 @@ const init = async () => {
         await fetchClanData();
 
         backButton.addEventListener('click', () => {
-            window.location.href = '../clans/'; // Update this URL as needed
+            window.location.href = '../clans/';
         });
 
     } catch (error) {

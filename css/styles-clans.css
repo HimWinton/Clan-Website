@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
     font-family: 'Outfit', sans-serif;
     margin: 0;
@@ -27,7 +28,7 @@ body {
 
 .spinner {
     border: 6px solid #F3F3F3;
-    border-top: 6px solid #FF69B4; /* Neon pink spinner */
+    border-top: 6px solid #FF69B4;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -37,330 +38,6 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-
-/* Table Wrapper */
-.table-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* Table Container */
-.table-container {
-    width: 100%;
-    max-width: 1300px;
-    padding: 20px;
-    background-color: #2B2B2B;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
-    text-align: center;
-}
-
-h1, h4, h5 {
-    color: #FF69B4; /* Neon pink for headings */
-    margin-bottom: 20px;
-}
-
-h1 {
-    font-size: 2.5em;
-}
-
-h4 {
-    font-size: 1.5em;
-}
-
-h5 {
-    font-size: 1.25em;
-}
-
-/* Clan Header */
-.clan-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background-color: #333;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(255, 105, 180, 0.3);
-    margin-bottom: 20px;
-    color: #FFFFFF;
-    position: relative; /* Ensure the header's contents stay in place */
-    text-align: left;
-}
-
-.top-clan-header-content,
-.clan-header-content {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Reduced space between the icon and details */
-    width: 100%;
-    justify-content: flex-start;
-}
-
-#clan-icon, #top-clan-icon {
-    width: 80px; /* Slightly reduce the icon size */
-    height: 80px;
-    border-radius: 10px;
-    flex-shrink: 0;
-}
-
-.clan-details {
-    flex-grow: 1;          /* Take up remaining space */
-    text-align: left;      /* Align clan name to the left */
-    padding-left: 0px;     /* Remove any left padding */
-    margin-left: 0px;      /* Remove any left margin */
-}
-
-#clan-details h3 {
-    margin: 0;
-    padding: 0;
-    line-height: 1.2em; /* Adjust line-height for better text spacing */
-    font-size: 1.5em; /* Adjust font size if needed */
-}
-
-#clan-status {
-    margin: 5px 0; /* Adjust margin for better alignment */
-    font-size: 1.2em;
-    color: #AEAFFE;
-}
-
-.clan-stats {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Space between points and diamonds */
-    font-size: 1.2em;
-    color: #FFFFFF;
-}
-
-#total-points, #clan-diamonds #clan-members {
-    display: flex;
-    align-items: center;
-}
-
-#total-points img, #clan-diamonds img, #clan-members img {
-    width: 25px; /* Adjust image size */
-    height: 25px;
-    vertical-align: middle;
-    margin-right: 5px; /* Space between image and text */
-}
-
-#total-points, #clan-diamonds {
-    margin: 0;
-    padding: 0;
-    font-weight: bold; /* Emphasize points and diamonds */
-}
-
-#clan-diamonds img {
-    margin-bottom: 0; /* Ensure consistent vertical alignment */
-}
-
-#total-points img {
-    padding-bottom: 3px;
-}
-
-.player-list {
-    max-height: 100%; /* Adjust as needed */
-    overflow-y: auto;
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #2B2B2B; /* Darker gray background */
-    box-shadow: 0 2px 10px rgba(255, 105, 180, 0.3); /* Neon pink shadow */
-}
-
-.card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1C1C1C; /* Dark background */
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    transition: box-shadow 0.3s, background-color 0.3s;
-    text-decoration: none; /* Remove underline from links */
-    color: inherit; /* Inherit text color from parent */
-}
-
-.card:hover {
-    background-color: #333333; /* Darken background on hover */
-    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.5); /* Highlight on hover */
-}
-
-.left-side {
-    display: flex;
-    align-items: center;  /* Vertically align the content */
-    width: auto;          /* Ensure it only takes up as much space as needed */
-    padding-left: 0px;    /* Remove any left padding */
-}
-
-.left-side .user-id {
-    text-align: left;
-}
-
-.clan-icon {
-    width: 50px; /* Adjust size as needed */
-    height: 50px;
-    margin-right: 10px;
-}
-
-.clan-name {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #FFFFFF;
-    white-space: nowrap;   /* Prevent text from wrapping */
-}
-
-.clan-description {
-    font-size: 1em;
-    color: #AAAAAA;
-}
-
-.right-side {
-    display: flex;
-    align-items: center;
-    margin-left: 0px;
-}
-
-.right-side .points,
-.right-side .diamonds,
-.right-side .members {
-    display: flex;
-    align-items: end;
-    justify-content: flex-start; /* Align content to the left */
-    min-width: 85px; /* Set a fixed width for each section, can be adjusted */
-    text-align: left; /* Ensure text is aligned to the left */
-    font-weight: bold;
-    color: #E0E0E0;
-}
-
-.right-side img {
-    width: 20px; /* Adjust icon size */
-    height: 20px;
-    margin-right: 5px; /* Reduce space between the icon and the text */
-}
-
-.header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Ensures the back button stays on the left and the clan name is centered */
-    margin-bottom: 20px;
-    position: relative;
-}
-
-#selected-clan-name {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 2.5em;
-    color: #FF69B4;
-}
-
-.back-button {
-    background-color: #FF69B4; /* Neon pink background */
-    color: #FFFFFF; /* White text */
-    padding: 0px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 2em;
-    transition: background-color 0.3s ease;
-    display: inline-block;
-}
-
-.card:hover {
-    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.4); /* Neon pink shadow on hover */
-    background-color: #444;
-}
-
-.placement {
-    width: 50px;           /* Set a fixed width for the placement number */
-    text-align: right;     /* Align the placement number to the right within its box */
-    margin-left: 0px;      /* Remove any left margin */
-    padding-right: 10px;   /* Space between placement number and clan name */
-    font-weight: bold;     /* Keep it bold for emphasis */
-    color: #FFFFFF;        /* White text for readability */
-}
-
-.user-id {
-    font-size: 18px;
-    color: #FFFFFF; /* White text for readability */
-    min-width: 100px;
-    flex: 1;
-    cursor: pointer;
-    padding-left: 10px;
-}
-
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.page-select,
-.arrow {
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #FF69B4;
-    background-color: #1C1C1C;
-    color: #FF69B4;
-    margin: 0 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.page-select:hover,
-.arrow:hover {
-    background-color: #FF69B4;
-    color: #FFFFFF;
-}
-
-.arrow:disabled {
-    background-color: #333;
-    color: #777;
-    cursor: not-allowed;
-}
-
-/* Responsive Header and Footer */
-@media (max-width: 768px) {
-    header {
-        padding: 10px;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .logo img {
-        max-height: 70px;
-    }
-
-    .nav-bar {
-        margin-top: 10px;
-        justify-content: center;
-    }
-
-    .battle-info {
-        position: relative;
-        left: auto;
-        transform: none;
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    footer {
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .right-side .points,
-    .right-side .diamonds,
-    .right-side .members {
-        min-width: 60px;
-    }
 }
 
 /* Header Styles */
@@ -384,10 +61,6 @@ header {
     padding: 10px;
 }
 
-.logo img:hover {
-    color: #FF69B4;
-}
-
 .battle-info {
     position: absolute; /* Position the battle info absolutely within the header */
     left: 50%;
@@ -398,7 +71,7 @@ header {
 }
 
 .battle-name, .countdown {
-    font-size: 1.5em; /* Slightly smaller font size */
+    font-size: 1.5em;
     color: #FFFFFF; /* White text for readability */
     margin: 0;
 }
@@ -416,14 +89,14 @@ header {
     display: flex;
     margin: 0;
     padding: 0;
-    gap: 15px; /* Slightly reduce the gap between nav items */
+    gap: 15px;
 }
 
 .nav-links a {
     text-decoration: none;
     color: #FFFFFF; /* White text for links */
-    font-size: 0.9em; /* Slightly reduce font size */
-    padding: 5px 15px; /* Slightly reduce padding for nav items */
+    font-size: 0.9em;
+    padding: 5px 15px;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -433,7 +106,6 @@ header {
     color: #000000; /* Black text on hover for contrast */
 }
 
-/* Active Link Styling */
 .nav-links a.active {
     background-color: #FF69B4; /* Neon pink background for active link */
     color: #000000; /* Black text for active link */
@@ -472,6 +144,12 @@ header {
     z-index: 1;
     overflow: hidden; /* Ensures the rounded corners are visible */
     transition: all 0.3s ease;
+    right: 0;
+}
+
+.nav-dropdown:hover .nav-dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .nav-dropdown-content a {
@@ -495,7 +173,6 @@ header {
 /* Footer Styles */
 footer {
     margin: 0 auto;
-    height: 50%;
     width: 90%;
     padding: 20px;
     display: flex;
@@ -508,18 +185,302 @@ footer {
     color: #FFFFFF;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
+.footer-text {
+    font-size: 1em;
+    color: #FFFFFF;
+}
+
+/* Table Wrapper */
+.table-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.table-container {
+    width: 100%;
+    max-width: 1300px;
+    padding: 20px;
+    background-color: #2B2B2B;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
+    text-align: center;
+}
+
+/* Headings */
+h1, h4, h5 {
+    color: #FF69B4;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h4 {
+    font-size: 1.5em;
+}
+
+h5 {
+    font-size: 1.25em;
+}
+
+/* Clan Header */
+.clan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(255, 105, 180, 0.3);
+    margin-bottom: 20px;
+    color: #FFFFFF;
+}
+
+.clan-header-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.clan-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+#clan-icon, #top-clan-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.clan-details {
+    flex-grow: 1;
+    text-align: left;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.clan-stats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2em;
+    color: #FFFFFF;
+}
+
+#total-points, #clan-diamonds, #clan-members {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+#total-points img, #clan-diamonds img, #clan-members img {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.player-list {
+    max-height: 100%;
+    overflow-y: auto;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #2B2B2B;
+    box-shadow: 0 2px 10px rgba(255, 105, 180, 0.3);
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;  
+    align-items: center; 
+    padding: 15px;
+    background-color: #1C1C1C;
+    border-radius: 10px;
+    transition: box-shadow 0.3s, background-color 0.3s;
+    color: inherit;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.card:hover {
+    background-color: #333333;
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.5);
+}
+
+.left-side {
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+.clan-name {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    text-align: left;
+    width: 10%;
+    box-sizing: border-box;
+}
+
+.right-side .points,
+.right-side .diamonds,
+.right-side .members {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    color: #FFFFFF;
+}
+
+.right-side img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.right-side .points span,
+.right-side .diamonds span,
+.right-side .members span {
+    vertical-align: middle;
+    line-height: 20px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+#selected-clan-name {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5em;
+    color: #FF69B4;
+}
+
+.back-button {
+    background-color: #FF69B4;
+    color: #FFFFFF;
+    padding: 0px 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 2em;
+    transition: background-color 0.3s ease;
+}
+
+.placement {
+    width: 50px;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.user-id {
+    font-size: 18px;
+    color: #FFFFFF;
+    min-width: 100px;
+    flex: 1;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-select, .arrow {
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #FF69B4;
+    background-color: #1C1C1C;
+    color: #FF69B4;
+    margin: 0 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.page-select:hover, .arrow:hover {
+    background-color: #FF69B4;
+    color: #FFFFFF;
+}
+
+.arrow:disabled {
+    background-color: #333;
+    color: #777;
+    cursor: not-allowed;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+        flex-direction: column;
+        align-items: center;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .logo img {
+        max-height: 70px;
+    }
+
+    .nav-bar {
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    .battle-info {
+        position: relative;
+        left: auto;
+        transform: none;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    footer {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .right-side {
+        margin-right: 50px;
+    }
+
+    .placement {
+        display: none;
+    }
+
+    #clan-icon {
+        display: none;
+    }
+
+    .clan-header-content {
+        justify-content: center;
     }
 }
 
-/* Media Queries for Responsive Design */
 @media (max-width: 1200px) {
     .nav-links {
         display: none; /* Hide the regular nav on small screens */
@@ -553,41 +514,5 @@ footer {
         transform: none;
         text-align: center;
         margin-top: 10px; /* Add space between logo and battle info */
-    }
-
-    /* Additional Mobile-Specific Styles */
-    .clan-header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    #clan-icon, #top-clan-icon {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 10px;
-    }
-
-    .clan-name {
-        font-size: 1.2em;
-    }
-
-    .table-container {
-        padding: 10px;
-        border-radius: 10px;
-        font-size: 0.9em; /* Reduce font size slightly */
-    }
-
-    .left-side {
-        display: block;
-    }
-
-    .right-side .points,
-    .right-side .diamonds,
-    .right-side .members {
-        min-width: 60px; /* Reduced width for mobile */
-    }
-
-    .placement, #clan-members {
-        display: none;
     }
 }
