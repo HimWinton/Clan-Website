@@ -360,7 +360,7 @@ h5 {
     .right-side .diamonds,
     .right-side .members {
         min-width: 60px;
-}
+    }
 }
 
 /* Header Styles */
@@ -519,14 +519,6 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
-    .table-container {
-        padding: 10px;
-        border-radius: 10px;
-        font-size: 0.9em; /* Reduce font size slightly */
-    }
-}
-
 /* Media Queries for Responsive Design */
 @media (max-width: 1200px) {
     .nav-links {
@@ -561,5 +553,41 @@ footer {
         transform: none;
         text-align: center;
         margin-top: 10px; /* Add space between logo and battle info */
+    }
+
+    /* Additional Mobile-Specific Styles */
+    .clan-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #clan-icon, #top-clan-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 10px;
+    }
+
+    .clan-name {
+        font-size: 1.2em;
+    }
+
+    .table-container {
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 0.9em; /* Reduce font size slightly */
+    }
+
+    .left-side {
+        display: block;
+    }
+
+    .right-side .points,
+    .right-side .diamonds,
+    .right-side .members {
+        min-width: 60px; /* Reduced width for mobile */
+    }
+
+    .placement {
+        display: none;
     }
 }
