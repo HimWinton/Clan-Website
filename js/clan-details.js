@@ -7,7 +7,7 @@ const state = {
 
 // Cache DOM elements
 const selectedClanName = document.getElementById('selected-clan-name');
-const clanIconElement = document.getElementById('clan-icon');
+const clanIconElement = document.getElementById('clan-icon-details');
 const clanStatusElement = document.getElementById('clan-status');
 const totalPointsElement = document.getElementById('total-points');
 const clanDiamondsElement = document.getElementById('clan-diamonds');
