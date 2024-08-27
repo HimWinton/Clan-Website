@@ -3,17 +3,17 @@ const state = {
     clansPerPage: 10,
     currentPage: 1,
     totalClans: 0,
-    currentBattle: null,
-    clickLock: false // Lock to prevent spam clicking
+    allClans: [], // Store all clans for searching and filtering
+    filteredClans: [], // Store filtered clans
 };
 
 // Cache DOM elements
 const preloader = document.getElementById('preloader');
 const clanList = document.getElementById('clan-list');
 const content = document.getElementById('content');
-const pageSelect = document.getElementById('page-select');
 const prevButton = document.getElementById('prev-button');
 const nextButton = document.getElementById('next-button');
+const clanSearchInput = document.getElementById('clan-search');
 
 // Utility functions
 const getSuffix = (num) => {
@@ -53,29 +53,58 @@ const fetchTotalClans = async () => {
     }
 };
 
-// Fetch clans data for the current page
-const fetchClansData = async (page = state.currentPage) => {
+// Fetch all clans data by looping through all pages
+const fetchAllClans = async () => {
+    const allClans = [];
+    const totalPages = Math.ceil(state.totalClans / state.clansPerPage);
     try {
         showPreloader();
-        const response = await fetch(`https://biggamesapi.io/api/clans?page=${page}&pageSize=${state.clansPerPage}&sort=Points&sortOrder=desc`);
-        const data = await response.json();
-        return data.status === "ok" ? data.data : [];
+        for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
+            const response = await fetch(`https://biggamesapi.io/api/clans?page=${currentPage}&pageSize=${state.clansPerPage}&sort=Points&sortOrder=desc`);
+            const data = await response.json();
+            if (data.status === "ok") {
+                allClans.push(...data.data);
+            } else {
+                console.error('Failed to fetch clans on page', currentPage);
+            }
+        }
     } catch (error) {
-        console.error('Error fetching clans data:', error);
-        return [];
+        console.error('Error fetching all clans:', error);
     } finally {
         hidePreloader();
     }
+    return allClans;
 };
 
-// Redirect to the new page with the clan name as a URL parameter
-const redirectToClanPage = (clanName) => {
-    window.location.href = `clan.html?name=${encodeURIComponent(clanName)}`;
+// Load all clans and display the first page
+const loadAllClans = async () => {
+    await fetchTotalClans(); // Get the total number of clans
+    state.allClans = await fetchAllClans(); // Fetch all clans
+    state.filteredClans = state.allClans; // Initialize filteredClans with allClans
+    state.currentPage = 1; // Start on the first page
+    displayClans(getClansForCurrentPage()); // Display the first page of clans
+    updatePagination(); // Update pagination buttons
+};
+
+// Filter clans based on search input
+const filterClans = () => {
+    const searchTerm = clanSearchInput.value.toLowerCase();
+    state.filteredClans = state.allClans.filter(clan => clan.Name.toLowerCase().includes(searchTerm));
+    state.currentPage = 1; // Reset to the first page of filtered results
+    displayClans(getClansForCurrentPage()); // Display the first page of filtered clans
+    updatePagination(); // Update pagination buttons
+};
+
+// Get clans for the current page
+const getClansForCurrentPage = () => {
+    const start = (state.currentPage - 1) * state.clansPerPage;
+    const end = start + state.clansPerPage;
+    return state.filteredClans.slice(start, end);
 };
 
 // Display clans on the page
-const displayClans = async (clans) => {
-    const fragment = document.createDocumentFragment();
+const displayClans = (clans) => {
+    clanList.innerHTML = ''; // Clear the existing list
 
     clans.forEach((clan, index) => {
         const globalRank = (state.currentPage - 1) * state.clansPerPage + index + 1;
@@ -104,84 +133,40 @@ const displayClans = async (clans) => {
                 <span class="members"><img src="../imgs/members.png" alt="Members Icon"> ${members}</span>
             </div>
         `;
-        fragment.appendChild(card);
+        clanList.appendChild(card);
     });
-
-    clanList.innerHTML = '';
-    clanList.appendChild(fragment);
-
-    if (state.currentPage === 1 && clans.length > 0) {
-        updateTopClan(clans[0]);
-    }
-};
-
-// Update the top clan display
-const updateTopClan = async (topClan) => {
-    try {
-        showPreloader();
-        const topClanNameElement = document.getElementById('top-clan-name');
-        const topClanIconElement = document.getElementById('top-clan-icon');
-
-        topClanNameElement.textContent = `${topClan.Name.toUpperCase()} (${abbreviatePoints(topClan.Points)})`;
-
-        const topClanResponse = await fetch(`https://biggamesapi.io/api/clan/${topClan.Name}`);
-        const topClanData = await topClanResponse.json();
-
-        if (topClanData.status === "ok") {
-            const topClanIconID = topClanData.data.Icon.replace('rbxassetid://', '');
-            const topClanIconURL = `https://biggamesapi.io/image/${topClanIconID}`;
-            topClanIconElement.src = topClanIconURL;
-        }
-    } catch (error) {
-        console.error('Error updating top clan:', error);
-    } finally {
-        hidePreloader();
-    }
 };
 
 // Update pagination controls
 const updatePagination = () => {
-    const totalPages = Math.ceil(state.totalClans / state.clansPerPage);
-    pageSelect.innerHTML = '';
-
-    for (let i = 1; i <= totalPages; i++) {
-        const option = document.createElement('option');
-        option.value = i;
-        option.textContent = i;
-        pageSelect.appendChild(option);
-    }
-
+    const totalPages = Math.ceil(state.filteredClans.length / state.clansPerPage);
     prevButton.disabled = state.currentPage === 1;
     nextButton.disabled = state.currentPage === totalPages;
 };
 
-// Handle page change with debounce
-const changePage = (() => {
-    let timeout;
-    return (direction) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            const totalPages = Math.ceil(state.totalClans / state.clansPerPage);
-            if ((direction === 1 && state.currentPage < totalPages) || (direction === -1 && state.currentPage > 1)) {
-                state.currentPage += direction;
-                loadClans();
-                updatePagination();
-            }
-        }, 300);
-    };
-})();
-
-// Select a specific page
-const selectPage = (page) => {
-    state.currentPage = parseInt(page, 10);
-    loadClans();
-    updatePagination();
+// Handle page change
+const changePage = (direction) => {
+    const totalPages = Math.ceil(state.filteredClans.length / state.clansPerPage);
+    if ((direction === 1 && state.currentPage < totalPages) || (direction === -1 && state.currentPage > 1)) {
+        state.currentPage += direction;
+        displayClans(getClansForCurrentPage());
+        updatePagination();
+    }
 };
 
-// Load clans data and display it
-const loadClans = async () => {
-    const clans = await fetchClansData(state.currentPage);
-    displayClans(clans);
+// Initialize the application
+const init = async () => {
+    try {
+        showPreloader();
+        await loadAllClans(); // Load and display all clans at the start
+        clanSearchInput.addEventListener('input', filterClans); // Attach search event listener
+        prevButton.addEventListener('click', () => changePage(-1)); // Handle previous page click
+        nextButton.addEventListener('click', () => changePage(1)); // Handle next page click
+    } catch (error) {
+        console.error('Error during initialization:', error);
+    } finally {
+        hidePreloader();
+    }
 };
 
 // Show the preloader
@@ -194,19 +179,6 @@ function hidePreloader() {
     preloader.classList.add('hidden');
     content.style.display = 'block';
 }
-
-// Initialize the application
-const init = async () => {
-    try {
-        showPreloader();
-        await fetchTotalClans();
-        await loadClans();
-    } catch (error) {
-        console.error('Error during initialization:', error);
-    } finally {
-        hidePreloader();
-    }
-};
 
 // Start the app
 init();

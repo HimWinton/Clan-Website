@@ -319,7 +319,11 @@ h5 {
 
 .left-side {
     display: flex;
-    align-items: center;  /* Align items vertically centered */
+    flex-grow: 1;
+    flex-direction: column;
+    text-align-last: start;
+    align-items: flex-start;
+    margin-left: 10px;
     gap: 10px;            /* Add some space between the icon and the text */
     text-align: left;
     color: #FFFFFF;
@@ -378,6 +382,7 @@ h5 {
     left: 50%;
     transform: translateX(-50%);
     font-size: 2.5em;
+    z-index: 1;
     color: #FF69B4;
 }
 
@@ -435,6 +440,28 @@ h5 {
     background-color: #333;
     color: #777;
     cursor: not-allowed;
+}
+
+.search-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#clan-search {
+    width: 80%;
+    padding: 10px;
+    font-size: 1.2em;
+    border: 1px solid #FF69B4;
+    border-radius: 5px;
+    background-color: #1C1C1C;
+    color: #FF69B4;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#clan-search:focus {
+    background-color: #1C1C1C;
+    color: #FFFFFF;
+    outline: none;
 }
 
 /* Media Queries */

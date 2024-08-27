@@ -44,12 +44,9 @@
     <div id="content" style="display: none;">
         <div class="table-wrapper">
             <div class="table-container">
-                <h1>All Clans</h1>
-                <div class="clan-header">
-                    <div class="clan-header-content">
-                        <img id="top-clan-icon" src="" alt="Top Clan Icon">
-                        <h3>Top Clan: <span id="top-clan-name">Loading...</span></h3>
-                    </div>
+                <h1>Clans</h1>
+                <div class="search-container">
+                    <input type="text" id="clan-search" placeholder="Search for a clan..." oninput="filterClans()">
                 </div>
                 <div class="player-list" id="clan-list"></div>
                 <div class="pagination">

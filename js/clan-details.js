@@ -140,7 +140,6 @@ const displayClanData = async (clanData) => {
 
         card.innerHTML = `
             <div class="left-side">
-                <span class="placement">${index + 1}${getSuffix(index + 1)}</span>
                 <div class="clan-details">
                     <span class="user-id">${username}</span>
                 </div>
