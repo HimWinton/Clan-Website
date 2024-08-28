@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastery Calculators - PetSimCentral</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles-common.css">
+    <link rel="stylesheet" href="../css/styles-mastery.css"> <!-- Custom styling for the mastery page -->
+</head>
+<body>
+
+    <header>
+        <a href="../" class="logo">
+            <img src="../imgs/logo.png" alt="Your Logo">
+        </a>
+        <div class="battle-info">
+            <h1 class="battle-name">Battle Name</h1>
+            <h3 id="countdown-timer" class="countdown">Countdown Timer</h3>
+        </div>
+        <nav class="nav-bar">
+            <ul class="nav-links">
+                <li><a href="../clans/">Clans</a></li>
+                <li><a href="../macros/">Macros</a></li>
+                <li><a href="../mastery/">Mastery</a></li>
+                <li><a href="../values/">Values</a></li>
+                <li><a href="https://discord.gg/aaj4AhJs79" target="_blank">Support/Discord</a></li>
+            </ul>
+            <div class="nav-dropdown">
+                <button class="nav-dropbtn">☰</button>
+                <div class="nav-dropdown-content">
+                    <a href="../clans/">Clans</a>
+                    <a href="../macros/">Macros</a>
+                    <a href="../mastery/">Mastery</a>
+                    <a href="../values/">Values</a>
+                    <a href="https://discord.gg/aaj4AhJs79" target="_blank">Support/Discord</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="mastery-header-container">
+        <h2 class="mastery-header">Mastery Calculators</h2>
+    </div>
+
+    <div class="mastery-cards">
+        <div class="mastery-card" onclick="openCalculator('Potions')">
+            <div class="mastery-content">
+                <img class="mastery-img" src="https://biggamesapi.io/image/15057347575">
+            </div>
+        </div>
+        <div class="mastery-card" onclick="openCalculator('Breakables')">
+            <div class="mastery-content">
+                <img class="mastery-img" src="https://biggamesapi.io/image/15092228198">
+            </div>
+        </div>
+        <div class="mastery-card" onclick="openCalculator('Fruit')">
+            <div class="mastery-content">
+                <img class="mastery-img" src="https://biggamesapi.io/image/15092228779">
+            </div>
+        </div>
+        <div class="mastery-card" onclick="openCalculator('Gifts')">
+            <div class="mastery-content">
+                <img class="mastery-img" src="https://biggamesapi.io/image/15092229040">
+            </div>
+        </div>
+        <div class="mastery-card" onclick="openCalculator('Pets')">
+            <div class="mastery-content">
+                <img class="mastery-img" src="https://biggamesapi.io/image/15057347827">
+            </div>
+        </div>
+        <div class="mastery-card" onclick="openCalculator('Keys')">
+            <div class="mastery-content">
+                <img class="mastery-img" src="https://biggamesapi.io/image/16848872762">
+            </div>
+        </div>
+        <div class="mastery-card" onclick="openCalculator('Enchants')">
+            <div class="mastery-content">
+                <img class="mastery-img" src="https://biggamesapi.io/image/15057348192">
+            </div>
+        </div>
+        <div class="mastery-card" onclick="openCalculator('Fishing')">
+            <div class="mastery-content">
+                <img class="mastery-img" src="https://biggamesapi.io/image/16717409986">
+            </div>
+        </div>
+        <div class="mastery-card" onclick="openCalculator('Digging')">
+            <div class="mastery-content">
+                <img class="mastery-img" src="https://biggamesapi.io/image/16848836284">
+            </div>
+        </div>
+        <div class="mastery-card" onclick="openCalculator('Economy')">
+            <div class="mastery-content">
+                <img class="mastery-img" src="https://biggamesapi.io/image/15092229110">
+            </div>
+        </div>
+        <div class="mastery-card" onclick="openCalculator('Superior Chests')">
+            <div class="mastery-content">
+                <img class="mastery-img" src="https://biggamesapi.io/image/17602729261">
+            </div>
+        </div>
+        <div class="mastery-card" onclick="openCalculator('Eggs')">
+            <div class="mastery-content">
+                <img class="mastery-img" src="https://biggamesapi.io/image/15057348341">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="calculatorModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCalculator()">&times;</span>
+            <h2 id="masteryTitle">Mastery Calculator</h2>
+            <form id="masteryForm">
+                <label for="currentLevel">Current Level:</label>
+                <input type="number" id="currentLevel" name="currentLevel" min="1" max="99" value="1" required><br><br>
+
+                <label for="currentXP">Current Experience in This Level:</label>
+                <input type="number" id="currentXP" name="currentXP" min="0" value="0" required><br><br>
+
+                <label for="bonusXP">Clan Mastery Bonus (10%)</label>
+                <input type="checkbox" id="bonusXP" name="bonusXP"><br><br>
+
+                <label for="targetLevel">Target Level:</label>
+                <input type="number" id="targetLevel" name="targetLevel" min="1" max="99" value="99" required><br><br>
+
+                <button type="button" onclick="calculateMasteryXP()">Calculate</button>
+            </form>
+
+            <h2 id="result"></h2>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-text">© 2024 Wonton Inc</div>
+    </footer>
+
+    <script src="../js/masterycalculator.js"></script>
+</body>
+</html>

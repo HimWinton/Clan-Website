@@ -1,0 +1,186 @@
+body {
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #000000; /* Black background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF; /* White text for readability */
+}
+
+.mastery-header-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.mastery-header {
+    font-size: 2em;
+    color: #FF69B4; /* Neon pink for the header */
+    margin-bottom: 10px;
+}
+
+.discord-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #FFFFFF; /* White text for contrast */
+    background-color: #7289DA; /* Discord's brand color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.discord-button:hover {
+    background-color: #5A73B5; /* Slightly darker shade on hover */
+}
+
+.mastery-cards {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    width: 100%; /* Full width to accommodate flex wrapping */
+}
+
+.mastery-card {
+    flex: 1 1 calc(33.33% - 20px); /* Three items per row with margin adjustment */
+    max-width: calc(33.33% - 20px); /* Ensures each item doesn't exceed 33.33% width */
+    margin: 10px;
+    background-color: #1C1C1C; /* Dark gray background for items */
+    border-radius: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.mastery-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3); /* Neon pink shadow on hover */
+}
+
+.mastery-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.mastery-img {
+    margin: 0;
+    margin-bottom: 10px;
+    width: 120px;
+    height: 120px;
+}
+
+.mastery-card p {
+    margin: 0;
+    font-size: 1em;
+    color: #FFFFFF; /* White text for readability */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.85); /* Darker background overlay */
+}
+
+.modal-content {
+    background-color: #1C1C1C; /* Dark gray background for the modal */
+    margin: 10% auto; /* Centers the modal vertically */
+    padding: 30px;
+    border: 2px solid #FF69B4; /* Neon pink border */
+    border-radius: 10px; /* Rounded corners */
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    color: #FFFFFF; /* White text */
+    box-shadow: 0px 0px 20px rgba(255, 105, 180, 0.5); /* Neon pink glow */
+}
+
+.modal-content ul {
+    list-style-type: none; /* Removes the bullet points */
+    padding: 0; /* Removes default padding */
+}
+
+.modal-content li {
+    margin-bottom: 10px; /* Adds space between list items */
+    font-size: 1.1em; /* Increases font size for readability */
+    color: #FF69B4; /* Keeps the neon pink color */
+}
+
+.close {
+    color: #FF69B4; /* Neon pink for close button */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: #FFFFFF; /* White on hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: left;
+    color: #FF69B4; /* Neon pink for results text */
+}
+
+form label {
+    font-size: 1.1em;
+    color: #FF69B4; /* Neon pink for labels */
+}
+
+form input[type="number"], form input[type="checkbox"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #FF69B4; /* Neon pink border */
+    background-color: #333; /* Dark input background */
+    color: #FFF; /* White text */
+}
+
+form button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #FFFFFF; /* White text */
+    background-color: #FF69B4; /* Neon pink background */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #FF1493; /* Darker neon pink on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1023px) {
+    .mastery-card {
+        max-width: 45%; /* Adjust to two items per row */
+    }
+}
+
+@media (max-width: 767px) {
+    .mastery-card {
+        max-width: 100%; /* Adjust to one item per row */
+    }
+
+    .mastery-cards {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+}
