@@ -42,7 +42,7 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 20px;
-    width: 100%; /* Full width to accommodate flex wrapping */
+    width: 50%; /* Full width to accommodate flex wrapping */
 }
 
 .mastery-card {
