@@ -1,9 +1,9 @@
 // Reward Strings
 const rewards = {
-    gold: "Rainbow Huge Ice Cream Cone, Ice Cream Hoverboard, Ice Cream Booth, Clan Gift",
-    silver: "Golden Huge Ice Cream Cone, Ice Cream Hoverboard, Ice Cream Booth, Clan Gift",
-    bronze: "Huge Ice Cream Cone, Ice Cream Hoverboard, Ice Cream Booth, Clan Gift",
-    other: "Ice Cream Booth, Clan Gift",
+    gold: "Huge Rainbow Rave Crab, Rave Crab Hoverboard, Rave Crab Booth, and Clan Gift",
+    silver: "Huge Golden Rave Crab, Rave Crab Hoverboard, Rave Crab Booth, and Clan Gift",
+    bronze: "Huge Rave Crab, Rave Crab Hoverboard, Rave Crab Booth, and Clan Gift",
+    other: "Rave Crab Booth and Clan Gift",
     gift: "Clan Gift"
 };
 
